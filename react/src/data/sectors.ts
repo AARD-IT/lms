@@ -333,7 +333,7 @@ The automobile sector spans <b>manufacturing, connected vehicles, and emerging m
 
   Manufacturing is rapidly evolving toward <b>smart factories powered by Industry 4.0 principles.</b>
   The global industrial analytics market is projected to exceed <b>$100B by 2030.</b>
-  Agentic AI plays a key role in predictive maintenance, yield <b>optimization, quality control, and energy efficiency.</b> 
+  Agentic AI plays a key role in predictive maintenance, <b>yield optimization, quality control, and energy efficiency.</b> 
   The urgency to adopt analytics is high, as manufacturers seek automation, cost reduction, and data-driven decision-making.
 
 `,

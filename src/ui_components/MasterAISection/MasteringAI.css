@@ -352,9 +352,9 @@ p.theclictttovvireesss {
   top: 0;
   left: 0;
   z-index: 2;
-  width: 40% !important;
+  width: 34% !important;
   max-width: none;
-  flex: 0 0 40%;
+  flex: 0 0 34%;
   height: 100%;
   padding: 2.5rem 2.25rem;
   border-radius: 0;
@@ -423,6 +423,10 @@ p.theclictttovvireesss {
   margin: 0;
 }
 
+.image-desc-container {
+  display: block;
+}
+
 .master-ai-hiring-modal #metric-desc ul {
   list-style: none;
   padding: 0;
@@ -436,11 +440,12 @@ p.theclictttovvireesss {
 .master-ai-hiring-modal span.theullsddots {
   display: flex;
   align-items: flex-start;
-  font-size: 1.15rem !important;
+  font-size: 1.3rem !important;
   color: #000;
   font-family: "Helvetica", Arial, sans-serif;
-  margin-bottom: 0.8rem !important;
-  line-height: 1.6 !important;
+  margin-bottom: 0.85rem !important;
+  line-height: 1.65 !important;
+  font-weight: 500;
 }
 
 .master-ai-hiring-modal span.theullsddots i {
@@ -453,14 +458,14 @@ p.theclictttovvireesss {
 }
 
 .master-ai-hiring-modal .modal-main-panel {
-  width: 60%;
-  flex: 0 0 60%;
+  width: 66%;
+  flex: 0 0 66%;
   max-width: none;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   box-sizing: border-box;
   padding: 4rem 3rem;
   overflow-y: auto;
@@ -514,7 +519,7 @@ p.theclictttovvireesss {
   align-items: stretch;
   padding: 0.5rem 0;
   width: 100%;
-  max-width: 900px;
+  max-width: 100%;
   position: relative;
   top: 0;
 }
@@ -528,9 +533,9 @@ p.theclictttovvireesss {
   border: 1px solid #e2e8f0;
   border-bottom: 4px solid #0377ef;
   border-radius: 16px;
-  padding: 1.5rem 1rem;
-  width: 160px;
-  min-height: 160px;
+  padding: 1.5rem 1.25rem;
+  width: 175px;
+  min-height: 175px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
@@ -544,8 +549,8 @@ p.theclictttovvireesss {
 }
 
 .master-ai-hiring-modal .popup-role-card-img {
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #e2e8f0;
@@ -570,7 +575,7 @@ p.theclictttovvireesss {
 
 .master-ai-hiring-modal .popup-role-card-name {
   font-family: "Helvetica", Arial, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #1e293b;
   text-transform: uppercase;
@@ -628,15 +633,15 @@ p.theclictttovvireesss {
     overflow-y: visible !important;
   }
 
-  /* Hero image: slightly taller on mobile */
+  /* Hero image */
   .master-ai-hiring-modal .hero-image {
-    max-height: 8rem;
-    margin-bottom: 0.75rem;
+    max-height: 15rem;
+    margin-bottom: 0.5rem;
   }
 
   .master-ai-hiring-modal h2#metric-title {
-    font-size: 1.3rem !important;
-    margin-bottom: 0.75rem;
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem;
   }
 
   /* Main panel: full width, fills remaining space */
@@ -650,13 +655,13 @@ p.theclictttovvireesss {
   }
 
   .master-ai-hiring-modal h3#pop-header {
-    font-size: 1.25rem !important;
-    margin-bottom: 0.25rem !important;
+    font-size: 2rem !important;
+    margin-bottom: 0.2rem !important;
   }
 
   .master-ai-hiring-modal .thepopupactivehiring {
-    font-size: 0.8rem !important;
-    margin: 0.25rem 0 0.75rem !important;
+    font-size: 1.2rem !important;
+    margin: 0.2rem 0 0.5rem !important;
   }
 
   /* Company cards grid: 4 per row, evenly sized */
@@ -667,28 +672,63 @@ p.theclictttovvireesss {
   }
 
   .master-ai-hiring-modal .popup-role-card {
-    width: calc(25% - 0.5rem);
-    min-width: 72px;
-    max-width: 90px;
-    min-height: 90px;
-    padding: 0.5rem 0.35rem;
+    width: calc(33.33% - 0.5rem);
+    min-width: 90px;
+    max-width: 115px;
+    min-height: 110px;
+    padding: 0.75rem 0.5rem;
     border-radius: 12px;
   }
 
   .master-ai-hiring-modal .popup-role-card-img {
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     margin-bottom: 0.5rem;
   }
 
   .master-ai-hiring-modal .popup-role-card-name {
-    font-size: 0.6rem;
+    font-size: 0.88rem !important;
     letter-spacing: 0;
   }
 
+
+  .image-desc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .master-ai-hiring-modal .hero-image {
+    width: 100% !important;
+    max-height: 15rem !important;
+    height: auto !important;
+    object-fit: cover;
+    margin-bottom: 0.5rem !important;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .master-ai-hiring-modal p#metric-desc {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
   .master-ai-hiring-modal span.theullsddots {
-    font-size: 0.85rem !important;
-    line-height: 1.35 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.65rem !important;
+    color: #1e293b !important;
+  }
+
+  .master-ai-hiring-modal span.theullsddots i {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    position: relative;
+    top: 0.18rem;
   }
 }
 
@@ -703,22 +743,22 @@ p.theclictttovvireesss {
     font-size: 15px !important;
   }
 
-  /* Tighter card grid on very small screens: 4 cards across */
+  /* Tighter card grid on very small screens: 3 cards across */
   .master-ai-hiring-modal .popup-role-card {
-    width: calc(25% - 0.4rem);
-    min-width: 68px;
-    max-width: 80px;
-    min-height: 80px;
-    padding: 0.4rem 0.25rem;
+    width: calc(33.33% - 0.4rem);
+    min-width: 82px;
+    max-width: 100px;
+    min-height: 100px;
+    padding: 0.6rem 0.3rem;
   }
 
   .master-ai-hiring-modal .popup-role-card-img {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
   }
 
   .master-ai-hiring-modal .popup-role-card-name {
-    font-size: 0.55rem;
+    font-size: 0.82rem !important;
   }
 }
 
@@ -808,13 +848,13 @@ p.theclictttovvireesss {
 
   .master-ai-hiring-modal h2#metric-title {
     font-family: "Helvetica", Arial, sans-serif;
-    font-size: 1.1rem !important;
-    font-weight: 600;
+    font-size: 2rem !important;
+    font-weight: 700;
   }
 
   .master-ai-hiring-modal span.theullsddots {
-    font-size: 0.72rem !important;
-    line-height: 1.35 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.45 !important;
   }
 
   .master-ai-hiring-modal #pop-header {
@@ -826,14 +866,16 @@ p.theclictttovvireesss {
 
 @media (max-width: 480px) {
   .master-ai-hiring-modal .popup-role-card {
-    width: 80px;
-    min-height: 80px;
-    padding: 0.4rem 0.3rem;
+    width: calc(33.33% - 0.3rem);
+    min-width: 80px;
+    max-width: 95px;
+    min-height: 95px;
+    padding: 0.5rem 0.3rem;
   }
 
   .master-ai-hiring-modal .popup-role-card-img {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
   }
 }
 

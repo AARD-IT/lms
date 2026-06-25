@@ -102,21 +102,23 @@ export default function HiringModal({ sector, isOpen, onClose }) {
           id="metric-title"
           dangerouslySetInnerHTML={{ __html: sector.name }}
         />
-        <img
-          id="hero-image"
-          className="hero-image"
-          src={sector.sideImage}
-          alt="Industry landscape"
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.onerror = null
-            e.currentTarget.src = IMG_FALLBACK
-          }}
-        />
-        <p
-          id="metric-desc"
-          dangerouslySetInnerHTML={{ __html: toUL(sector.desc) }}
-        />
+        <div className="image-desc-container">
+          <img
+            id="hero-image"
+            className="hero-image"
+            src={sector.sideImage}
+            alt="Industry landscape"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.onerror = null
+              e.currentTarget.src = IMG_FALLBACK
+            }}
+          />
+          <p
+            id="metric-desc"
+            dangerouslySetInnerHTML={{ __html: toUL(sector.desc) }}
+          />
+        </div>
       </div>
 
       <div className="modal-main-panel">
