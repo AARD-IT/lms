@@ -80,24 +80,13 @@ function App() {
 
     $(document).on('click', '.trigger-action', function (e) {
       e.preventDefault()
-      $('#popup-overlay').fadeIn(300)
+      window.dispatchEvent(new CustomEvent('open-consultation-popup'))
     })
 
     $(document).on('click', '.thebootcampconsult', function (e) {
       e.preventDefault()
       const id = $(this).data('id')
-      $('#bootcamp_id').val(id)
-      $('#popup-overlay').fadeIn(300)
-    })
-
-    $(document).on('click', '.close-x', function () {
-      $('#popup-overlay').fadeOut(300)
-    })
-
-    $('#popup-overlay').on('click', function (e) {
-      if ($(e.target).is('#popup-overlay')) {
-        $(this).fadeOut(300)
-      }
+      window.dispatchEvent(new CustomEvent('open-consultation-popup', { detail: { bootcampId: id } }))
     })
 
     // Play button for video

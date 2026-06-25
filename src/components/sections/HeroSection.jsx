@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import './HeroSection.css'
 
 export default function HeroSection() {
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function HeroSection() {
             </a>
             <h2 className="thebannerh2">Build Your Ai Portfolio like <br /> Top 5% Data Experts </h2>
             <p className="thebannerp">Rebuild the projects worked by data experts across 10+ domains</p>
-            <ul className="thebannerssulss" id="typingList" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', columnGap: '40px', rowGap: '15px', paddingLeft: 0 }}>
+            <ul className="thebannerssulss" id="typingList">
               <li></li><li></li><li></li><li></li><li></li><li></li>
             </ul>
             <div className="thebannerctabtnsedtech">

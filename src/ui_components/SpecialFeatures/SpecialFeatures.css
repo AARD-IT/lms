@@ -1,9 +1,12 @@
-/* Edutech section – matches index.html + custom_style.css */
+/* Edutech section – section wrapper & heading only.
+   The old carousel CSS has been replaced by the new
+   FeatureOrbitDiagram component (inline styles + Framer Motion). */
 
 :root {
   --primary-blue: #1e4ba1;
 }
 
+/* ── Section wrapper ─────────────────────────────────────── */
 .edutech-section {
   width: 100%;
   min-height: 100vh;
@@ -15,6 +18,7 @@
   overflow: visible;
 }
 
+/* ── Heading block ───────────────────────────────────────── */
 .header-box {
   background: transparent;
   border: 0;
@@ -42,144 +46,15 @@
   margin: 0;
 }
 
-#edutechSection .carousel-container {
-  position: relative;
-  width: 800px;
-  height: 400px;
-  margin-top: 90px !important;
-  /* Push down to avoid overlapping the header title */
-  overflow: visible !important;
-  /* Ensure active items at the top are not cut off */
-}
-
-.feature-stage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-#edutechSection .hub-content {
-  font-size: 22px !important;
-  /* Standardized text size inside the center hub */
-  font-family: "Helvetica", Arial, sans-serif;
-  letter-spacing: 0.5px;
-  line-height: 1.2 !important;
-  text-align: center;
-}
-
-#edutechSection .center-hub {
-  position: absolute;
-  bottom: -15px !important;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 200px;
-  background: var(--primary-blue);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  z-index: 10;
-  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
-}
-
-#edutechSection .feature-item {
-  position: absolute;
-  width: 320px !important;
-  /* Slightly wider to accommodate larger icons and text */
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  gap: 12px !important;
-  /* Spacing between the icon-box and text content */
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: unset;
-  padding: 0;
-  background: transparent;
-  transform: scale(1);
-  z-index: 20;
-}
-
-#edutechSection .feature-item.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#edutechSection .feature-item.active {
-  opacity: 1;
-  transform: scale(1.25);
-  z-index: 50;
-  background: transparent;
-}
-
-#edutechSection .feature-item.active h3 {
-  color: #d4a017 !important;
-}
-
-#edutechSection .icon-box {
-  width: 60px !important;
-  /* Reduced width to tighten alignment gap */
-  height: 60px !important;
-  background: transparent;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: unset;
-  font-size: 2.2rem;
-  flex-shrink: 0 !important;
-}
-
-.feature-icon {
-  width: 48px !important;
-  /* Standardized icon size to match original design scaling */
-  height: 48px !important;
-  object-fit: contain !important;
-  display: block !important;
-}
-
-#edutechSection .text-content {
-  min-width: 0;
-}
-
-#edutechSection .text-content h3 {
-  font-size: 20px !important;
-  /* Standardized font-size in px to bypass global rem resets */
-  margin: 0;
-  white-space: nowrap;
-  font-family: "Helvetica", Arial, sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #222;
-}
-
-#edutechSection .text-content p {
-  font-size: 14px !important;
-  /* Standardized font-size in px to bypass global rem resets */
-  margin: 0;
-  color: #000;
-  padding-top: 6px;
-  font-family: "Helvetica", Arial, sans-serif;
-  width: 90%;
-  line-height: 1.3;
-}
-
+/* ── Tablet ──────────────────────────────────────────────── */
 @media screen and (max-width: 991px) {
   .header-box h1 {
     font-size: 24px;
     line-height: 1.2;
   }
-
-  #edutechSection .carousel-container {
-    width: 100%;
-    height: 287px;
-    margin-top: 40px !important;
-  }
 }
 
+/* ── Mobile ──────────────────────────────────────────────── */
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .edutech-section {
     min-height: auto;
@@ -190,41 +65,5 @@
   .header-box {
     padding: 10px 20px;
     margin-bottom: 10px;
-  }
-
-  #edutechSection .carousel-container {
-    width: 100%;
-    height: 287px;
-    margin-top: 20px !important;
-  }
-
-  #edutechSection .center-hub {
-    bottom: -15px !important;
-    width: 180px;
-    height: 180px;
-  }
-
-  #edutechSection .hub-content {
-    font-size: 1.5rem !important;
-  }
-
-  #edutechSection .feature-item {
-    width: 85% !important;
-    max-width: 260px !important;
-    gap: 8px !important;
-  }
-
-  #edutechSection .feature-item.active {
-    transform: scale(1);
-  }
-
-  #edutechSection .text-content h3 {
-    font-size: 14px !important;
-    white-space: normal;
-  }
-
-  #edutechSection .text-content p {
-    font-size: 12px !important;
-    white-space: normal;
   }
 }

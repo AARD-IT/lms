@@ -1,0 +1,20 @@
+/* HeroSection – typing list grid */
+
+/* Desktop: 3 items per row → 2 rows */
+.thebannerssulss {
+  display: grid !important;
+  grid-template-columns: repeat(3, max-content) !important;
+  column-gap: 40px;
+  row-gap: 15px;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Mobile: 2 items per row → 3 rows */
+@media (max-width: 767px) {
+  .thebannerssulss {
+    grid-template-columns: repeat(2, max-content) !important;
+    column-gap: 20px;
+    row-gap: 10px;
+  }
+}

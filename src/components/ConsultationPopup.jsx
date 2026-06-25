@@ -1,327 +1,630 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+
+const AUTO_OPEN_DELAY = 1000
 
 export default function ConsultationPopup() {
+  const [open, setOpen] = useState(false)
+  const [bannerVisible, setBannerVisible] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setOpen(true), AUTO_OPEN_DELAY)
+    return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e?.detail?.bootcampId !== undefined) {
+        const el = document.getElementById('bootcamp_id')
+        if (el) el.value = e.detail.bootcampId
+      }
+      setOpen(true)
+      setBannerVisible(false)
+    }
+    window.addEventListener('open-consultation-popup', handler)
+    return () => window.removeEventListener('open-consultation-popup', handler)
+  }, [])
+
+  const handleClose = useCallback(() => {
+    setOpen(false)
+    setBannerVisible(true)
+  }, [])
+
+  const handleOverlayClick = useCallback((e) => {
+    if (e.target === e.currentTarget) handleClose()
+  }, [handleClose])
+
+  const handleBannerOpen = useCallback(() => {
+    setBannerVisible(false)
+    setOpen(true)
+  }, [])
+
+  const handleBannerDismiss = useCallback(() => setBannerVisible(false), [])
+
+  /* Notify FloatingSocials of real banner height when it appears/disappears */
+  useEffect(() => {
+    const banner = document.getElementById('consult-bottom-banner')
+    const h = bannerVisible && banner ? banner.offsetHeight : 0
+    window.dispatchEvent(new CustomEvent('banner-visibility-change', { detail: { visible: bannerVisible, height: h } }))
+    // Also re-measure after transition settles (banner may have wrapped)
+    if (bannerVisible) {
+      const tid = setTimeout(() => {
+        const h2 = banner ? banner.offsetHeight : 0
+        window.dispatchEvent(new CustomEvent('banner-visibility-change', { detail: { visible: true, height: h2 } }))
+      }, 450)
+      return () => clearTimeout(tid)
+    }
+  }, [bannerVisible])
+
   const countryCodes = [
-    { value: '+91', label: '+91', selected: true },
-    { value: '+1', label: '+1' },
-    { value: '+7', label: '+7' },
-    { value: '+20', label: '+20' },
-    { value: '+27', label: '+27' },
-    { value: '+30', label: '+30' },
-    { value: '+31', label: '+31' },
-    { value: '+32', label: '+32' },
-    { value: '+33', label: '+33' },
-    { value: '+34', label: '+34' },
-    { value: '+36', label: '+36' },
-    { value: '+39', label: '+39' },
-    { value: '+40', label: '+40' },
-    { value: '+41', label: '+41' },
-    { value: '+43', label: '+43' },
-    { value: '+44', label: '+44' },
-    { value: '+45', label: '+45' },
-    { value: '+46', label: '+46' },
-    { value: '+47', label: '+47' },
-    { value: '+48', label: '+48' },
-    { value: '+49', label: '+49' },
-    { value: '+51', label: '+51' },
-    { value: '+52', label: '+52' },
-    { value: '+53', label: '+53' },
-    { value: '+54', label: '+54' },
-    { value: '+55', label: '+55' },
-    { value: '+56', label: '+56' },
-    { value: '+57', label: '+57' },
-    { value: '+58', label: '+58' },
-    { value: '+60', label: '+60' },
-    { value: '+61', label: '+61' },
-    { value: '+62', label: '+62' },
-    { value: '+63', label: '+63' },
-    { value: '+64', label: '+64' },
-    { value: '+65', label: '+65' },
-    { value: '+66', label: '+66' },
-    { value: '+81', label: '+81' },
-    { value: '+82', label: '+82' },
-    { value: '+84', label: '+84' },
-    { value: '+86', label: '+86' },
-    { value: '+90', label: '+90' },
-    { value: '+92', label: '+92' },
-    { value: '+93', label: '+93' },
-    { value: '+94', label: '+94' },
-    { value: '+95', label: '+95' },
-    { value: '+98', label: '+98' },
-    { value: '+211', label: '+211' },
-    { value: '+212', label: '+212' },
-    { value: '+213', label: '+213' },
-    { value: '+216', label: '+216' },
-    { value: '+218', label: '+218' },
-    { value: '+220', label: '+220' },
-    { value: '+221', label: '+221' },
-    { value: '+222', label: '+222' },
-    { value: '+223', label: '+223' },
-    { value: '+224', label: '+224' },
-    { value: '+225', label: '+225' },
-    { value: '+226', label: '+226' },
-    { value: '+227', label: '+227' },
-    { value: '+228', label: '+228' },
-    { value: '+229', label: '+229' },
-    { value: '+230', label: '+230' },
-    { value: '+231', label: '+231' },
-    { value: '+232', label: '+232' },
-    { value: '+233', label: '+233' },
-    { value: '+234', label: '+234' },
-    { value: '+235', label: '+235' },
-    { value: '+236', label: '+236' },
-    { value: '+237', label: '+237' },
-    { value: '+238', label: '+238' },
-    { value: '+239', label: '+239' },
-    { value: '+240', label: '+240' },
-    { value: '+241', label: '+241' },
-    { value: '+242', label: '+242' },
-    { value: '+243', label: '+243' },
-    { value: '+244', label: '+244' },
-    { value: '+245', label: '+245' },
-    { value: '+248', label: '+248' },
-    { value: '+249', label: '+249' },
-    { value: '+250', label: '+250' },
-    { value: '+251', label: '+251' },
-    { value: '+252', label: '+252' },
-    { value: '+253', label: '+253' },
-    { value: '+254', label: '+254' },
-    { value: '+255', label: '+255' },
-    { value: '+256', label: '+256' },
-    { value: '+257', label: '+257' },
-    { value: '+258', label: '+258' },
-    { value: '+260', label: '+260' },
-    { value: '+261', label: '+261' },
-    { value: '+262', label: '+262' },
-    { value: '+263', label: '+263' },
-    { value: '+264', label: '+264' },
-    { value: '+265', label: '+265' },
-    { value: '+266', label: '+266' },
-    { value: '+267', label: '+267' },
-    { value: '+268', label: '+268' },
-    { value: '+269', label: '+269' },
-    { value: '+290', label: '+290' },
-    { value: '+291', label: '+291' },
-    { value: '+297', label: '+297' },
-    { value: '+298', label: '+298' },
-    { value: '+299', label: '+299' },
-    { value: '+350', label: '+350' },
-    { value: '+351', label: '+351' },
-    { value: '+352', label: '+352' },
-    { value: '+353', label: '+353' },
-    { value: '+354', label: '+354' },
-    { value: '+355', label: '+355' },
-    { value: '+356', label: '+356' },
-    { value: '+357', label: '+357' },
-    { value: '+358', label: '+358' },
-    { value: '+359', label: '+359' },
-    { value: '+370', label: '+370' },
-    { value: '+371', label: '+371' },
-    { value: '+372', label: '+372' },
-    { value: '+373', label: '+373' },
-    { value: '+374', label: '+374' },
-    { value: '+375', label: '+375' },
-    { value: '+376', label: '+376' },
-    { value: '+377', label: '+377' },
-    { value: '+378', label: '+378' },
-    { value: '+380', label: '+380' },
-    { value: '+381', label: '+381' },
-    { value: '+382', label: '+382' },
-    { value: '+383', label: '+383' },
-    { value: '+385', label: '+385' },
-    { value: '+386', label: '+386' },
-    { value: '+387', label: '+387' },
-    { value: '+389', label: '+389' },
-    { value: '+420', label: '+420' },
-    { value: '+421', label: '+421' },
-    { value: '+423', label: '+423' },
-    { value: '+500', label: '+500' },
-    { value: '+501', label: '+501' },
-    { value: '+502', label: '+502' },
-    { value: '+503', label: '+503' },
-    { value: '+504', label: '+504' },
-    { value: '+505', label: '+505' },
-    { value: '+506', label: '+506' },
-    { value: '+507', label: '+507' },
-    { value: '+508', label: '+508' },
-    { value: '+509', label: '+509' },
-    { value: '+590', label: '+590' },
-    { value: '+591', label: '+591' },
-    { value: '+592', label: '+592' },
-    { value: '+593', label: '+593' },
-    { value: '+594', label: '+594' },
-    { value: '+595', label: '+595' },
-    { value: '+596', label: '+596' },
-    { value: '+597', label: '+597' },
-    { value: '+598', label: '+598' },
-    { value: '+599', label: '+599' },
-    { value: '+670', label: '+670' },
-    { value: '+672', label: '+672' },
-    { value: '+673', label: '+673' },
-    { value: '+674', label: '+674' },
-    { value: '+675', label: '+675' },
-    { value: '+676', label: '+676' },
-    { value: '+677', label: '+677' },
-    { value: '+678', label: '+678' },
-    { value: '+679', label: '+679' },
-    { value: '+680', label: '+680' },
-    { value: '+681', label: '+681' },
-    { value: '+682', label: '+682' },
-    { value: '+683', label: '+683' },
-    { value: '+685', label: '+685' },
-    { value: '+686', label: '+686' },
-    { value: '+687', label: '+687' },
-    { value: '+688', label: '+688' },
-    { value: '+689', label: '+689' },
-    { value: '+690', label: '+690' },
-    { value: '+691', label: '+691' },
-    { value: '+692', label: '+692' },
-    { value: '+850', label: '+850' },
-    { value: '+852', label: '+852' },
-    { value: '+853', label: '+853' },
-    { value: '+855', label: '+855' },
-    { value: '+856', label: '+856' },
-    { value: '+880', label: '+880' },
-    { value: '+886', label: '+886' },
-    { value: '+960', label: '+960' },
-    { value: '+961', label: '+961' },
-    { value: '+962', label: '+962' },
-    { value: '+963', label: '+963' },
-    { value: '+964', label: '+964' },
-    { value: '+965', label: '+965' },
-    { value: '+966', label: '+966' },
-    { value: '+967', label: '+967' },
-    { value: '+968', label: '+968' },
-    { value: '+970', label: '+970' },
-    { value: '+971', label: '+971' },
-    { value: '+972', label: '+972' },
-    { value: '+973', label: '+973' },
-    { value: '+974', label: '+974' },
-    { value: '+975', label: '+975' },
-    { value: '+976', label: '+976' },
-    { value: '+977', label: '+977' },
-    { value: '+992', label: '+992' },
-    { value: '+993', label: '+993' },
-    { value: '+994', label: '+994' },
-    { value: '+995', label: '+995' },
-    { value: '+996', label: '+996' },
-    { value: '+998', label: '+998' }
+    '+91','+1','+7','+20','+27','+30','+31','+32','+33','+34','+36','+39',
+    '+40','+41','+43','+44','+45','+46','+47','+48','+49','+51','+52','+53',
+    '+54','+55','+56','+57','+58','+60','+61','+62','+63','+64','+65','+66',
+    '+81','+82','+84','+86','+90','+92','+93','+94','+95','+98',
+    '+211','+212','+213','+216','+218','+220','+221','+222','+223','+224',
+    '+225','+226','+227','+228','+229','+230','+231','+232','+233','+234',
+    '+235','+236','+237','+238','+239','+240','+241','+242','+243','+244',
+    '+245','+248','+249','+250','+251','+252','+253','+254','+255','+256',
+    '+257','+258','+260','+261','+262','+263','+264','+265','+266','+267',
+    '+268','+269','+290','+291','+297','+298','+299','+350','+351','+352',
+    '+353','+354','+355','+356','+357','+358','+359','+370','+371','+372',
+    '+373','+374','+375','+376','+377','+378','+380','+381','+382','+383',
+    '+385','+386','+387','+389','+420','+421','+423','+500','+501','+502',
+    '+503','+504','+505','+506','+507','+508','+509','+590','+591','+592',
+    '+593','+594','+595','+596','+597','+598','+599','+670','+672','+673',
+    '+674','+675','+676','+677','+678','+679','+680','+681','+682','+683',
+    '+685','+686','+687','+688','+689','+690','+691','+692','+850','+852',
+    '+853','+855','+856','+880','+886','+960','+961','+962','+963','+964',
+    '+965','+966','+967','+968','+970','+971','+972','+973','+974','+975',
+    '+976','+977','+992','+993','+994','+995','+996','+998',
+  ]
+
+  const highlights = [
+    { num: '1️⃣', bold: 'Switch Smart –', text: 'How to Transition into Analytics & AI without quitting current job?' },
+    { num: '2️⃣', bold: 'Crack Internships & Placements –', text: 'How Fresher, career gap, or working professional secure real opportunities?' },
+    { num: '3️⃣', bold: 'Build a Standout Portfolio –', text: 'How to build Industry-level projects that brings organic job calls?' },
+    { num: '4️⃣', bold: "Fix What's Missing –", text: 'Already learned Data Science? Identify the gap blocking your breakthrough.' },
+    { num: '5️⃣', bold: 'Project under our experts –', text: 'Unlock inbound opportunities through our industrial-level AI program.' },
   ]
 
   return (
-    <div id="popup-overlay" style={{ display: 'none' }} role="dialog" aria-modal="true" aria-labelledby="consult-popup-title">
-      <div className="popup-card">
-        <button type="button" className="close-x" aria-label="Close consultation form">&times;</button>
-        <div className="one-to-one-consultation">
-          <h2 id="consult-popup-title">Book 1-1 Consultation With Data Scientists Panel</h2>
-          <p className="theconnsutioanmainp">
-            Clarify all your doubts with our Data Experts Panel who empowered 1000+ aspirants worldwide to build successful careers in Data Analytics and AI across 11+ industries.
-          </p>
+    <>
+      <style>{`
+        /* ── Overlay ─────────────────────────────────────────── */
+        #popup-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(10,15,40,0.72);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 999999;
+          padding: 16px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+          overflow-y: auto;
+        }
+        #popup-overlay.popup-open {
+          opacity: 1;
+          pointer-events: all;
+        }
 
-          <div className="row themainnneetsd">
-            <div className="col-md-6">
-              <div className="highlights">
-                <h3>What you can discuss?</h3>
-                <ul>
-                  <li>
-                    <strong>1️⃣ Switch Smart –</strong> How to Transition into Analytics & AI without quitting current job?
+        /* ── Card ─────────────────────────────────────────────── */
+        .cp-card {
+          background: #fff;
+          border-radius: 20px;
+          box-shadow: 0 32px 80px rgba(0,0,0,0.28), 0 8px 24px rgba(37,99,235,0.12);
+          width: 100%;
+          max-width: 960px;
+          position: relative;
+          overflow: hidden;
+          transform: translateY(40px) scale(0.96);
+          opacity: 0;
+          transition: transform 0.38s cubic-bezier(0.34,1.45,0.64,1), opacity 0.3s ease;
+          margin: auto;
+        }
+        #popup-overlay.popup-open .cp-card {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+
+        /* blue top bar */
+        .cp-card::before {
+          content: '';
+          display: block;
+          height: 5px;
+          background: linear-gradient(90deg, #1e3a8a, #2563eb, #60a5fa);
+        }
+
+        /* ── Close button ─────────────────────────────────────── */
+        .cp-close {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: #f1f5f9;
+          border: none;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          font-size: 16px;
+          line-height: 1;
+          color: #475569;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000000;
+          transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .cp-close:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+          transform: rotate(90deg);
+        }
+        .cp-mobile-close {
+          display: none;
+        }
+
+        /* ── Body layout ─────────────────────────────────────── */
+        .cp-body {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 0;
+        }
+
+        /* ── Left panel ──────────────────────────────────────── */
+        .cp-left {
+          background: linear-gradient(160deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%);
+          padding: 36px 32px 36px 36px;
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .cp-left h2 {
+          font-size: 20px;
+          font-weight: 800;
+          line-height: 1.3;
+          color: #fff;
+          font-family: Helvetica, Arial, sans-serif;
+          margin: 0;
+        }
+        .cp-left h2 span {
+          color: #93c5fd;
+        }
+        .cp-left-sub {
+          font-size: 13px;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.82);
+          font-family: Helvetica, Arial, sans-serif;
+          margin: 0;
+        }
+        .cp-divider {
+          height: 1px;
+          background: rgba(255,255,255,0.15);
+        }
+        .cp-highlights-title {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #93c5fd;
+          font-family: Helvetica, Arial, sans-serif;
+          margin: 0;
+        }
+        .cp-highlights-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .cp-highlights-list li {
+          font-size: 13px;
+          color: rgba(255,255,255,0.9);
+          line-height: 1.5;
+          font-family: Helvetica, Arial, sans-serif;
+          display: flex;
+          gap: 8px;
+          align-items: flex-start;
+        }
+        .cp-highlights-list li .hi-num {
+          flex-shrink: 0;
+          font-size: 15px;
+        }
+        .cp-highlights-list li strong {
+          color: #fff;
+          font-weight: 700;
+        }
+
+        /* ── Right panel (form) ──────────────────────────────── */
+        .cp-right {
+          padding: 32px 36px 32px 32px;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          background: #fff;
+          overflow-y: auto;
+          max-height: 90vh;
+        }
+        .cp-right h3 {
+          font-size: 18px;
+          font-weight: 800;
+          color: #0f172a;
+          font-family: Helvetica, Arial, sans-serif;
+          margin: 0 0 4px;
+        }
+        .cp-right-sub {
+          font-size: 12px;
+          color: #64748b;
+          font-family: Helvetica, Arial, sans-serif;
+          margin: 0 0 20px;
+        }
+
+        /* ── Form grid ───────────────────────────────────────── */
+        .cp-form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px 16px;
+        }
+        .cp-field {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+        .cp-field.full {
+          grid-column: 1 / -1;
+        }
+        .cp-field label {
+          font-size: 12px;
+          font-weight: 700;
+          color: #374151;
+          font-family: Helvetica, Arial, sans-serif;
+          letter-spacing: 0.02em;
+        }
+        .cp-field input,
+        .cp-field select,
+        .cp-field textarea {
+          border: 1.5px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 10px 13px;
+          font-size: 13px;
+          font-family: Helvetica, Arial, sans-serif;
+          color: #0f172a;
+          background: #f8fafc;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .cp-field input:focus,
+        .cp-field select:focus {
+          border-color: #2563eb;
+          background: #fff;
+          box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        .cp-field input::placeholder {
+          color: #94a3b8;
+        }
+
+        /* phone row */
+        .cp-phone-row {
+          display: flex;
+          gap: 8px;
+        }
+        .cp-phone-row select {
+          width: 80px;
+          flex-shrink: 0;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 10px 6px;
+          font-size: 13px;
+          font-family: Helvetica, Arial, sans-serif;
+          background: #f8fafc;
+          color: #0f172a;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+          box-sizing: border-box;
+        }
+        .cp-phone-row select:focus {
+          border-color: #2563eb;
+          box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        .cp-phone-row input {
+          flex: 1;
+        }
+
+        /* Submit */
+        .cp-submit {
+          background: linear-gradient(90deg, #1e3a8a, #2563eb);
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          padding: 13px 24px;
+          font-size: 15px;
+          font-weight: 700;
+          font-family: Helvetica, Arial, sans-serif;
+          cursor: pointer;
+          width: 100%;
+          margin-top: 6px;
+          letter-spacing: 0.02em;
+          transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+          box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+        }
+        .cp-submit:hover {
+          opacity: 0.92;
+          transform: translateY(-1px);
+          box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+        }
+
+        #form-message p { font-size: 13px; margin-top: 8px; }
+
+        /* ── Sticky Bottom Banner ─────────────────────────────── */
+        #consult-bottom-banner {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 99998;
+          background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 14px 28px;
+          box-shadow: 0 -4px 24px rgba(30,58,138,0.28);
+          transform: translateY(100%);
+          transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1);
+        }
+        #consult-bottom-banner.banner-visible {
+          transform: translateY(0);
+        }
+        .banner-text {
+          font-size: 15px;
+          font-weight: 700;
+          font-family: Helvetica, Arial, sans-serif;
+          flex: 1;
+        }
+        .banner-text span {
+          font-weight: 400;
+          font-size: 12px;
+          opacity: 0.8;
+          display: block;
+          margin-top: 2px;
+        }
+        .banner-cta {
+          background: #fff;
+          color: #1e3a8a;
+          border: none;
+          border-radius: 8px;
+          padding: 9px 22px;
+          font-weight: 700;
+          font-size: 14px;
+          font-family: Helvetica, Arial, sans-serif;
+          cursor: pointer;
+          white-space: nowrap;
+          flex-shrink: 0;
+          transition: background 0.2s, transform 0.2s;
+        }
+        .banner-cta:hover { background: #e0eaff; transform: scale(1.04); }
+        .banner-dismiss {
+          background: transparent;
+          border: none;
+          color: rgba(255,255,255,0.65);
+          font-size: 24px;
+          line-height: 1;
+          cursor: pointer;
+          padding: 0 4px;
+          flex-shrink: 0;
+          transition: color 0.2s;
+        }
+        .banner-dismiss:hover { color: #fff; }
+
+        /* ── Responsive ──────────────────────────────────────── */
+        @media (max-width: 768px) {
+          #popup-overlay {
+            top: 76px !important;
+          }
+          .cp-body { grid-template-columns: 1fr; }
+          .cp-left { padding: 68px 20px 20px; gap: 14px; } /* Push content down for the absolute close button */
+          .cp-left h2 { font-size: 17px; }
+          .cp-left h2:first-child { padding-right: 0; }
+          .cp-right { padding: 20px; max-height: none; }
+          .cp-form-grid { grid-template-columns: 1fr; }
+          .cp-field.full { grid-column: 1; }
+          .cp-close {
+            display: none !important;
+          }
+          .cp-mobile-close {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(255,255,255,0.2) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: Helvetica, Arial, sans-serif;
+            cursor: pointer;
+            z-index: 1000000;
+            transition: background 0.2s, transform 0.1s;
+          }
+          .cp-mobile-close:hover {
+            background: rgba(255,255,255,0.3) !important;
+            color: #fff !important;
+          }
+          .cp-mobile-close:active {
+            transform: scale(0.96);
+          }
+        }
+        /* ── Banner mobile layout ────────────────────────────── */
+        @media (max-width: 600px) {
+          #consult-bottom-banner {
+            padding: 10px 14px;
+            gap: 8px;
+            flex-wrap: nowrap;
+            align-items: center;
+          }
+          .banner-text { font-size: 13px; }
+          .banner-text span { display: none; }
+          .banner-cta {
+            padding: 8px 14px;
+            font-size: 13px;
+            white-space: nowrap;
+            flex-shrink: 0;
+          }
+        }
+      `}</style>
+
+      <div
+        id="popup-overlay"
+        className={open ? 'popup-open' : ''}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="consult-popup-title"
+        onClick={handleOverlayClick}
+      >
+        <div className="cp-card">
+          <button className="cp-close close-x" type="button" aria-label="Close" onClick={handleClose}>
+            ✕
+          </button>
+          
+          <button className="cp-mobile-close" type="button" onClick={handleClose}>
+            ✕ Close
+          </button>
+
+          <div className="cp-body">
+            {/* ── Left: info panel ─────────────────────────── */}
+            <div className="cp-left">
+              <h2 id="consult-popup-title">
+                Book <span>1-1 Consultation</span><br />With Data Scientists Panel
+              </h2>
+              <p className="cp-left-sub">
+                Clarify all your doubts with our Data Experts Panel who empowered <strong style={{ color: '#fff' }}>1000+ aspirants worldwide</strong> to build successful careers in Data Analytics and AI across 11+ industries.
+              </p>
+              <div className="cp-divider" />
+              <p className="cp-highlights-title">What you can discuss?</p>
+              <ul className="cp-highlights-list">
+                {highlights.map((h, i) => (
+                  <li key={i}>
+                    <span className="hi-num">{h.num}</span>
+                    <span><strong>{h.bold}</strong> {h.text}</span>
                   </li>
-                  <li>
-                    <strong>2️⃣ Crack Internships & Placements –</strong> How Fresher, career gap, or working professional secure real opportunities?
-                  </li>
-                  <li>
-                    <strong>3️⃣ Build a Standout Portfolio –</strong> How to build Industry-level projects that brings organic job calls?
-                  </li>
-                  <li>
-                    <strong>4️⃣ Fix What’s Missing –</strong> Already learned Data Science? Identify the gap blocking your breakthrough.
-                  </li>
-                  <li>
-                    <strong>5️⃣ Project under our experts –</strong> Unlock inbound opportunities through our industrial-level AI program.
-                  </li>
-                </ul>
-              </div>
+                ))}
+              </ul>
             </div>
-            <div className="col-md-6">
-              <form id="consultation-form" className="consultation-form" data-action="https://analyticsavenue.in/consultation/store">
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Name *</label>
-                      <input type="text" name="name" placeholder="Enter your full name" required />
-                    </div>
+
+            {/* ── Right: form panel ────────────────────────── */}
+            <div className="cp-right">
+              <h3>Book Your Free Session</h3>
+              <p className="cp-right-sub">Fill in your details — our team will reach out within 24 hours</p>
+
+              <form
+                id="consultation-form"
+                className="consultation-form"
+                data-action="https://analyticsavenue.in/consultation/store"
+              >
+                <div className="cp-form-grid">
+                  {/* Name */}
+                  <div className="cp-field">
+                    <label>Name *</label>
+                    <input type="text" name="name" placeholder="Your full name" required />
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Email *</label>
-                      <input type="email" name="email" placeholder="Enter your email address" required />
-                    </div>
+
+                  {/* Email */}
+                  <div className="cp-field">
+                    <label>Email *</label>
+                    <input type="email" name="email" placeholder="your@email.com" required />
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Phone *</label>
-                      <div style={{ display: 'flex', gap: '10px' }}>
-                        <select className="countrycoddes" name="country_code" required style={{ maxWidth: 'fit-content' }}>
-                          {countryCodes.map((cc) => (
-                            <option key={cc.value} value={cc.value} defaultValue={cc.selected}>
-                              {cc.label}
-                            </option>
-                          ))}
-                        </select>
-                        <input type="tel" name="phone" placeholder="98765 43210" pattern="[0-9]{10}" required style={{ flex: 1 }} />
-                      </div>
+
+                  {/* Phone */}
+                  <div className="cp-field">
+                    <label>Phone *</label>
+                    <div className="cp-phone-row">
+                      <select name="country_code" defaultValue="+91" required>
+                        {countryCodes.map((cc) => (
+                          <option key={cc} value={cc}>{cc}</option>
+                        ))}
+                      </select>
+                      <input type="tel" name="phone" placeholder="98765 43210" pattern="[0-9]{10}" required />
                     </div>
                   </div>
 
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Status *</label>
-                      <select name="status" required>
-                        <option value="">Select your status</option>
-                        <option value="Employed">Employed</option>
-                        <option value="Unemployed">Unemployed</option>
-                        <option value="Student">Student</option>
-                      </select>
-                    </div>
+                  {/* Status */}
+                  <div className="cp-field">
+                    <label>Status *</label>
+                    <select name="status" required>
+                      <option value="">Select your status</option>
+                      <option value="Employed">Employed</option>
+                      <option value="Unemployed">Unemployed</option>
+                      <option value="Student">Student</option>
+                    </select>
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Designation</label>
-                      <input type="text" name="designation" placeholder="Your current designation" />
-                    </div>
+
+                  {/* Designation */}
+                  <div className="cp-field">
+                    <label>Designation</label>
+                    <input type="text" name="designation" placeholder="Current designation" />
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Location *</label>
-                      <input type="text" name="location" placeholder="City, Country" required />
-                    </div>
+
+                  {/* Location */}
+                  <div className="cp-field">
+                    <label>Location *</label>
+                    <input type="text" name="location" placeholder="City, Country" required />
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Alternative Number *</label>
-                      <input type="tel" name="alternative_number" placeholder="Alternate contact number" required />
-                    </div>
+
+                  {/* Alt number */}
+                  <div className="cp-field">
+                    <label>Alternative Number *</label>
+                    <input type="tel" name="alternative_number" placeholder="Alternate number" required />
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Brief Profile Summary *</label>
-                      <input type="text" name="profile_summary" placeholder="Write about your expectation " required />
-                    </div>
+
+                  {/* Profile summary */}
+                  <div className="cp-field">
+                    <label>Brief Profile Summary *</label>
+                    <input type="text" name="profile_summary" placeholder="Your expectation" required />
                   </div>
+
                   <input type="hidden" name="bootcamp_id" value="" id="bootcamp_id" />
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      <button className="consultatioposumit" type="submit">
-                        Book 1-1 Consultation
-                      </button>
-                    </div>
+
+                  {/* Submit */}
+                  <div className="cp-field full">
+                    <button className="cp-submit" type="submit">
+                      📅 Book 1-1 Consultation — It's Free
+                    </button>
                   </div>
                 </div>
               </form>
-              <div id="form-message"></div>
+              <div id="form-message" />
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* ── Sticky Bottom Banner ─────────────────────────────── */}
+      <div
+        id="consult-bottom-banner"
+        className={bannerVisible ? 'banner-visible' : ''}
+        role="complementary"
+        aria-label="Book a consultation"
+      >
+        <div className="banner-text">
+          📅 Book a free 1-1 session with our Data Experts
+          <span>Empowering 1000+ aspirants across 11+ industries</span>
+        </div>
+        <button className="banner-cta" onClick={handleBannerOpen}>Book Now →</button>
+        <button className="banner-dismiss" onClick={handleBannerDismiss} aria-label="Dismiss">×</button>
+      </div>
+    </>
   )
 }
