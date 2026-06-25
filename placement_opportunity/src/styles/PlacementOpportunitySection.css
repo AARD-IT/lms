@@ -1,0 +1,356 @@
+/* placement_opportunity section – matches index.html + custom styling */
+
+:root {
+  --bg-blue: #0f3471;
+  --yellow: #00A300;
+  --magenta: #d921b4;
+  --cyan: #00a8e8;
+  --bulb-pink: #ff1e8e;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  font-family: 'Helvetica', Arial, sans-serif;
+}
+
+.placeemmentssss {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.placemmenttssmainns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.thepllacenneemtsheaaads {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.theplaccemmntsh2 {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.2;
+  margin: 0 0 15px 0;
+}
+
+.theplaccemmntsh2 span {
+  color: #0377ef;
+}
+
+.thepplacemmentsheaddssp {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.placeemmentssss .stage {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 50px;
+  padding-top: 88px;
+  box-sizing: border-box;
+}
+
+/* --- THE PROPER BULB --- */
+
+.placeemmentssss .bulb-group {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+
+.placeemmentssss .bulb-head {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  /* The 3-color ring */
+  background: linear-gradient(var(--bg-blue), var(--bg-blue)) padding-box, conic-gradient(var(--yellow) -60deg 60deg, var(--magenta) 60deg 180deg, var(--cyan) 180deg 300deg) border-box;
+  border: 12px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.placeemmentssss .bulb-core {
+  width: 170px;
+  height: 170px;
+  background: radial-gradient(circle, var(--bulb-pink) 0%, #7a003c 100%);
+  border-radius: 50%;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px var(--bulb-pink);
+  animation: glowPulse 2s infinite alternate ease-in-out;
+  position: relative;
+}
+
+span.theeehirringgss {
+  color: #fff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 43px;
+  font-weight: bold;
+}
+
+.placeemmentssss .bulb-neck {
+  width: 110px;
+  height: 60px;
+  background: linear-gradient(to bottom, #7a003c, #333);
+  clip-path: polygon(10% 0%, 90% 0%, 75% 100%, 25% 100%);
+  margin-top: -30px;
+}
+
+.placeemmentssss .bulb-base {
+  width: 70px;
+  height: 50px;
+  background: #222;
+  background-image: repeating-linear-gradient(to bottom, #111 0px, #111 5px, #333 6px, #333 10px);
+  border-radius: 0 0 10px 10px;
+}
+
+/* --- THE PROPER ANIMATED LINES --- */
+
+.placeemmentssss .svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.placeemmentssss .connector-line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLoop 4s infinite ease-in-out;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.placeemmentssss .line-y {
+  stroke: var(--yellow);
+  color: var(--yellow);
+  animation-delay: 0s;
+}
+
+.placeemmentssss .line-m {
+  stroke: var(--magenta);
+  color: var(--magenta);
+  animation-delay: 1.3s;
+}
+
+.placeemmentssss .line-c {
+  stroke: var(--cyan);
+  color: var(--cyan);
+  animation-delay: 2.6s;
+}
+
+@keyframes drawLoop {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  40% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  60% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* --- TEXT PANEL --- */
+
+.placeemmentssss .text-panel {
+  margin-left: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  width: 100%;
+}
+
+.placeemmentssss .card {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.5s;
+  animation: textFadeOnce 1.2s ease-out forwards;
+  width: 100%;
+  border: 1px solid #0000002e;
+  border-bottom: 5px solid #000;
+  padding: 25px;
+  background: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+@keyframes textFadeOnce {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.placeemmentssss .card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.placeemmentssss .card:nth-child(2) {
+  animation-delay: 1.3s;
+}
+
+.placeemmentssss .card:nth-child(3) {
+  animation-delay: 2.6s;
+}
+
+.placeemmentssss .card h2 {
+  margin: 0;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 600;
+}
+
+.placeemmentssss .card p {
+  margin: 10px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #000;
+  max-width: max-content;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 500;
+}
+
+@keyframes textFade {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateX(20px);
+  }
+  30%,
+  70% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  from {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  to {
+    transform: scale(1.03);
+    filter: brightness(1.2);
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:767px) {
+  .placeemmentssss .stage {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding-left: 0;
+    padding-top: 40px;
+    gap: 40px;
+  }
+  .placeemmentssss .svg-container {
+    display: none;
+  }
+  .placeemmentssss .bulb-head {
+    width: 160px;
+    height: 160px;
+    border-width: 8px;
+  }
+  .placeemmentssss .bulb-core {
+    width: 110px;
+    height: 110px;
+  }
+  span.theeehirringgss {
+    font-size: 28px;
+  }
+  .placeemmentssss .bulb-neck {
+    width: 80px;
+    height: 40px;
+    margin-top: -20px;
+  }
+  .placeemmentssss .bulb-base {
+    width: 50px;
+    height: 35px;
+  }
+  .placeemmentssss .text-panel {
+    margin-left: 0;
+    gap: 30px;
+    padding: 0 20px;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .placeemmentssss .card {
+    padding: 20px !important;
+    text-align: center;
+  }
+  .placeemmentssss .card h2 {
+    font-size: 1.2rem;
+  }
+  .placeemmentssss .card p {
+    font-size: 15px;
+    margin: 10px auto 0;
+  }
+  .theplaccemmntsh2 {
+    font-size: 24px !important;
+    text-align: center;
+  }
+  .thepplacemmentsheaddssp {
+    font-size: 15px !important;
+    text-align: center;
+    padding: 0 10px;
+  }
+}
