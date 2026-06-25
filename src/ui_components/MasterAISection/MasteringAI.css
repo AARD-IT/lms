@@ -29,6 +29,13 @@
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  .materingaiissmainnnss {
+    width: 100%;
+    padding: 0 12px;
+  }
+}
+
 .masterignaiissheads {
   text-align: center;
 }
@@ -53,7 +60,7 @@
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 0;
-  width: 80%;
+  width: 100%;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -266,7 +273,7 @@ body .masteringaaiisss .masterignaiissheads p {
 .themasteraainewws .label {
   position: absolute;
   max-width: 140px;
-  font-size: 2.25rem;
+  font-size: 13px;
   font-weight: 700;
   color: #111;
   line-height: 1.4;
@@ -280,6 +287,8 @@ body .masteringaaiisss .masterignaiissheads p {
   white-space: nowrap;
   z-index: 999;
   background: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 
 .themasteraainewws .label-active {
@@ -587,28 +596,23 @@ p.theclictttovvireesss {
 
   .masteringaaiisss .masterignaiissheads p {
     font-size: 16px !important;
+    width: 100% !important;
+    padding: 0 4px;
   }
 
-  .master-ai-hiring-modal .popup-roles-grid {
-    gap: 0.5rem;
-    padding: 0.25rem 0;
+  /* Modal: stack vertically — overall container scrolls, NOT individual panels */
+  .master-ai-hiring-modal {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    overflow-y: auto !important;
+    /* Push content below the fixed navbar (~68px) */
+    padding-top: 68px !important;
+    height: 100vh;
+    height: 100dvh;
   }
 
-  .master-ai-hiring-modal .popup-role-card {
-    width: 88px;
-    min-height: 88px;
-    padding: 0.5rem 0.35rem;
-  }
-
-  .master-ai-hiring-modal .popup-role-card-img {
-    width: 36px;
-    height: 36px;
-  }
-
-  .master-ai-hiring-modal .popup-role-card-name {
-    font-size: 0.65rem;
-  }
-
+  /* Side card: full-width, NOT scrollable — shows all content */
   .master-ai-hiring-modal #side-card {
     position: relative !important;
     top: auto !important;
@@ -617,48 +621,73 @@ p.theclictttovvireesss {
     max-width: 100% !important;
     flex: 0 0 auto !important;
     height: auto;
-    max-height: 42vh;
-    padding: 1rem !important;
-    border-radius: 12px !important;
+    max-height: none !important;
+    padding: 1rem 1rem 0.75rem !important;
+    border-radius: 0 !important;
     margin: 0;
+    overflow-y: visible !important;
   }
 
-  .master-ai-hiring-modal {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    justify-content: flex-start !important;
-    overflow-y: auto !important;
-    padding-top: 0 !important;
-    height: 100vh;
-    height: 100dvh;
+  /* Hero image: slightly taller on mobile */
+  .master-ai-hiring-modal .hero-image {
+    max-height: 8rem;
+    margin-bottom: 0.75rem;
   }
 
+  .master-ai-hiring-modal h2#metric-title {
+    font-size: 1.3rem !important;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Main panel: full width, fills remaining space */
   .master-ai-hiring-modal .modal-main-panel {
     width: 100% !important;
     flex: 1 1 auto !important;
     height: auto;
-    padding: 0.75rem 1rem 1.25rem;
+    padding: 0.75rem 0.75rem 1.5rem;
     justify-content: flex-start;
-  }
-
-  .master-ai-hiring-modal h2#metric-title {
-    font-size: 1.4rem !important;
-  }
-
-  .master-ai-hiring-modal .hero-image {
-    max-height: 5rem;
+    gap: 0.75rem;
   }
 
   .master-ai-hiring-modal h3#pop-header {
-    font-size: 1.4rem !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .master-ai-hiring-modal .thepopupactivehiring {
-    font-size: 0.9rem !important;
+    font-size: 0.8rem !important;
+    margin: 0.25rem 0 0.75rem !important;
+  }
+
+  /* Company cards grid: 4 per row, evenly sized */
+  .master-ai-hiring-modal .popup-roles-grid {
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    justify-content: center;
+  }
+
+  .master-ai-hiring-modal .popup-role-card {
+    width: calc(25% - 0.5rem);
+    min-width: 72px;
+    max-width: 90px;
+    min-height: 90px;
+    padding: 0.5rem 0.35rem;
+    border-radius: 12px;
+  }
+
+  .master-ai-hiring-modal .popup-role-card-img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+  }
+
+  .master-ai-hiring-modal .popup-role-card-name {
+    font-size: 0.6rem;
+    letter-spacing: 0;
   }
 
   .master-ai-hiring-modal span.theullsddots {
-    font-size: 0.95rem !important;
+    font-size: 0.85rem !important;
     line-height: 1.35 !important;
   }
 }
@@ -667,6 +696,29 @@ p.theclictttovvireesss {
   .masteringaaiisss .masterignaiissheads h2 {
     font-size: 27px !important;
     padding-top: 30px;
+  }
+
+  .masteringaaiisss .masterignaiissheads p {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+
+  /* Tighter card grid on very small screens: 4 cards across */
+  .master-ai-hiring-modal .popup-role-card {
+    width: calc(25% - 0.4rem);
+    min-width: 68px;
+    max-width: 80px;
+    min-height: 80px;
+    padding: 0.4rem 0.25rem;
+  }
+
+  .master-ai-hiring-modal .popup-role-card-img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .master-ai-hiring-modal .popup-role-card-name {
+    font-size: 0.55rem;
   }
 }
 
@@ -678,6 +730,7 @@ p.theclictttovvireesss {
 
   .masterignaiissheads p {
     font-size: 16px !important;
+    width: 100% !important;
   }
 
   .canvas.themasteraainewws {
@@ -749,7 +802,6 @@ p.theclictttovvireesss {
     flex-direction: column !important;
     z-index: 10000000 !important;
     overflow-y: auto !important;
-    padding-top: 0 !important;
     align-items: stretch !important;
     justify-content: flex-start !important;
   }
