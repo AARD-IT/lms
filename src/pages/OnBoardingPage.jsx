@@ -4,74 +4,75 @@ import './OnBoardingPage.css'
 const steps = [
   {
     number: '01',
-    title: 'Registration & Profile Setup',
-    description:
-      'Create your Analytics Avenue account and complete your learner profile. Set your career goals, current skill level, and preferred learning pace to personalise your journey.',
+    title: 'Register',
+    description: 'Complete registration & attend presentation with our data expert panel.',
     icon: '🎯',
-    tag: 'Getting Started',
+    tag: 'Registration',
     color: '#0377EF',
   },
   {
     number: '02',
-    title: 'Program Selection & Enrolment',
-    description:
-      'Browse our curated industry-specific programs — Data Analytics, AI/ML, Business Intelligence, and more. Choose the track that aligns with your ambitions and enrol with a single click.',
-    icon: '📋',
-    tag: 'Discovery',
+    title: 'Connect',
+    description: 'One-to-one session to get your data prescription and kickstart your learning journey.',
+    icon: '🤝',
+    tag: 'Prescription',
     color: '#7c3aed',
   },
   {
     number: '03',
-    title: 'Orientation & Live Kick-off Session',
-    description:
-      `Attend a live orientation hosted by our senior mentors. Get a complete walkthrough of the LMS, curriculum roadmap, community guidelines, and your first week's action plan.`,
+    title: 'Demo & Onboard',
+    description: 'Attend 2 free demo sessions, complete payment, and get access to learning materials.',
     icon: '🚀',
-    tag: 'Orientation',
+    tag: 'Onboarding',
     color: '#0891b2',
   },
   {
     number: '04',
-    title: 'Core Learning & Project Work',
-    description:
-      'Dive into structured modules with recorded class videos, live sessions, and hands-on mini-projects. Build real dashboards, ML models, and case studies that form the backbone of your portfolio.',
+    title: 'Learn & Build',
+    description: 'Follow your goal sheet, receive mentor allocation, and complete weekly tasks.',
     icon: '📚',
     tag: 'Learning',
     color: '#059669',
   },
   {
     number: '05',
-    title: 'Mentor Appointments & Doubt Clearing',
-    description:
-      'Book 1-on-1 mentor sessions at your convenience. Get personalised code reviews, concept clarification, and career guidance directly from industry professionals.',
-    icon: '🤝',
-    tag: 'Mentorship',
+    title: 'Projects',
+    description: 'Join domain expert sessions and kick-start your allocated industry projects.',
+    icon: '📋',
+    tag: 'Projects',
     color: '#d97706',
   },
   {
     number: '06',
-    title: 'Portfolio Building & Mock Interviews',
-    description:
-      'Receive expert feedback on your GitHub, LinkedIn, and resume. Participate in AI-proctored mock interviews, industry-focused assessments, and live hiring events conducted on the platform.',
-    icon: '💼',
-    tag: 'Career Prep',
+    title: 'Certify',
+    description: 'Complete 2 industry certifications such as AWS, GCP, Databricks, or Snowflake.',
+    icon: '🎖️',
+    tag: 'Certification',
     color: '#dc2626',
   },
   {
     number: '07',
-    title: 'Job Referrals & Placement Drives',
-    description:
-      'Access exclusive internal referrals and live placement drives across top companies like Accenture, Deloitte, TCS, and 50+ hiring partners. Your profile is directly shortlisted by our placement cell.',
-    icon: '🏆',
-    tag: 'Placement',
+    title: 'Placement Prep',
+    description: 'Set up your portfolio across 5+ platforms and prepare for interviews.',
+    icon: '💼',
+    tag: 'Preparation',
     color: '#0377EF',
   },
   {
     number: '08',
-    title: 'Dream Role & Alumni Network',
-    description:
-      'Land your dream data role and become a part of our thriving alumni community. Continue accessing updated content, exclusive workshops, and networking events throughout your career.',
-    icon: '⭐',
-    tag: 'Success',
+    title: 'Get Placed',
+    description: (
+      <div>
+        <p style={{ margin: '0 0 8px 0' }}>Benefit from our 3-mode placement support:</p>
+        <ul style={{ margin: 0, paddingLeft: '18px', listStyleType: 'disc', textAlign: 'left' }}>
+          <li>Organic job opportunities</li>
+          <li>Project acquisition</li>
+          <li>Referral network</li>
+        </ul>
+      </div>
+    ),
+    icon: '🏆',
+    tag: 'Placement',
     color: '#7c3aed',
   },
 ]
@@ -196,7 +197,7 @@ export default function OnBoardingPage({ onNavigateHome }) {
                     </div>
                     <div className="ob-icon">{step.icon}</div>
                     <h3 className="ob-step-title">{step.title}</h3>
-                    <p className="ob-step-desc">{step.description}</p>
+                    <div className="ob-step-desc">{step.description}</div>
                     <div className="ob-progress-track">
                       <div
                         className="ob-progress-bar"

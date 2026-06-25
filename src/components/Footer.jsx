@@ -17,13 +17,13 @@ export default function Footer() {
                 <h4 className="socialnane">Social</h4>
                 <ul className="f-socials d-flex">
                   <li>
-                    <a href="https://twitter.com"><i className="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin-in"></i></a>
                   </li>
                   <li>
-                    <a href="https://facebook.com"><i className="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-instagram"></i></a>
                   </li>
                   <li>
-                    <a href="https://linkedin.com"><i className="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/917835901173" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-whatsapp"></i></a>
                   </li>
                 </ul>
               </div>

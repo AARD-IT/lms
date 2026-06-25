@@ -45,12 +45,16 @@ export default function HonoursSection() {
   }, [])
 
   const honours = [
-    { id: 1, img: '/assets/frontend/default/images/img/honorsrecoggss1.png' },
-    { id: 2, img: '/assets/frontend/default/images/img/honorsrecoggss2.png' },
-    { id: 3, img: '/assets/frontend/default/images/img/honorsrecoggss3.png' },
-    { id: 4, img: '/assets/frontend/default/images/img/honorsrecoggss4.png' },
-    { id: 5, img: '/assets/frontend/default/images/img/honorsrecoggss5.png' },
-    { id: 6, img: '/assets/frontend/default/images/img/honorsrecoggss6.png' },
+    { id: 1, img: '/assets/gallery/image1.png' },
+    { id: 2, img: '/assets/gallery/image2.png' },
+    { id: 3, img: '/assets/gallery/image3.png' },
+    { id: 4, img: '/assets/gallery/image4.png' },
+    { id: 5, img: '/assets/gallery/image5.png' },
+    { id: 6, img: '/assets/gallery/image6.png' },
+    { id: 7, img: '/assets/gallery/image7.png' },
+    { id: 8, img: '/assets/gallery/image8.png' },
+    { id: 9, img: '/assets/gallery/image9.png' },
+    { id: 10, img: '/assets/gallery/image10.png' },
   ]
 
   return (

@@ -68,25 +68,7 @@ function PodcastHero({ onNavigateHome }) {
             </p>
           </div>
 
-          <a
-            href="https://www.youtube.com/playlist?list=PLIwLItohWYlf0cJZjdFD476RDwEmOJz2h"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              background: '#0377EF', color: '#fff',
-              borderRadius: '50px', padding: '10px 20px',
-              fontFamily: "'Helvetica', sans-serif",
-              fontSize: '13px', fontWeight: 700,
-              textDecoration: 'none',
-              boxShadow: '0 4px 16px rgba(3,119,239,0.3)',
-            }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            Open Playlist
-          </a>
+
         </div>
       </div>
 
@@ -640,6 +622,47 @@ export default function PodcastPage({ onNavigateHome }) {
                   Episode {pad(currentIndex + 1)} of {podcastVideos.length}
                 </span>
               </div>
+            </div>
+
+            {/* Book 1:1 Consultation CTA */}
+            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <a
+                href="https://pages.razorpay.com/discussion"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  background: '#0377EF',
+                  color: '#fff',
+                  borderRadius: '50px',
+                  padding: '14px 32px',
+                  fontFamily: "'Helvetica', sans-serif",
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  boxShadow: '0 6px 20px rgba(3,119,239,0.35)',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#0260cc'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(3,119,239,0.45)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#0377EF'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(3,119,239,0.35)'; e.currentTarget.style.transform = 'translateY(0)' }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                Book 1:1 Consultation
+              </a>
+              <p style={{
+                fontFamily: "'Helvetica', sans-serif",
+                fontSize: '12px',
+                color: '#94a3b8',
+                marginTop: '8px',
+                marginBottom: 0,
+              }}>Free · Direct session with our Chief Data Scientist</p>
             </div>
           </div>
         </main>

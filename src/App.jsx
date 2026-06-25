@@ -15,12 +15,14 @@ import POCsSection from './components/sections/POCsSection'
 import PlacementOpportunities from './ui_components/PlacementOpportunities/PlacementOpportunities'
 import OnboardingsSection from './components/sections/OnboardingsSection'
 import HonoursSection from './components/sections/HonoursSection'
+import OutcomesSection from './components/sections/OutcomesSection'
 import MediaSpotlightSection from './components/sections/MediaSpotlightSection'
 import FAQSection from './components/sections/FAQSection'
 import Footer from './components/Footer'
 import Modals from './components/Modals'
 import ConsultationPopup from './components/ConsultationPopup'
 import PodcastPage from './pages/PodcastPage'
+import FloatingSocials from './components/FloatingSocials'
 import OnBoardingPage from './pages/OnBoardingPage'
 
 function App() {
@@ -76,7 +78,7 @@ function App() {
     const $ = window.$
     if (!$) return
 
-    $(document).on('click', '.trigger-action, .Click-here.thecompleletelmms:first-child', function (e) {
+    $(document).on('click', '.trigger-action', function (e) {
       e.preventDefault()
       $('#popup-overlay').fadeIn(300)
     })
@@ -189,6 +191,7 @@ function App() {
           <PlacementOpportunities />
           {/* <OnboardingsSection /> */}
           <HonoursSection />
+          <OutcomesSection />
           {/* <MediaSpotlightSection /> */}
           <FAQSection />
         </section>
@@ -197,6 +200,7 @@ function App() {
       <Footer />
       <Modals />
       <ConsultationPopup />
+      <FloatingSocials />
     </>
   )
 }

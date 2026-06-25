@@ -57,8 +57,8 @@ export default function HeroSection() {
             <a href="https://analyticsavenue.in/" style={{ textDecoration: 'none', display: 'inline-block' }}>
               <small className="thebannersmall" style={{ cursor: 'pointer' }}>Powered By Analytics Avenue</small>
             </a>
-            <h2 className="thebannerh2">Build Your Ai Portfolio like the <br /> Top 5% Data Experts </h2>
-            <p className="thebannerp">Rebuild the projects worked bu data experts across 10+ domains</p>
+            <h2 className="thebannerh2">Build Your Ai Portfolio like <br /> Top 5% Data Experts </h2>
+            <p className="thebannerp">Rebuild the projects worked by data experts across 10+ domains</p>
             <ul className="thebannerssulss" id="typingList" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', columnGap: '40px', rowGap: '15px', paddingLeft: 0 }}>
               <li></li><li></li><li></li><li></li><li></li><li></li>
             </ul>
