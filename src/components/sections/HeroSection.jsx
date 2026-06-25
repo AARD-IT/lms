@@ -36,18 +36,18 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="bannerhome thelmsbanners" style={{ backgroundImage: "url('public/assets/frontend/default/images/img/thebannerhome.png')" }}>
+    <section className="bannerhome thelmsbanners" style={{ backgroundImage: "url('/assets/frontend/default/images/img/thebannerhome.png')" }}>
       <div className="container-fluid p-0 h-100">
         <div className="thebannerrowws h-100">
           <div className="row h-100">
             <div className="col-md-7 p-0">
               <div className="thebluebacckkss h-100">
-                <img src="public/assets/frontend/default/images/img/thebacgrrounndss.png" alt="" />
+                <img src="/assets/frontend/default/images/img/thebacgrrounndss.png" alt="" />
               </div>
             </div>
             <div className="col-md-5 p-0">
               <div className="thebannervideos thelmsbannerimg">
-                <img src="public/assets/frontend/default/images/img/thelmmssbanners1.jpeg" alt="" />
+                <img src="/assets/frontend/default/images/img/thelmmssbanners1.jpeg" alt="" />
               </div>
             </div>
           </div>

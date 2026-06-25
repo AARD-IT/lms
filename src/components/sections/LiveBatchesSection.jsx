@@ -5,7 +5,7 @@ const CURRICULUM_TABS = [
   {
     id: 'genai',
     label: 'Gen AI',
-    icon: 'public/assets/our_program_modules/ai.svg',
+    icon: '/assets/our_program_modules/ai.svg',
     title: 'Data & Generative AI',
     meta: '6 Weeks • Live + Recorded • Intermediate → Advanced',
     description: 'From LLM foundations to production GenAI—then the 2026 market signals hiring teams actually watch for.',
@@ -42,7 +42,7 @@ const CURRICULUM_TABS = [
   {
     id: 'python',
     label: 'Python',
-    icon: 'public/assets/our_program_modules/python.svg',
+    icon: '/assets/our_program_modules/python.svg',
     title: 'Python for Data Analytics',
     meta: '8 Weeks • Live + Recorded • Beginner → Advanced',
     description: 'Build a strong analytics core in Python—then layer in how teams actually work in 2026: GenAI helpers, cloud warehouses, AutoML, and the stack employers screen for.',
@@ -79,7 +79,7 @@ const CURRICULUM_TABS = [
   {
     id: 'powerbi',
     label: 'Power BI',
-    icon: 'public/assets/our_program_modules/powerbi.svg',
+    icon: '/assets/our_program_modules/powerbi.svg',
     title: 'Power BI for Data Visualization',
     meta: '5 Weeks • Live + Recorded • Beginner → Advanced',
     description: 'Executive-grade dashboards and semantic models—plus how Copilot and embedded AI are reshaping BI delivery in 2026.',
@@ -116,7 +116,7 @@ const CURRICULUM_TABS = [
   {
     id: 'sql',
     label: 'SQL',
-    icon: 'public/assets/our_program_modules/mysql.svg',
+    icon: '/assets/our_program_modules/mysql.svg',
     title: 'SQL for Data Analytics',
     meta: '4 Weeks • Live + Recorded • Beginner → Advanced',
     description: 'Interview-ready SQL through warehouses and pipelines—plus NL-to-SQL, cloud engines, and where demand is headed in 2026.',

@@ -2,22 +2,22 @@ import React from 'react'
 
 export default function WorkingCompaniesSection() {
   const track1Images = [
-    'public/assets/frontend/default/images/img/marqueess1.png',
-    'public/assets/frontend/default/images/img/marqueess2.png',
-    'public/assets/frontend/default/images/img/marqueess3.png',
-    'public/assets/frontend/default/images/img/marqueess4.png',
-    'public/assets/frontend/default/images/img/marqueess5.png',
-    'public/assets/frontend/default/images/img/marqueess6.png',
+    '/assets/frontend/default/images/img/marqueess1.png',
+    '/assets/frontend/default/images/img/marqueess2.png',
+    '/assets/frontend/default/images/img/marqueess3.png',
+    '/assets/frontend/default/images/img/marqueess4.png',
+    '/assets/frontend/default/images/img/marqueess5.png',
+    '/assets/frontend/default/images/img/marqueess6.png',
   ]
 
   const track2Images = [
-    'public/assets/frontend/default/images/img/marqueess7.png',
-    'public/assets/frontend/default/images/img/marqueess8.png',
-    'public/assets/frontend/default/images/img/marqueess9.png',
-    'public/assets/frontend/default/images/img/marqueess10.png',
-    'public/assets/frontend/default/images/img/marqueess11.png',
-    'public/assets/frontend/default/images/img/marqueess12.png',
-    'public/assets/frontend/default/images/img/marqueess13.png',
+    '/assets/frontend/default/images/img/marqueess7.png',
+    '/assets/frontend/default/images/img/marqueess8.png',
+    '/assets/frontend/default/images/img/marqueess9.png',
+    '/assets/frontend/default/images/img/marqueess10.png',
+    '/assets/frontend/default/images/img/marqueess11.png',
+    '/assets/frontend/default/images/img/marqueess12.png',
+    '/assets/frontend/default/images/img/marqueess13.png',
   ]
 
   const stats = [
@@ -32,7 +32,7 @@ export default function WorkingCompaniesSection() {
   return (
     <section
       className="thepoersmall workingcompaniess thestudeenccommsdsdslms"
-      style={{ backgroundImage: 'url(public/assets/frontend/default/images/img/themarqieeebacss.png)' }}
+      style={{ backgroundImage: 'url(/assets/frontend/default/images/img/themarqieeebacss.png)' }}
     >
       <div className="container-fluid p-0">
         <div className="powermainss workingmainss">

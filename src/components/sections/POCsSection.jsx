@@ -53,7 +53,7 @@ export default function POCsSection() {
                 <div className="swiper-slide">
                   <div className="thepoccssslidesinnnerslide">
                     <div className="pocsssinnerimage">
-                      <img src="public/uploads/blog/thumbnail/credit-card-customer-report-1771482538.jpg" alt="" />
+                      <img src="/uploads/blog/thumbnail/credit-card-customer-report-1771482538.jpg" alt="" />
                     </div>
                     <div className="pocsssinnercontent">
                       <h3 className="pocsssinnercontenth3">Credit Card Customer Report</h3>

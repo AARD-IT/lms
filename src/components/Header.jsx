@@ -39,7 +39,7 @@ export default function Header() {
             <div className="col-auto">
               <div className="logo-image">
                 <a href="https://analyticsavenue.in/lms">
-                  <img src="public/assets/frontend/default/images/img/mainwebsitelogohead.png" alt="system logo" className="object-fit-cover rounded header-dark-logo themainwebsitelogos" />
+                  <img src="/assets/frontend/default/images/img/mainwebsitelogohead.png" alt="system logo" className="object-fit-cover rounded header-dark-logo themainwebsitelogos" />
                 </a>
               </div>
               <div className="hembargar__00099e">
@@ -71,13 +71,13 @@ export default function Header() {
                                 <ul className="mega_list thefittpaymments">
                                   <li className="Click-here thecompleletelmms">
                                     <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer">
-                                      <span className="me-3"><img src="public/assets/frontend/default/images/img/industriesicon1.png" alt="" /></span>
+                                      <span className="me-3"><img src="/assets/frontend/default/images/img/industriesicon1.png" alt="" /></span>
                                       <span className="me-auto">Book your 1-1 consultation</span>
                                     </a>
                                   </li>
                                   <li className="pe-2 ps-5 themenntorrss thecompleletelmms">
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#purchaseOptionsFullLMSModal">
-                                      <span className="me-3"><img src="public/assets/frontend/default/images/img/industriesicon2.png" alt="" /></span>
+                                      <span className="me-3"><img src="/assets/frontend/default/images/img/industriesicon2.png" alt="" /></span>
                                       <span className="me-auto"> Full LMS Access </span>
                                       <small className="thelmmssactive">Active</small>
                                     </a>

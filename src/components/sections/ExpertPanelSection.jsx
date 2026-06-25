@@ -17,7 +17,7 @@ export default function ExpertPanelSection() {
                   <div className="thereviewswiperinners thehomeswiperreviews">
                     <span className="thequoteicons"><i className="fa-solid fa-quote-left"></i></span>
                     <div className="theswiperrevupers thehomeswiperreviews">
-                      <div className="swiperongrev"><img src="public/assets/frontend/default/images/img/mentooors1.jpeg" alt="" /></div>
+                      <div className="swiperongrev"><img src="/assets/frontend/default/images/img/mentooors1.jpeg" alt="" /></div>
                       <div className="swiperrevtherenameinersers thehomeswiperreviews">
                         <h3 className="swiperrevtherenameinersnames thehomeswiperreviews">Subramani </h3>
                         <p className="thepostioosssofmentor">Chief Data Scientist</p>
@@ -47,7 +47,7 @@ export default function ExpertPanelSection() {
                     <div className="thereviewswiperinners thehomeswiperreviews">
                       <span className="thequoteicons"><i className="fa-solid fa-quote-left"></i></span>
                       <div className="theswiperrevupers thehomeswiperreviews">
-                        <div className="swiperongrev"><img src={`public/assets/frontend/default/images/img/${expert.img}`} alt="" /></div>
+                        <div className="swiperongrev"><img src={`/assets/frontend/default/images/img/${expert.img}`} alt="" /></div>
                         <div className="swiperrevtherenameinersers thehomeswiperreviews">
                           <h3 className="swiperrevtherenameinersnames thehomeswiperreviews">{expert.name}</h3>
                           <p className="thepostioosssofmentor">{expert.role}</p>
@@ -76,7 +76,7 @@ export default function ExpertPanelSection() {
                     <div className="thereviewswiperinners thehomeswiperreviews">
                       <span className="thequoteicons"><i className="fa-solid fa-quote-left"></i></span>
                       <div className="theswiperrevupers thehomeswiperreviews">
-                        <div className="swiperongrev"><img src={`public/assets/frontend/default/images/img/${expert.img}`} alt="" /></div>
+                        <div className="swiperongrev"><img src={`/assets/frontend/default/images/img/${expert.img}`} alt="" /></div>
                         <div className="swiperrevtherenameinersers thehomeswiperreviews">
                           <h3 className="swiperrevtherenameinersnames thehomeswiperreviews">{expert.name}</h3>
                           <p className="thepostioosssofmentor">{expert.role}</p>
@@ -106,7 +106,7 @@ export default function ExpertPanelSection() {
                     <div className="thereviewswiperinners thehomeswiperreviews">
                       <span className="thequoteicons"><i className="fa-solid fa-quote-left"></i></span>
                       <div className="theswiperrevupers thehomeswiperreviews">
-                        <div className="swiperongrev"><img src={`public/assets/frontend/default/images/img/${expert.img}`} alt="" /></div>
+                        <div className="swiperongrev"><img src={`/assets/frontend/default/images/img/${expert.img}`} alt="" /></div>
                         <div className="swiperrevtherenameinersers thehomeswiperreviews">
                           <h3 className="swiperrevtherenameinersnames thehomeswiperreviews">{expert.name}</h3>
                           <p className="thepostioosssofmentor">{expert.role}</p>

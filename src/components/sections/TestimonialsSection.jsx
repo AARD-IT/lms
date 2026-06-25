@@ -26,14 +26,14 @@ export default function TestimonialsSection() {
   }, [])
 
   const testimonials = [
-    { id: 1, img: 'public/uploads/testimonials/1771919718-testimonial-1.png' },
-    { id: 2, img: 'public/uploads/testimonials/1771919729-testimonial-2.png' },
-    { id: 3, img: 'public/uploads/testimonials/1771919740-testimonial-3.png' },
-    { id: 4, img: 'public/uploads/testimonials/1771919752-testimonial-4.png' },
-    { id: 5, img: 'public/uploads/testimonials/1771919764-testimonial-5.png' },
-    { id: 6, img: 'public/uploads/testimonials/1771919773-testimonial-6.png' },
-    { id: 7, img: 'public/uploads/testimonials/1771919784-testimonial-7.png' },
-    { id: 8, img: 'public/uploads/testimonials/1771919794-testimonial-8.png' },
+    { id: 1, img: '/uploads/testimonials/1771919718-testimonial-1.png' },
+    { id: 2, img: '/uploads/testimonials/1771919729-testimonial-2.png' },
+    { id: 3, img: '/uploads/testimonials/1771919740-testimonial-3.png' },
+    { id: 4, img: '/uploads/testimonials/1771919752-testimonial-4.png' },
+    { id: 5, img: '/uploads/testimonials/1771919764-testimonial-5.png' },
+    { id: 6, img: '/uploads/testimonials/1771919773-testimonial-6.png' },
+    { id: 7, img: '/uploads/testimonials/1771919784-testimonial-7.png' },
+    { id: 8, img: '/uploads/testimonials/1771919794-testimonial-8.png' },
   ]
 
   return (

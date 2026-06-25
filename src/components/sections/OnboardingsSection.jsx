@@ -53,7 +53,7 @@ export default function OnboardingsSection() {
                 <div className="swiper-slide">
                   <div className="thepoccssslidesinnnerslide">
                     <div className="pocsssinnerimage">
-                      <img src="public/uploads/blog/thumbnail/how-does-yolo-work-1771483292.jpg" alt="" />
+                      <img src="/uploads/blog/thumbnail/how-does-yolo-work-1771483292.jpg" alt="" />
                     </div>
                     <div className="pocsssinnercontent">
                       <h3 className="pocsssinnercontenth3">How does Yolo work?</h3>

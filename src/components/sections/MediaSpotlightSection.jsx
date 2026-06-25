@@ -49,7 +49,7 @@ export default function MediaSpotlightSection() {
                 <div className="swiper-slide">
                   <div className="thepoccssslidesinnnerslide">
                     <div className="pocsssinnerimage">
-                      <img src="public/uploads/blog/thumbnail/viewverse-user-demographics-1771485109.jpg" alt="" />
+                      <img src="/uploads/blog/thumbnail/viewverse-user-demographics-1771485109.jpg" alt="" />
                     </div>
                     <div className="pocsssinnercontent">
                       <h3 className="pocsssinnercontenth3">Viewverse User Demographics</h3>

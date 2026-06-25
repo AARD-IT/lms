@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-lg-4 col-md-4">
             <div className="footer-content drop-area">
-              <img src="public/assets/frontend/default/images/img/mainwebsitelogofoter.png" className="themainwebfoootlogos" alt="system logo" />
+              <img src="/assets/frontend/default/images/img/mainwebsitelogofoter.png" className="themainwebfoootlogos" alt="system logo" />
               <p className="description builder-editable themainwebfootdesc" builder-identity="1">
                 Analytics Avenue is an IT and EdTech organization specializing in advanced analytics, data engineering, and AI-driven solutions. We enable enterprise BI, GenAI, predictive analytics, and scalable data platforms to drive real business
                 impact. Our model combines analytics solution delivery with industry-aligned upskilling. We support career growth through hands-on training, real project exposure, and curated freelancing opportunities, working with global
