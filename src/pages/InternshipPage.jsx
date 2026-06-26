@@ -1,87 +1,185 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion'
+import {
+  Users,
+  Cpu,
+  Zap,
+  GraduationCap,
+  Briefcase,
+  BookOpen,
+  Award,
+  TrendingUp,
+  BarChart3,
+  Database,
+  Sparkles,
+  ShoppingCart,
+  HeartPulse,
+  Building2,
+  Factory,
+  Truck,
+  CheckCircle2,
+  UserCheck,
+  FileBadge,
+  FolderGit2,
+  CircleDollarSign,
+  Calendar,
+  Clock,
+  User,
+  Globe,
+  LineChart,
+  Handshake,
+  ChevronDown,
+  ChevronUp,
+  Send,
+  ArrowRight,
+  MapPin,
+  Check,
+  Terminal,
+  Layers,
+  GitBranch,
+  Workflow,
+  HelpCircle,
+  BriefcaseBusiness,
+  Quote,
+  MessageCircle,
+  BadgeCheck,
+  Code,
+  Monitor
+} from 'lucide-react'
 import './InternshipPage.css'
 
-/* ── Scroll animation hook ── */
-function useInView(threshold = 0.15) {
+/* ── Animated Counter Component ── */
+function AnimatedCounter({ value, duration = 1.5 }) {
   const ref = useRef(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    if (!ref.current) return
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true) },
-      { threshold }
-    )
-    obs.observe(ref.current)
-    return () => obs.disconnect()
-  }, [threshold])
-  return [ref, inView]
-}
-
-/* ── Animated Counter ── */
-function Counter({ target, suffix = '', duration = 2000 }) {
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
   const [count, setCount] = useState(0)
-  const [ref, inView] = useInView()
+
   useEffect(() => {
-    if (!inView) return
-    const num = parseInt(target.replace(/\D/g, ''))
-    const step = Math.ceil(num / (duration / 16))
-    let current = 0
-    const timer = setInterval(() => {
-      current = Math.min(current + step, num)
+    if (!isInView) return
+    const numericPart = parseInt(value.replace(/\D/g, ''), 10)
+    if (isNaN(numericPart)) {
+      setCount(value)
+      return
+    }
+
+    let start = 0
+    const frameRate = 1000 / 60
+    const totalFrames = Math.round((duration * 1000) / frameRate)
+    let frame = 0
+
+    const counter = setInterval(() => {
+      frame++
+      const progress = frame / totalFrames
+      // Ease out quad
+      const current = Math.round(numericPart * (progress * (2 - progress)))
       setCount(current)
-      if (current >= num) clearInterval(timer)
-    }, 16)
-    return () => clearInterval(timer)
-  }, [inView, target, duration])
-  return <span ref={ref}>{count}{suffix}</span>
+
+      if (frame >= totalFrames) {
+        setCount(numericPart)
+        clearInterval(counter)
+      }
+    }, frameRate)
+
+    return () => clearInterval(counter)
+  }, [isInView, value, duration])
+
+  const suffix = value.includes('+') ? '+' : value.includes('%') ? '%' : ''
+
+  return (
+    <span ref={ref} className="ip-counter-num">
+      {count.toLocaleString()}{suffix}
+    </span>
+  )
 }
 
-/* ── FAQ Item ── */
-function FaqItem({ question, answer }) {
-  const [open, setOpen] = useState(false)
+/* ── FAQ Accordion Item Component ── */
+function FaqAccordionItem({ question, answer, isOpen, onToggle }) {
   return (
-    <div className={`ip-faq-item${open ? ' open' : ''}`}>
-      <button className="ip-faq-question" onClick={() => setOpen(!open)}>
-        {question}
-        <svg className="ip-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+    <div className={`ip-faq-accordion-card ${isOpen ? 'is-open' : ''}`}>
+      <button className="ip-faq-accordion-trigger" onClick={onToggle} aria-expanded={isOpen}>
+        <span className="ip-faq-accordion-q">{question}</span>
+        <motion.span
+          className="ip-faq-accordion-icon"
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <ChevronDown width="20" height="20" />
+        </motion.span>
       </button>
-      <div className="ip-faq-answer">{answer}</div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="ip-faq-accordion-content"
+          >
+            <p className="ip-faq-accordion-a">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
-/* ─────────────── MAIN PAGE ─────────────── */
-export default function InternshipPage({ onNavigateHome }) {
+/* ── Section Wrapper with Motion Reveal ── */
+function Section({ children, className = '', id }) {
+  return (
+    <motion.section
+      id={id}
+      className={`ip-section-wrapper ${className}`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.section>
+  )
+}
 
-  /* Scroll to section */
-  const journeyRef = useRef(null)
-  const scrollToJourney = (e) => {
+export default function InternshipPage({ onNavigateHome }) {
+  const formRef = useRef(null)
+  const timelineRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 70%", "end 60%"]
+  })
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
+
+  const scrollToForm = (e) => {
     e.preventDefault()
-    journeyRef.current?.scrollIntoView({ behavior: 'smooth' })
+    formRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  /* Form state */
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', track: '', background: '' })
+  const handleChooseTrack = (trackTitle, e) => {
+    e.preventDefault()
+    setFormData(prev => ({ ...prev, track: trackTitle }))
+    formRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  /* Form State */
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    university: '',
+    degreeYear: '',
+    track: ''
+  })
   const [submitted, setSubmitted] = useState(false)
-  const handleForm = (e) => {
+
+  const handleFormSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
   }
 
-  /* ── Intersection observer for section animations ── */
-  useEffect(() => {
-    const els = document.querySelectorAll('.ip-animate')
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view') }),
-      { threshold: 0.1 }
-    )
-    els.forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
+  /* FAQ Accordion State */
+  const [openFaqIndex, setOpenFaqIndex] = useState(null)
 
-  /* ── Data ── */
+  /* ── Preserved Data Structures ── */
   const marqueeItems = [
     'Live Projects', 'AI Automation', 'Power BI', 'SQL', 'Python',
     'Tableau', 'Resume Building', 'Mock Interviews', 'Placement Support',
@@ -89,153 +187,199 @@ export default function InternshipPage({ onNavigateHome }) {
     'Data Engineering', 'Machine Learning', 'Excel Analytics'
   ]
 
-  const features = [
-    { icon: '🎯', title: 'Real Industry Projects', desc: 'Work on live projects that mirror actual industry scenarios, building a portfolio employers trust.' },
-    { icon: '🤖', title: 'AI & Automation Training', desc: 'Master cutting-edge AI tools like ChatGPT, Claude, n8n, and Make to automate analytics workflows.' },
-    { icon: '👩‍💼', title: 'Expert Mentor Access', desc: 'Book 1-on-1 sessions with senior data scientists with 6–9 years of industry experience.' },
-    { icon: '📋', title: 'Interview Preparation', desc: 'End-to-end mock interviews, resume reviews, and LinkedIn optimization by placement experts.' },
-    { icon: '🏢', title: '50+ Hiring Partners', desc: 'Direct referrals to our network of 50+ companies actively hiring data analytics professionals.' },
+  /* ── New Program Details ── */
+  const stats = [
+    { value: '2,000+', label: 'Career consultations delivered', icon: <Users className="ip-stat-icon-lucide" /> },
+    { value: '100+', label: 'Production ML models built', icon: <Cpu className="ip-stat-icon-lucide" /> },
+    { value: '15+', label: 'AI automation workflows live', icon: <Zap className="ip-stat-icon-lucide" /> },
+    { value: '1,000+', label: 'Rural students empowered', icon: <GraduationCap className="ip-stat-icon-lucide" /> },
+    { value: '500+', label: 'Professionals placed', icon: <Briefcase className="ip-stat-icon-lucide" /> }
   ]
 
-  const journeySteps = [
-    { num: '01', tag: 'Week 1–2', title: 'Onboarding & Foundations', desc: 'Environment setup, data fundamentals, SQL basics, and Excel mastery. Build your first mini-project.', duration: '2 Weeks', progress: 100, icon: '🚀' },
-    { num: '02', tag: 'Week 3–5', title: 'Core Analytics Tools', desc: 'Deep-dive into Python for data analysis, Power BI dashboard creation, and Tableau visualizations.', duration: '3 Weeks', progress: 85, icon: '📊' },
-    { num: '03', tag: 'Week 6–8', title: 'Industry Projects', desc: 'Apply your skills to 3 full-scale industry projects: Sales, HR, and Healthcare analytics dashboards.', duration: '3 Weeks', progress: 70, icon: '🏗️' },
-    { num: '04', tag: 'Week 9–10', title: 'AI & Automation', desc: 'Integrate GenAI tools, automate workflows using n8n and Make, and build AI-powered analytics solutions.', duration: '2 Weeks', progress: 55, icon: '🤖' },
-    { num: '05', tag: 'Week 11–12', title: 'Placement Preparation', desc: 'Portfolio review, mock interviews, LinkedIn setup, resume crafting, and referral placement support.', duration: '2 Weeks', progress: 40, icon: '🎓' },
+  const audiences = [
+    {
+      num: '01',
+      title: 'The final-year student',
+      desc: 'Your degree is almost done but your portfolio is empty. You need real project experience before placements hit — and you need it fast.',
+      icon: <BookOpen className="ip-who-icon-lucide" />
+    },
+    {
+      num: '02',
+      title: 'The recent graduate',
+      desc: 'You have a degree but every job asks for "2 years of experience." This is how you bridge that gap with actual work to show for it.',
+      icon: <Award className="ip-who-icon-lucide" />
+    },
+    {
+      num: '03',
+      title: 'The career switcher',
+      desc: "You're moving from a different field into data or AI. You need structured learning, not just YouTube videos — and a team that takes you seriously.",
+      icon: <TrendingUp className="ip-who-icon-lucide" />
+    }
+  ]
+
+  const programStacks = [
+    {
+      title: 'Data Analytics & BI',
+      desc: 'Dashboards, storytelling with data, and business intelligence that actually drives decisions.',
+      icon: <BarChart3 className="ip-prog-stack-icon" />
+    },
+    {
+      title: 'Data Engineering',
+      desc: 'Modern pipelines with dbt, Airflow, and Snowflake — the infrastructure layer every team needs.',
+      icon: <Database className="ip-prog-stack-icon" />
+    },
+    {
+      title: 'Generative AI & Agents',
+      desc: 'LLMs, AI automation, and real-world agentic applications built with LangChain and n8n.',
+      icon: <Sparkles className="ip-prog-stack-icon" />
+    }
+  ]
+
+  const techChips = [
+    'Python', 'SQL', 'Excel', 'Power BI', 'Tableau', 'Airflow',
+    'dbt', 'Snowflake', 'LangChain', 'n8n', 'OpenAI API', 'Gemini API', 'Prompt Engineering'
+  ]
+
+  const industries = [
+    { name: 'Retail & E-commerce', icon: <ShoppingCart className="ip-ind-icon" /> },
+    { name: 'Healthcare', icon: <HeartPulse className="ip-ind-icon" /> },
+    { name: 'BFSI', icon: <Building2 className="ip-ind-icon" /> },
+    { name: 'Manufacturing', icon: <Factory className="ip-ind-icon" /> },
+    { name: 'EdTech', icon: <GraduationCap className="ip-ind-icon" /> },
+    { name: 'Logistics', icon: <Truck className="ip-ind-icon" /> }
+  ]
+
+  const skillsTracks = [
+    {
+      title: 'Data Analytics & BI',
+      icon: <BarChart3 className="ip-skills-track-icon text-blue-500" />,
+      skills: ['SQL', 'Excel', 'Power BI', 'Tableau', 'Python Basics']
+    },
+    {
+      title: 'Data Engineering',
+      icon: <Database className="ip-skills-track-icon text-purple-500" />,
+      skills: ['Python', 'SQL', 'dbt', 'Airflow', 'Snowflake', 'Pipelines']
+    },
+    {
+      title: 'Generative AI & Agents',
+      icon: <Sparkles className="ip-skills-track-icon text-amber-500" />,
+      skills: ['LangChain', 'n8n', 'OpenAI API', 'Prompt Engineering', 'Python']
+    }
   ]
 
   const tracks = [
     {
-      icon: '📊', name: 'Data Analytics', duration: '12 Weeks',
-      tools: ['Python', 'SQL', 'Excel', 'Power BI', 'Tableau'],
-      projects: ['Sales Dashboard', 'Customer Analysis', 'Financial Report'],
-      careerPath: 'Data Analyst → Senior Analyst → Analytics Lead',
+      title: 'Data Analytics & BI',
+      bestFor: 'Business-minded learners who love turning numbers into stories',
+      skills: ['SQL', 'Excel', 'Power BI', 'Tableau', 'Python Basics'],
+      jobs: ['Data Analyst', 'BI Developer', 'Reporting Analyst']
     },
     {
-      icon: '📈', name: 'Business Analytics', duration: '10 Weeks',
-      tools: ['Excel', 'Power BI', 'SQL', 'Tableau', 'Google Analytics'],
-      projects: ['Market Research', 'KPI Dashboard', 'Business Report'],
-      careerPath: 'Business Analyst → Product Analyst → Strategy Manager',
+      title: 'Data Engineering',
+      bestFor: 'Those who want to build the infrastructure behind data products',
+      skills: ['Python', 'SQL', 'dbt', 'Airflow', 'Snowflake', 'Pipelines'],
+      jobs: ['Data Engineer', 'ETL Developer', 'Analytics Engineer']
     },
     {
-      icon: '🤖', name: 'AI & Automation', duration: '12 Weeks',
-      tools: ['Python', 'ChatGPT', 'n8n', 'Make', 'Claude', 'Gemini'],
-      projects: ['AI Chatbot', 'Automation Workflow', 'ML Pipeline'],
-      careerPath: 'AI Analyst → ML Engineer → Data Science Lead',
+      title: 'Generative AI & Agents',
+      bestFor: 'Curious minds excited about LLMs, automation, and the future of AI',
+      skills: ['LangChain', 'n8n', 'OpenAI API', 'Prompt Engineering', 'Python'],
+      jobs: ['AI Engineer', 'Prompt Engineer', 'ML Ops', 'AI Product Roles']
+    }
+  ]
+
+  const walks = [
+    { title: 'Live project exposure', icon: <Briefcase className="ip-walk-icon" />, desc: 'Deploy production-level code and dashboards rather than toy local projects.' },
+    { title: 'Industry mentorship', icon: <UserCheck className="ip-walk-icon" />, desc: 'Get reviewed and guided weekly by senior practitioners active in global brands.' },
+    { title: 'Verified certificate + LinkedIn recommendation', icon: <FileBadge className="ip-walk-icon" />, desc: 'Boost your personal profile and credibility with written mentor recommendations.' },
+    { title: 'Portfolio-ready work', icon: <FolderGit2 className="ip-walk-icon" />, desc: 'Assemble a showcase of real enterprise projects to show recruiters during calls.' },
+    { title: 'Placement pathway', icon: <Award className="ip-walk-icon" />, desc: 'Direct referral pipelines to top tech firms hiring data professionals.' },
+    { title: 'Stipend eligibility', icon: <CircleDollarSign className="ip-walk-icon" />, desc: 'Earn performance-linked incentives and stipends based on milestone builds.' }
+  ]
+
+  const journeyTimeline = [
+    {
+      week: 'Week 1–2',
+      title: 'Onboarding & orientation',
+      desc: "Meet your mentor, get introduced to your live project, set up your tools, and understand the workflow you'll be contributing to from day one.",
+      icon: <Users />
     },
+    {
+      week: 'Week 3–4',
+      title: 'Deep-dive execution',
+      desc: "Core deliverables — data cleaning, pipeline building, model testing, dashboard development, or AI agent workflows depending on your track.",
+      icon: <Code />
+    },
+    {
+      week: 'Week 5–6',
+      title: 'Iteration & mentor review',
+      desc: "Mid-point review with your mentor. Incorporate feedback, sharpen your work, and push your outputs closer to production quality.",
+      icon: <MessageCircle />
+    },
+    {
+      week: 'Week 7',
+      title: 'Presentation prep',
+      desc: "Structure your findings, build your showcase deck, and rehearse how to walk a real stakeholder through your project.",
+      icon: <Monitor />
+    },
+    {
+      week: 'Week 8',
+      title: 'Final showcase & certification',
+      desc: "Present to the Analytics Avenue team. Receive your internship certificate, LinkedIn recommendation, and career pathway guidance.",
+      icon: <BadgeCheck />
+    }
   ]
 
-  const projects = [
-    { icon: '📊', name: 'Sales Dashboard', type: 'Power BI' },
-    { icon: '🏥', name: 'Healthcare Analytics', type: 'Python' },
-    { icon: '👥', name: 'HR Dashboard', type: 'Tableau' },
-    { icon: '🗄️', name: 'SQL Database Design', type: 'SQL' },
-    { icon: '🐍', name: 'Python Analytics', type: 'Pandas/NumPy' },
-    { icon: '🤖', name: 'AI Chatbot', type: 'ChatGPT API' },
-    { icon: '⚡', name: 'Automation Workflow', type: 'n8n/Make' },
-    { icon: '💰', name: 'Finance Report', type: 'Excel' },
+  const dayLife = [
+    { time: '9:00 AM', event: 'Daily Standup', desc: 'Align on metrics, discuss blockers, and set the daily sprint goals.' },
+    { time: '10:00 AM', event: 'Deep Work Block', desc: 'Intense building, debugging pipelines, or writing analytics models.' },
+    { time: '2:00 PM', event: 'Skill Session', desc: 'Interactive workshop on modern architecture, GenAI agents, or dbt.' },
+    { time: '4:00 PM', event: 'Review & Document', desc: 'Sync code, write clean readmes, and push changes for mentor review.' }
   ]
 
-  const sidebarProjects = [
-    { icon: '📊', bg: 'rgba(3,119,239,0.08)', name: 'Retail Analytics', cat: 'Business Intelligence', tags: ['Power BI', 'SQL'] },
-    { icon: '🤖', bg: 'rgba(139,92,246,0.08)', name: 'AI Automation', cat: 'GenAI Tools', tags: ['n8n', 'ChatGPT'] },
-    { icon: '🐍', bg: 'rgba(16,185,129,0.08)', name: 'Python ML Model', cat: 'Machine Learning', tags: ['Scikit-learn', 'Pandas'] },
-  ]
-
-  const skills = [
-    // Ring 1 (inner)
-    { label: 'Python', emoji: '🐍', r: 140, angle: 0 },
-    { label: 'SQL', emoji: '🗄️', r: 140, angle: 72 },
-    { label: 'Power BI', emoji: '📊', r: 140, angle: 144 },
-    { label: 'Excel', emoji: '📗', r: 140, angle: 216 },
-    { label: 'Tableau', emoji: '📈', r: 140, angle: 288 },
-    // Ring 2 (outer)
-    { label: 'Machine Learning', emoji: '🤖', r: 220, angle: 36 },
-    { label: 'AI', emoji: '🧠', r: 220, angle: 96 },
-    { label: 'Automation', emoji: '⚡', r: 220, angle: 156 },
-    { label: 'Statistics', emoji: '📉', r: 220, angle: 216 },
-    { label: 'Business Analytics', emoji: '💼', r: 220, angle: 276 },
-    { label: 'Git', emoji: '🔀', r: 220, angle: 336 },
-  ]
-
-  const tools = [
-    { emoji: '🐍', name: 'Python' },
-    { emoji: '🗄️', name: 'SQL' },
-    { emoji: '📊', name: 'Power BI' },
-    { emoji: '📗', name: 'Excel' },
-    { emoji: '📈', name: 'Tableau' },
-    { emoji: '🐙', name: 'GitHub' },
-    { emoji: '💻', name: 'VS Code' },
-    { emoji: '🤖', name: 'ChatGPT' },
-    { emoji: '🦙', name: 'Claude' },
-    { emoji: '✨', name: 'Gemini' },
-    { emoji: '⚙️', name: 'n8n' },
-    { emoji: '🔧', name: 'Make' },
-    { emoji: '🔗', name: 'Zapier' },
-    { emoji: '🎨', name: 'Figma' },
-  ]
-
-  const audiences = [
-    { emoji: '🎓', name: 'Students', desc: 'Build portfolio before graduating and land offers early' },
-    { emoji: '🆕', name: 'Freshers', desc: 'Gain industry experience and skip the entry barrier' },
-    { emoji: '🔄', name: 'Career Switchers', desc: 'Transition into data analytics from any background' },
-    { emoji: '💼', name: 'Professionals', desc: 'Upskill with AI & analytics while continuing work' },
-    { emoji: '🏫', name: 'Final Year', desc: 'Graduate placement-ready with real projects on resume' },
-  ]
-
-  const benefits = [
-    { icon: '🏅', title: 'Industry Certificate', desc: 'Globally recognized certification backed by Analytics Avenue to strengthen your LinkedIn and resume.', tag: 'Verified', wide: false, tall: false },
-    { icon: '🤝', title: 'Placement Support', desc: 'Active referrals to 50+ hiring partners, job updates, and direct shortlisting.', tag: 'Active', wide: false, tall: false },
-    { icon: '🎤', title: 'Mock Interviews', desc: 'Practice with real data analytics interview questions conducted by industry professionals.', tag: 'Live', wide: true, tall: false },
-    { icon: '📝', title: 'Resume Building', desc: 'One-on-one resume reviews, ATS optimization, and LinkedIn profile setup with expert guidance.', tag: 'Personal', wide: false, tall: false },
-    { icon: '🏗️', title: 'Industry Projects', desc: 'Complete 5+ real projects used by top companies. Build a portfolio that speaks for itself.', tag: '5+ Projects', wide: false, tall: false },
-    { icon: '🎯', title: 'Career Mentorship', desc: 'Weekly 1-on-1 sessions with senior mentors who have placed 1000+ students in top companies.', tag: 'Weekly', wide: false, tall: false },
-    { icon: '👥', title: 'Community Access', desc: 'Join 10,000+ analytics professionals in our exclusive WhatsApp and Discord community.', tag: '10K+ Members', wide: true, tall: false },
-    { icon: '🤖', title: 'AI Tools Training', desc: 'Master ChatGPT, Claude, Gemini, n8n, Make, and Zapier for automated analytics workflows.', tag: 'Cutting Edge', wide: false, tall: false },
-  ]
-
-  const daySchedule = [
-    { time: '9:00 AM', icon: '📚', title: 'Learning Session', desc: 'Watch structured video lessons covering the day\'s topic with practical examples.' },
-    { time: '11:00 AM', icon: '💻', title: 'Hands-on Practice', desc: 'Apply what you learned through guided exercises and real datasets.' },
-    { time: '1:00 PM', icon: '🏗️', title: 'Project Work', desc: 'Contribute to your ongoing industry project, building real deliverables.' },
-    { time: '3:00 PM', icon: '👩‍🏫', title: 'Mentor Session', desc: 'Join live doubt-clearing calls or book a 1-on-1 appointment with your mentor.' },
-    { time: '5:00 PM', icon: '📋', title: 'Assignments', desc: 'Complete daily assignments that are reviewed by our expert panel for feedback.' },
-    { time: '7:00 PM', icon: '🌐', title: 'Community', desc: 'Engage with peers, share progress, ask questions, and celebrate wins together.' },
-  ]
-
-  const testimonials = [
-    { initials: 'RS', name: 'Rahul Sharma', role: 'Data Analyst @ Infosys', review: 'Analytics Avenue transformed my career. The projects were real, the mentors were top-notch, and I landed my dream job within 3 months.', pkg: '₹5.2 LPA', stars: 5 },
-    { initials: 'PA', name: 'Priya Agarwal', role: 'Business Analyst @ Wipro', review: 'I switched from marketing to data analytics. The internship program gave me the confidence and the portfolio to make that leap.', pkg: '₹4.8 LPA', stars: 5 },
-    { initials: 'AM', name: 'Arjun Mehta', role: 'AI Analyst @ TCS', review: 'The AI & Automation track was incredible. I built real automation workflows with n8n and ChatGPT. This is the future of analytics.', pkg: '₹6.1 LPA', stars: 5 },
-    { initials: 'SK', name: 'Sneha Kumar', role: 'Data Scientist @ Accenture', review: 'Best investment in my career. 1-on-1 mentorship, real projects, and actual placement support. Not just another online course.', pkg: '₹7.2 LPA', stars: 5 },
-    { initials: 'VR', name: 'Vikram Reddy', role: 'Analytics Lead @ Deloitte', review: 'The SQL and Power BI projects I built here are still what interviewers talk about in every round. Absolutely worth it.', pkg: '₹8.5 LPA', stars: 5 },
+  const mentorStats = [
+    { num: '100+', label: 'professionals mentored', icon: <Users className="ip-mentor-icon" /> },
+    { num: '25+', label: 'global brands', icon: <Globe className="ip-mentor-icon" /> },
+    { num: '100+', label: 'ML solutions built', icon: <Cpu className="ip-mentor-icon" /> },
+    { num: '25+', label: 'guest lectures', icon: <Award className="ip-mentor-icon" /> }
   ]
 
   const faqs = [
-    { q: 'What is the duration of the internship program?', a: 'The internship program runs for 10–12 weeks depending on the track you choose. Each track is designed to take you from beginner to job-ready in the shortest time possible.' },
-    { q: 'Do I need prior experience in data analytics?', a: 'No prior experience is required. Our program starts from absolute basics and progressively builds towards industry-level skills. Many of our students come from non-technical backgrounds.' },
-    { q: 'Is this a remote or in-person internship?', a: 'The program is fully remote, allowing you to learn from anywhere in India (or abroad). All sessions, mentorships, and project submissions are conducted online.' },
-    { q: 'Will I get a certificate after completion?', a: 'Yes. Upon successfully completing the internship and all project milestones, you will receive a completion certificate from Analytics Avenue that can be added to your LinkedIn profile and resume.' },
-    { q: 'How does placement support work?', a: 'Our placement cell actively refers qualified graduates to 50+ hiring partner companies. We also conduct hiring drives, share job updates, and provide referral-based placements through our professional network.' },
-    { q: 'What tools and technologies will I learn?', a: 'You will master Python, SQL, Power BI, Tableau, Excel, GitHub, VS Code, and AI tools like ChatGPT, Claude, Gemini, n8n, Make, and Zapier across different tracks.' },
-    { q: 'Is there a fee for the internship?', a: 'Yes, the internship is a paid program. The fee covers mentorship, project resources, placement support, and lifetime community access. Contact us for current pricing and EMI options.' },
-    { q: 'How do I apply for the internship?', a: 'Fill out the registration form on this page or book a free 1-on-1 consultation with our team. We will assess your goals and recommend the best track for your career path.' },
+    {
+      q: 'Do I need coding experience to apply?',
+      a: 'No prior coding experience is required. We start from the absolute fundamentals of SQL and Python, building your skills step-by-step up to Generative AI.'
+    },
+    {
+      q: 'Is this a paid internship?',
+      a: 'Yes, there is an enrollment fee to cover personalized 1-on-1 mentorship, project reviews, and resources. You also become eligible for performance-based stipends during the program.'
+    },
+    {
+      q: 'Is this online or in-person?',
+      a: 'The program is 100% online and remote, designed to fit into your academic schedule or work routine with flexible deep-work blocks.'
+    },
+    {
+      q: 'What makes this different from an online course?',
+      a: 'Unlike static video courses, this is a hands-on builder experience. You will work on actual production models, participate in daily standups, and get reviewed directly by industry mentors.'
+    },
+    {
+      q: 'How do I know which track to choose?',
+      a: "Select the track that closest aligns with your career goals. If you're unsure, apply anyway—your mentor will help you decide the best path during your onboarding consultation."
+    },
+    {
+      q: 'Will I get a job after this?',
+      a: 'While we do not guarantee jobs, we provide a complete placement pathway with resume reviews, mock interviews, and direct referrals to our 50+ hiring partners.'
+    }
   ]
 
-  const regHighlights = [
-    { icon: '📅', title: 'Flexible Start Dates', desc: 'New batches start every month. Join when you are ready.' },
-    { icon: '🎯', title: 'Personalized Track', desc: 'Our team recommends the best track based on your goals and background.' },
-    { icon: '💰', title: 'EMI Available', desc: 'Flexible payment options to make quality education accessible to everyone.' },
-    { icon: '🔄', title: 'Money-back Guarantee', desc: '7-day no-questions-asked refund if the program is not a fit for you.' },
-  ]
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1 } }
+  }
 
-  const regSteps = [
-    'Fill the registration form',
-    'Book a free consultation call',
-    'Choose your internship track',
-    'Begin your journey on Day 1',
-  ]
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+  }
 
   return (
     <div className="ip-page">
@@ -267,13 +411,13 @@ export default function InternshipPage({ onNavigateHome }) {
                   ))}
                 </div>
                 <div className="ip-hero-actions">
-                  <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer" className="ip-btn-primary">
+                  <a href="#apply-form" onClick={scrollToForm} className="ip-btn-primary">
                     Claim your seat
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    <ArrowRight width="16" height="16" />
                   </a>
-                  <a href="#journey" onClick={scrollToJourney} className="ip-btn-secondary">
+                  <a href="#program" className="ip-btn-secondary">
                     See what you'll build
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    <ChevronDown width="16" height="16" />
                   </a>
                 </div>
               </div>
@@ -349,633 +493,565 @@ export default function InternshipPage({ onNavigateHome }) {
         </div>
       </div>
 
-      {/* ── SECTION 1: WHY ANALYTICS AVENUE ── */}
-      <section className="ip-section">
+      {/* ── SECTION 1: IMPACT NUMBERS ── */}
+      <Section className="ip-impact-section">
         <div className="ip-container">
-          <div className="ip-why-grid">
-            {/* Left: visual */}
-            <div className="ip-why-visual ip-animate">
-              <div className="ip-why-float-badge">✅ 95% Placement Rate</div>
-              <div className="ip-why-dashboard">
-                <div className="ip-why-dashboard-header">
-                  <div className="ip-why-dashboard-dots">
-                    <div className="ip-wdot ip-wdot-r" />
-                    <div className="ip-wdot ip-wdot-y" />
-                    <div className="ip-wdot ip-wdot-g" />
-                  </div>
-                  <span className="ip-why-dashboard-label">ANALYTICS OVERVIEW</span>
+          <motion.div
+            className="ip-stats-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {stats.map((s, i) => (
+              <motion.div key={i} className="ip-stat-card" variants={itemVariants}>
+                <div className="ip-stat-card-glow" />
+                <div className="ip-stat-icon-wrapper">{s.icon}</div>
+                <div className="ip-stat-value-container">
+                  <AnimatedCounter value={s.value} />
                 </div>
-                <div className="ip-why-dashboard-body">
-                  <div className="ip-why-chart-row">
-                    <div className="ip-why-chart-card">
-                      <div className="ip-why-chart-lbl">Placement Rate</div>
-                      <div className="ip-why-donut" />
-                    </div>
-                    <div className="ip-why-chart-card">
-                      <div className="ip-why-chart-lbl">Skills Progress</div>
-                      <div className="ip-why-bar-group">
-                        {[['Python', '90%'], ['SQL', '85%'], ['Power BI', '80%']].map(([n, w]) => (
-                          <div key={n} className="ip-why-bar-row">
-                            <span className="ip-why-bar-name">{n}</span>
-                            <div className="ip-why-bar-bg"><div className="ip-why-bar-fill" style={{ width: w }} /></div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ip-why-stats-row">
-                    <div className="ip-why-stat-box">
-                      <div className="ip-why-stat-num">100+</div>
-                      <div className="ip-why-stat-lbl">Projects</div>
-                    </div>
-                    <div className="ip-why-stat-box">
-                      <div className="ip-why-stat-num">50+</div>
-                      <div className="ip-why-stat-lbl">Companies</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: content */}
-            <div className="ip-why-right ip-animate">
-              <div className="ip-section-tag">Why Choose Us</div>
-              <h2 className="ip-section-heading">
-                The Only Internship That <span>Guarantees Results</span>
-              </h2>
-              <p className="ip-section-sub">
-                Analytics Avenue is not just a training program. It's a complete career transformation system with real projects, expert mentors, and active placement support.
-              </p>
-              <div className="ip-why-features">
-                {features.map((f, i) => (
-                  <div key={i} className="ip-why-feature">
-                    <div className="ip-why-feature-icon">{f.icon}</div>
-                    <div>
-                      <p className="ip-why-feature-title">{f.title}</p>
-                      <p className="ip-why-feature-desc">{f.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Stats strip */}
-          <div className="ip-why-stats">
-            {[['95%', 'Placement Rate'], ['50+', 'Hiring Partners'], ['100+', 'Industry Projects'], ['10,000+', 'Students Placed']].map(([num, lbl]) => (
-              <div key={lbl} className="ip-stat-item ip-animate">
-                <div className="ip-stat-num">{num}</div>
-                <div className="ip-stat-lbl">{lbl}</div>
-              </div>
+                <p className="ip-stat-label-text">{s.label}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 2: LEARNING JOURNEY ── */}
-      <section className="ip-section ip-section-alt" ref={journeyRef} id="journey">
+      {/* ── SECTION 2: WHO IS THIS FOR? ── */}
+      <Section className="ip-who-section">
         <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Your Roadmap</div>
-            <h2 className="ip-section-heading">12-Week <span>Learning Journey</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              A structured, step-by-step program designed to take you from zero to job-ready in 12 weeks.
-            </p>
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">Who is this for?</h2>
+            <p className="ip-new-section-subtitle">Recognize yourself here? Good. Keep reading.</p>
           </div>
-
-          <div className="ip-journey-timeline">
-            <div className="ip-journey-line" />
-            {journeySteps.map((step, i) => {
-              const isLeft = i % 2 === 0
-              return (
-                <div key={i} className="ip-journey-step ip-animate">
-                  {isLeft ? (
-                    <>
-                      <div className="ip-journey-step-left">
-                        <div className="ip-journey-card">
-                          <div className="ip-journey-card-tag">{step.icon} {step.tag}</div>
-                          <div className="ip-journey-card-title">{step.title}</div>
-                          <div className="ip-journey-card-desc">{step.desc}</div>
-                          <div className="ip-journey-card-duration">⏱ {step.duration}</div>
-                          <div className="ip-journey-progress">
-                            <div className="ip-journey-progress-bar" style={{ width: `${step.progress}%` }} />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ip-journey-dot-col">
-                        <div className="ip-journey-dot">{step.num}</div>
-                      </div>
-                      <div className="ip-journey-empty" />
-                    </>
-                  ) : (
-                    <>
-                      <div className="ip-journey-empty" />
-                      <div className="ip-journey-dot-col">
-                        <div className="ip-journey-dot">{step.num}</div>
-                      </div>
-                      <div className="ip-journey-step-right is-right">
-                        <div className="ip-journey-card">
-                          <div className="ip-journey-card-tag">{step.icon} {step.tag}</div>
-                          <div className="ip-journey-card-title">{step.title}</div>
-                          <div className="ip-journey-card-desc">{step.desc}</div>
-                          <div className="ip-journey-card-duration">⏱ {step.duration}</div>
-                          <div className="ip-journey-progress">
-                            <div className="ip-journey-progress-bar" style={{ width: `${step.progress}%` }} />
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
+          <motion.div
+            className="ip-who-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {audiences.map((aud, i) => (
+              <motion.div key={i} className="ip-who-card" variants={itemVariants}>
+                <div className="ip-who-card-glow" />
+                <div className="ip-who-card-header">
+                  <span className="ip-who-num">{aud.num}</span>
+                  <div className="ip-who-icon-box">{aud.icon}</div>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 3: INTERNSHIP TRACKS ── */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Choose Your Path</div>
-            <h2 className="ip-section-heading">Internship <span>Tracks</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              Three specialized tracks designed for different career goals. Each comes with live projects, mentorship, and placement support.
-            </p>
-          </div>
-
-          <div className="ip-tracks-grid">
-            {tracks.map((track, i) => (
-              <div key={i} className="ip-track-card ip-animate">
-                <div className="ip-track-card-top">
-                  <div className="ip-track-icon">{track.icon}</div>
-                  <div className="ip-track-name">{track.name}</div>
-                  <span className="ip-track-duration">⏱ {track.duration}</span>
-                </div>
-                <div className="ip-track-card-body">
-                  <div className="ip-track-row">
-                    <div className="ip-track-row-label">Tools & Technologies</div>
-                    <div className="ip-track-tools">
-                      {track.tools.map(t => <span key={t} className="ip-track-tool-tag">{t}</span>)}
-                    </div>
-                  </div>
-                  <div className="ip-track-row">
-                    <div className="ip-track-row-label">Projects You'll Build</div>
-                    <div className="ip-track-item-list">
-                      {track.projects.map(p => (
-                        <div key={p} className="ip-track-item">
-                          <svg className="ip-track-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                          {p}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="ip-track-row">
-                    <div className="ip-track-row-label">Career Path</div>
-                    <div className="ip-track-item">
-                      <svg className="ip-track-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      {track.careerPath}
-                    </div>
-                  </div>
-                  <div className="ip-track-row">
-                    <div className="ip-track-row-label">Included</div>
-                    <div className="ip-track-item-list">
-                      {['Placement Support', 'Industry Certificate', 'Community Access'].map(b => (
-                        <div key={b} className="ip-track-item">
-                          <svg className="ip-track-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                          {b}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="ip-track-card-footer">
-                  <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer" className="ip-track-apply-btn">
-                    Apply for {track.name}
-                  </a>
-                </div>
-              </div>
+                <h3 className="ip-who-title">{aud.title}</h3>
+                <p className="ip-who-desc">{aud.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 4: INDUSTRY PROJECTS ── */}
-      <section className="ip-section ip-section-alt">
+      {/* ── SECTION 3: THE PROGRAM ── */}
+      <Section id="program" className="ip-program-section">
         <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Real Work</div>
-            <h2 className="ip-section-heading">Industry <span>Project Portfolio</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              Every project you build here is based on real industry use-cases. Your portfolio will speak for itself.
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">One program. The complete Data & AI stack.</h2>
+            <p className="ip-new-section-subtitle">
+              Whether you're a student, fresher, or career-switcher — no prior coding needed. You'll go from data fundamentals to Generative AI with real projects at every stage.
             </p>
           </div>
-
-          <div className="ip-projects-showcase">
-            <div className="ip-projects-featured ip-animate">
-              <div className="ip-projects-featured-header">
-                <p className="ip-projects-featured-title">🏗️ Projects You'll Build</p>
-                <span className="ip-projects-featured-badge">8 Projects</span>
-              </div>
-              <div className="ip-projects-featured-body">
-                <div className="ip-projects-grid-mini">
-                  {projects.map((p, i) => (
-                    <div key={i} className="ip-project-mini-card">
-                      <div className="ip-project-mini-icon">{p.icon}</div>
-                      <p className="ip-project-mini-name">{p.name}</p>
-                      <p className="ip-project-mini-type">{p.type}</p>
-                    </div>
-                  ))}
+          <motion.div
+            className="ip-program-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {programStacks.map((stack, i) => (
+              <motion.div key={i} className="ip-program-card" variants={itemVariants}>
+                <div className="ip-program-card-header">
+                  <div className="ip-prog-icon-box">{stack.icon}</div>
+                  <div className="ip-program-card-tag">Core Module</div>
                 </div>
-              </div>
-            </div>
+                <h3 className="ip-program-card-title">{stack.title}</h3>
+                <p className="ip-program-card-desc">{stack.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            <div className="ip-projects-sidebar">
-              {sidebarProjects.map((p, i) => (
-                <div key={i} className="ip-project-sidebar-card ip-animate">
-                  <div className="ip-project-sidebar-top">
-                    <div className="ip-project-sidebar-icon" style={{ background: p.bg }}>{p.icon}</div>
-                    <div>
-                      <p className="ip-project-sidebar-name">{p.name}</p>
-                      <p className="ip-project-sidebar-cat">{p.cat}</p>
-                    </div>
-                  </div>
-                  <div className="ip-project-sidebar-tags">
-                    {p.tags.map(t => <span key={t} className="ip-project-sidebar-tag">{t}</span>)}
-                  </div>
-                </div>
+          <div className="ip-tech-cloud-block">
+            <h4 className="ip-tech-cloud-title">Technologies you will master</h4>
+            <div className="ip-tech-chips">
+              {techChips.map((chip, i) => (
+                <motion.span
+                  key={i}
+                  className="ip-tech-chip"
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                >
+                  {chip}
+                </motion.span>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 5: SKILLS ORBIT ── */}
-      <section className="ip-section">
+      {/* ── SECTION 4: INDUSTRIES ── */}
+      <Section className="ip-industries-section">
         <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Skills</div>
-            <h2 className="ip-section-heading">Skills You'll <span>Master</span></h2>
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">Industries You'll Work Across</h2>
           </div>
-
-          <div className="ip-skills-wrapper ip-animate">
-            {/* Rings */}
-            <div className="ip-orbit-ring ip-orbit-ring-1" />
-            <div className="ip-orbit-ring ip-orbit-ring-2" />
-
-            {/* Center */}
-            <div className="ip-skills-center">
-              <span className="ip-skills-center-top">Become</span>
-              <span className="ip-skills-center-main">Industry Ready</span>
-            </div>
-
-            {/* Skill nodes */}
-            {skills.map((s, i) => {
-              const rad = (s.angle * Math.PI) / 180
-              const cx = 250 + s.r * Math.cos(rad - Math.PI / 2)
-              const cy = 250 + s.r * Math.sin(rad - Math.PI / 2)
-              return (
-                <div key={i} className="ip-skill-node" style={{ left: cx, top: cy }}>
-                  <div className="ip-skill-node-icon">{s.emoji}</div>
-                  <span className="ip-skill-node-label">{s.label}</span>
-                </div>
-              )
-            })}
-          </div>
+          <motion.div
+            className="ip-industries-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {industries.map((ind, i) => (
+              <motion.div key={i} className="ip-industry-card" variants={itemVariants}>
+                <div className="ip-ind-icon-box">{ind.icon}</div>
+                <span className="ip-industry-name">{ind.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 6: TOOLS ── */}
-      <section className="ip-section ip-section-alt">
+      {/* ── SECTION 5: REDESIGNED SKILLS SECTION ── */}
+      <Section className="ip-skills-professional-section">
         <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Tech Stack</div>
-            <h2 className="ip-section-heading">Tools You'll <span>Master</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              Master the exact tools used by data professionals at top companies worldwide.
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">Skills You'll Master</h2>
+            <p className="ip-new-section-subtitle">
+              Become industry-ready with targeted expertise curated across three professional disciplines.
             </p>
           </div>
-          <div className="ip-tools-grid">
-            {tools.map((t, i) => (
-              <div key={i} className="ip-tool-item ip-animate">
-                <div className="ip-tool-emoji">{t.emoji}</div>
-                <div className="ip-tool-name">{t.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── SECTION 7: MENTOR ── */}
-      <section className="ip-section ip-section-dark">
+          <motion.div
+            className="ip-skills-tracks-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {skillsTracks.map((st, i) => (
+              <motion.div key={i} className="ip-skills-track-card" variants={itemVariants}>
+                <div className="ip-skills-track-header">
+                  <div className="ip-skills-track-icon-wrapper">{st.icon}</div>
+                  <h3 className="ip-skills-track-title">{st.title}</h3>
+                </div>
+                <ul className="ip-skills-track-list">
+                  {st.skills.map((skill, j) => (
+                    <li key={j} className="ip-skills-track-item">
+                      <CheckCircle2 className="ip-skills-check-icon text-blue-500" width="16" height="16" />
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* ── SECTION 6: PICK YOUR TRACK ── */}
+      <Section className="ip-tracks-section">
         <div className="ip-container">
-          <div className="ip-mentor-grid">
-            <div className="ip-mentor-portrait ip-animate">
-              <div className="ip-mentor-img-wrap">
-                <div className="ip-mentor-placeholder">
-                  <div className="ip-mentor-avatar">👨‍💼</div>
-                  <div className="ip-mentor-name-overlay">
-                    <p className="ip-mentor-name">Founder & Lead Mentor</p>
-                    <p className="ip-mentor-title-tag">Analytics Avenue</p>
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">Three tracks. One goal: industry-ready.</h2>
+            <p className="ip-new-section-subtitle">
+              All tracks share the same mentorship structure and certification. Choose what aligns with where you want to go.
+            </p>
+          </div>
+          <motion.div
+            className="ip-track-cards-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
+            {tracks.map((track, i) => (
+              <motion.div key={i} className="ip-compare-card" variants={itemVariants}>
+                <div className="ip-compare-header">
+                  <h3 className="ip-compare-title">{track.title}</h3>
+                  <p className="ip-compare-best"><span>Best for:</span> {track.bestFor}</p>
+                </div>
+                <div className="ip-compare-body">
+                  <div className="ip-compare-skills-wrap">
+                    <span className="ip-compare-label">Target Skills</span>
+                    <div className="ip-compare-chips">
+                      {track.skills.map((s, j) => <span key={j} className="ip-compare-skill-chip">{s}</span>)}
+                    </div>
+                  </div>
+                  <div className="ip-compare-careers-wrap">
+                    <span className="ip-compare-label">Career Outcomes</span>
+                    <ul className="ip-compare-jobs-list">
+                      {track.jobs.map((j, k) => (
+                        <li key={k}>
+                          <Check className="ip-checkmark-icon text-emerald-500" width="14" height="14" strokeWidth="3" />
+                          {j}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              </div>
-              <div className="ip-mentor-experience-badge">
-                <div className="ip-mentor-exp-num">9+</div>
-                <div className="ip-mentor-exp-lbl">Years Experience</div>
-              </div>
-            </div>
+                <div className="ip-compare-footer">
+                  <a
+                    href="#apply-form"
+                    onClick={(e) => handleChooseTrack(track.title, e)}
+                    className="ip-compare-btn"
+                  >
+                    Choose Track
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            <div className="ip-mentor-right ip-animate">
-              <div className="ip-section-tag">Meet Your Mentor</div>
-              <blockquote className="ip-mentor-quote">
-                "I built Analytics Avenue to give every aspiring data professional the exact mentorship I wished I had. Real projects. Real guidance. Real placements."
-              </blockquote>
-              <p className="ip-mentor-bio">
-                With 9+ years in data analytics, business intelligence, and AI automation, our lead mentor has personally guided 1,000+ students and professionals into high-paying data roles. He has worked with Fortune 500 clients across India, US, and Europe.
-              </p>
-              <div className="ip-mentor-achievements">
-                {[
-                  ['🏆', '1,000+ Students Placed'],
-                  ['🌍', 'Clients in 15+ Countries'],
-                  ['📊', '500+ Industry Projects Delivered'],
-                  ['🤝', '50+ Hiring Partner Network'],
-                ].map(([icon, text]) => (
-                  <div key={text} className="ip-mentor-achievement">
-                    <div className="ip-mentor-achievement-icon">{icon}</div>
-                    {text}
+          <div className="ip-mentor-note-highlight">
+            <div className="ip-mentor-note-icon">💡</div>
+            <p className="ip-mentor-note-text">
+              "Not sure which track is right for you? Apply and mention it — your mentor will help you decide."
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── SECTION 7: WHAT YOU WALK AWAY WITH ── */}
+      <Section className="ip-walkaway-section">
+        <div className="ip-container">
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">Real gains. Not just a certificate.</h2>
+            <p className="ip-new-section-subtitle">
+              Every element of this program is designed around one question: what does this intern need to actually land a job?
+            </p>
+          </div>
+          <motion.div
+            className="ip-walkaway-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
+            {walks.map((w, i) => (
+              <motion.div key={i} className="ip-walk-card" variants={itemVariants}>
+                <div className="ip-walk-icon-box">{w.icon}</div>
+                <h3 className="ip-walk-title">{w.title}</h3>
+                <p className="ip-walk-desc">{w.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* ── SECTION 8: 8 WEEK JOURNEY ── */}
+      <Section className="ip-journey-section">
+        <div className="ip-journey-container">
+          <div className="ip-journey-header">
+            <span className="ip-journey-eyebrow">8-WEEK JOURNEY</span>
+            <h2 className="ip-journey-title-main">Week by week. Milestone by milestone.</h2>
+            <p className="ip-journey-desc-main">
+              A structured program with clear checkpoints — so you always know where you are and where you're headed.
+            </p>
+          </div>
+
+          <div className="ip-journey-timeline" ref={timelineRef}>
+            {/* Background line track */}
+            <div className="ip-journey-timeline-track" />
+
+            {/* Scroll-animated progress line */}
+            <motion.div
+              className="ip-journey-timeline-progress"
+              style={{ scaleY }}
+            />
+
+            {journeyTimeline.map((item, i) => (
+              <motion.div
+                key={i}
+                className="ip-journey-milestone"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="ip-journey-timeline-col">
+                  <motion.div
+                    className="ip-journey-icon-circle"
+                    whileHover={{ scale: 1.05, rotate: 8 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  {i < journeyTimeline.length - 1 && (
+                    <motion.div
+                      className="ip-journey-connector-dot"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + i * 0.1, type: "spring", stiffness: 300 }}
+                    />
+                  )}
+                </div>
+
+                <div className="ip-journey-card-col">
+                  <motion.div
+                    className="ip-journey-step-card"
+                    whileHover={{ y: -4, boxShadow: "0 12px 30px rgba(3, 119, 239, 0.08)" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="ip-journey-card-header-row">
+                      <span className="ip-journey-week-badge-pill">{item.week}</span>
+                      <h3 className="ip-journey-card-title-text">{item.title}</h3>
+                    </div>
+                    <p className="ip-journey-card-desc-text">{item.desc}</p>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ── SECTION 9: A DAY IN THE LIFE ── */}
+      <Section className="ip-daylife-section">
+        <div className="ip-container">
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">A Day in the Life</h2>
+          </div>
+          <div className="ip-horizontal-timeline-scroll">
+            <motion.div
+              className="ip-horizontal-timeline"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {dayLife.map((step, i) => (
+                <motion.div key={i} className="ip-daylife-card" variants={itemVariants}>
+                  <div className="ip-daylife-card-glow" />
+                  <div className="ip-daylife-header">
+                    <div className="ip-daylife-time-tag">{step.time}</div>
+                    <Clock width="16" height="16" className="text-blue-500" />
                   </div>
-                ))}
-              </div>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="ip-mentor-linkedin">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                Connect on LinkedIn
-              </a>
-            </div>
+                  <h3 className="ip-daylife-event">{step.event}</h3>
+                  <p className="ip-daylife-desc">{step.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 8: WHO CAN JOIN ── */}
-      <section className="ip-section">
+      {/* ── SECTION 10: LED BY ── */}
+      <Section className="ip-ledby-section">
         <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Eligibility</div>
-            <h2 className="ip-section-heading">Who Can <span>Join?</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              This program is designed for anyone who wants to build a career in data analytics — regardless of background.
-            </p>
-          </div>
-          <div className="ip-audience-grid">
-            {audiences.map((a, i) => (
-              <div key={i} className="ip-audience-card ip-animate">
-                <div className="ip-audience-emoji">{a.emoji}</div>
-                <p className="ip-audience-name">{a.name}</p>
-                <p className="ip-audience-desc">{a.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="ip-ledby-card">
+            <div className="ip-ledby-grid">
+              <div className="ip-ledby-left">
+                <div className="ip-mentor-badge">Program Director</div>
+                <h2 className="ip-ledby-name">Subramani Arumugam</h2>
+                <p className="ip-ledby-role">Founder & Chief Data Scientist, Analytics Avenue</p>
 
-      {/* ── SECTION 9: BENEFITS BENTO ── */}
-      <section className="ip-section ip-section-alt">
-        <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">What You Get</div>
-            <h2 className="ip-section-heading">Internship <span>Benefits</span></h2>
-          </div>
-          <div className="ip-bento-grid">
-            {benefits.map((b, i) => (
-              <div key={i} className={`ip-bento-card${b.wide ? ' ip-bento-card-wide' : ''} ip-animate`}>
-                <div className="ip-bento-accent" />
-                <div className="ip-bento-icon">{b.icon}</div>
-                <p className="ip-bento-title">{b.title}</p>
-                <p className="ip-bento-desc">{b.desc}</p>
-                <span className="ip-bento-tag">{b.tag}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 10: A DAY INSIDE ── */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Daily Schedule</div>
-            <h2 className="ip-section-heading">A Day Inside <span>Analytics Avenue</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              Every day is structured to maximize learning, practice, and growth. Here's what a typical internship day looks like.
-            </p>
-          </div>
-          <div className="ip-day-timeline ip-animate">
-            <div className="ip-day-timeline-line" />
-            {daySchedule.map((item, i) => (
-              <div key={i} className="ip-day-item">
-                <div className="ip-day-icon-col">
-                  <div className="ip-day-icon-circle">{item.icon}</div>
-                </div>
-                <div className="ip-day-content">
-                  <div className="ip-day-time">{item.time}</div>
-                  <div className="ip-day-title">{item.title}</div>
-                  <div className="ip-day-desc">{item.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 11: NUMBERS ── */}
-      <section className="ip-section ip-section-alt">
-        <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Our Impact</div>
-            <h2 className="ip-section-heading">Numbers That <span>Speak</span></h2>
-          </div>
-          <div className="ip-numbers-grid ip-animate">
-            <div className="ip-number-item">
-              <div className="ip-number-big"><Counter target="95" suffix="%" /></div>
-              <div className="ip-number-label">Placement Rate</div>
-            </div>
-            <div className="ip-number-item">
-              <div className="ip-number-big"><Counter target="50" suffix="+" /></div>
-              <div className="ip-number-label">Hiring Partners</div>
-            </div>
-            <div className="ip-number-item">
-              <div className="ip-number-big"><Counter target="10000" suffix="+" /></div>
-              <div className="ip-number-label">Students Trained</div>
-            </div>
-            <div className="ip-number-item">
-              <div className="ip-number-big"><Counter target="500" suffix="+" /></div>
-              <div className="ip-number-label">Projects Delivered</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 12: TESTIMONIALS ── */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">Student Stories</div>
-            <h2 className="ip-section-heading">Hear From Our <span>Alumni</span></h2>
-            <p className="ip-section-sub ip-section-sub-center">
-              Real results from real people. Our alumni are now data professionals at top companies.
-            </p>
-          </div>
-          <div className="ip-testimonials-track ip-animate">
-            {testimonials.map((t, i) => (
-              <div key={i} className="ip-testimonial-card">
-                <div className="ip-testimonial-stars">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <span key={j} className="ip-testimonial-star">★</span>
+                <div className="ip-mentor-stats-grid">
+                  {mentorStats.map((ms, i) => (
+                    <div key={i} className="ip-mentor-stat-item">
+                      <div className="ip-mentor-stat-header">
+                        {ms.icon}
+                        <span className="ip-mentor-stat-num">{ms.num}</span>
+                      </div>
+                      <span className="ip-mentor-stat-lbl">{ms.label}</span>
+                    </div>
                   ))}
                 </div>
-                <p className="ip-testimonial-review">"{t.review}"</p>
-                <div className="ip-testimonial-person">
-                  <div className="ip-testimonial-avatar">{t.initials}</div>
-                  <div>
-                    <p className="ip-testimonial-name">{t.name}</p>
-                    <p className="ip-testimonial-role">{t.role}</p>
-                  </div>
-                  <span className="ip-testimonial-package">{t.pkg}</span>
+
+                <div className="ip-mentor-quote-block">
+                  <Quote className="ip-mentor-quote-symbol" />
+                  <p className="ip-mentor-quote-text">
+                    "Empowering the next generation of Data & AI professionals through mentorship, innovation, and industry-focused learning."
+                  </p>
                 </div>
               </div>
-            ))}
+              <div className="ip-ledby-right">
+                <div className="ip-mentor-avatar-box">
+                  <img src="/assets/frontend/default/images/img/thelmmssbanners1.jpeg" alt="Subramani Arumugam" className="ip-mentor-img" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 13: FAQ ── */}
-      <section className="ip-section ip-section-alt">
+      {/* ── SECTION 11: FAQ ── */}
+      <Section className="ip-faq-section">
         <div className="ip-container">
-          <div className="ip-section-header-center ip-animate">
-            <div className="ip-section-tag">FAQs</div>
-            <h2 className="ip-section-heading">Frequently Asked <span>Questions</span></h2>
+          <div className="ip-section-heading-block">
+            <h2 className="ip-new-section-title">Frequently Asked Questions</h2>
           </div>
-          <div className="ip-faq-list ip-animate">
+          <div className="ip-faq-accordion-list">
             {faqs.map((faq, i) => (
-              <FaqItem key={i} question={faq.q} answer={faq.a} />
+              <FaqAccordionItem
+                key={i}
+                question={faq.q}
+                answer={faq.a}
+                isOpen={openFaqIndex === i}
+                onToggle={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
+              />
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 14: REGISTRATION ── */}
-      <section className="ip-section">
+      {/* ── SECTION 12: FINAL CTA ── */}
+      <Section className="ip-finalcta-section">
         <div className="ip-container">
-          <div className="ip-reg-grid">
-            {/* Left */}
-            <div className="ip-reg-left ip-animate">
-              <div className="ip-section-tag">Get Started</div>
-              <h2 className="ip-section-heading">Register for the <span>Internship</span></h2>
-              <p className="ip-section-sub">
-                Take the first step towards your data analytics career. Our team will reach out within 24 hours to guide you through the selection process.
+          <div className="ip-finalcta-block">
+            <div className="ip-finalcta-glow-1" />
+            <div className="ip-finalcta-glow-2" />
+            <div className="ip-finalcta-content">
+              <h2 className="ip-finalcta-heading">Ready?</h2>
+              <h3 className="ip-finalcta-subheading">Every day you wait, someone else is building your portfolio.</h3>
+              <p className="ip-finalcta-desc">
+                No more "someday." No more "one more course." Real projects, real mentors, and a network that's already placed 500+ people — starting now.
               </p>
 
-              <div className="ip-reg-highlights">
-                {regHighlights.map((h, i) => (
-                  <div key={i} className="ip-reg-highlight">
-                    <div className="ip-reg-highlight-icon">{h.icon}</div>
-                    <div>
-                      <p className="ip-reg-highlight-title">{h.title}</p>
-                      <p className="ip-reg-highlight-desc">{h.desc}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="ip-finalcta-actions">
+                <a href="#apply-form" onClick={scrollToForm} className="ip-btn-cta-primary-new">
+                  Claim your seat <ArrowRight width="16" height="16" style={{ marginLeft: '6px' }} />
+                </a>
+                <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer" className="ip-btn-cta-secondary-new">
+                  Talk to us first
+                </a>
               </div>
 
-              <div className="ip-reg-timeline-mini">
-                {regSteps.map((step, i) => (
-                  <div key={i} className="ip-reg-timeline-step">
-                    <div className="ip-reg-timeline-dot">{i + 1}</div>
-                    <div className="ip-reg-timeline-text">{step}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: form */}
-            <div className="ip-reg-right ip-animate">
-              {submitted ? (
-                <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                  <div style={{ fontSize: '48px', marginBottom: '16px' }}>🎉</div>
-                  <h3 className="ip-reg-form-title">Application Submitted!</h3>
-                  <p className="ip-reg-form-sub">Our team will contact you within 24 hours to guide you through the next steps.</p>
-                </div>
-              ) : (
-                <>
-                  <p className="ip-reg-form-title">Apply Now — It's Free</p>
-                  <p className="ip-reg-form-sub">Fill in your details and we'll get in touch within 24 hours.</p>
-                  <form className="ip-reg-form" onSubmit={handleForm}>
-                    <div className="ip-form-group">
-                      <label className="ip-form-label">Full Name *</label>
-                      <input className="ip-form-input" type="text" placeholder="Enter your full name" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                    </div>
-                    <div className="ip-form-group">
-                      <label className="ip-form-label">Email Address *</label>
-                      <input className="ip-form-input" type="email" placeholder="Enter your email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
-                    </div>
-                    <div className="ip-form-group">
-                      <label className="ip-form-label">Phone Number *</label>
-                      <input className="ip-form-input" type="tel" placeholder="+91 XXXXX XXXXX" required value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                    </div>
-                    <div className="ip-form-group">
-                      <label className="ip-form-label">Internship Track *</label>
-                      <select className="ip-form-select" required value={formData.track} onChange={e => setFormData({ ...formData, track: e.target.value })}>
-                        <option value="">Select your track</option>
-                        <option value="data-analytics">Data Analytics</option>
-                        <option value="business-analytics">Business Analytics</option>
-                        <option value="ai-automation">AI & Automation</option>
-                      </select>
-                    </div>
-                    <div className="ip-form-group">
-                      <label className="ip-form-label">Current Background</label>
-                      <select className="ip-form-select" value={formData.background} onChange={e => setFormData({ ...formData, background: e.target.value })}>
-                        <option value="">Select your background</option>
-                        <option value="student">Student</option>
-                        <option value="fresher">Fresher (0–1 yr)</option>
-                        <option value="professional">Working Professional</option>
-                        <option value="career-switch">Career Switcher</option>
-                      </select>
-                    </div>
-                    <button type="submit" className="ip-form-submit">Submit Application →</button>
-                    <p className="ip-form-note">🔒 Your data is safe. We never spam or share your information.</p>
-                  </form>
-                </>
-              )}
+              <p className="ip-finalcta-disclaimer">
+                Seats are capped each cohort to protect mentor access · Response within 2 business days
+              </p>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── SECTION 15: FINAL CTA ── */}
-      <section className="ip-final-cta">
-        <div className="ip-final-cta-bg-glow" />
-        <div className="ip-container">
-          <div className="ip-final-cta-inner">
-            <div className="ip-final-cta-badge">🚀 Batch 2026 Now Open</div>
-            <h2 className="ip-final-cta-title">
-              Start Your <span>Analytics Career</span> Today
-            </h2>
-            <p className="ip-final-cta-sub">
-              Join 10,000+ students who transformed their careers with Analytics Avenue's internship program.
-            </p>
-            <div className="ip-final-cta-actions">
-              <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer" className="ip-btn-cta-primary">
-                Apply Now
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-              <a href="/assets/broucher/nationwide program Brouchure.pdf" download className="ip-btn-cta-secondary">
-                Download Brochure
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              </a>
-            </div>
+      {/* ── SECTION 13: APPLICATION FORM ── */}
+      <Section id="apply-form" className="ip-form-section">
+        <div className="ip-container" ref={formRef}>
+          <div className="ip-form-card">
+            {submitted ? (
+              <motion.div
+                className="ip-form-success"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                <span className="ip-success-icon">🎉</span>
+                <h3 className="ip-success-title">Application Submitted Successfully!</h3>
+                <p className="ip-success-desc">
+                  Thank you for applying. The Analytics Avenue admissions team will reach out to you within 2 business days.
+                </p>
+              </motion.div>
+            ) : (
+              <>
+                <h2 className="ip-form-card-title">Apply for the Cohort</h2>
+                <form className="ip-app-form" onSubmit={handleFormSubmit}>
+                  <div className="ip-form-grid-fields">
+                    <div className="ip-form-field">
+                      <label className="ip-form-label">First Name *</label>
+                      <input
+                        type="text"
+                        className="ip-form-input"
+                        placeholder="Enter your first name"
+                        required
+                        value={formData.firstName}
+                        onChange={e => setFormData({ ...formData, firstName: e.target.value })}
+                      />
+                    </div>
+                    <div className="ip-form-field">
+                      <label className="ip-form-label">Last Name *</label>
+                      <input
+                        type="text"
+                        className="ip-form-input"
+                        placeholder="Enter your last name"
+                        required
+                        value={formData.lastName}
+                        onChange={e => setFormData({ ...formData, lastName: e.target.value })}
+                      />
+                    </div>
+                    <div className="ip-form-field">
+                      <label className="ip-form-label">Email *</label>
+                      <input
+                        type="email"
+                        className="ip-form-input"
+                        placeholder="you@example.com"
+                        required
+                        value={formData.email}
+                        onChange={e => setFormData({ ...formData, email: e.target.value })}
+                      />
+                    </div>
+                    <div className="ip-form-field">
+                      <label className="ip-form-label">Phone *</label>
+                      <input
+                        type="tel"
+                        className="ip-form-input"
+                        placeholder="Enter phone number"
+                        required
+                        value={formData.phone}
+                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
+                    <div className="ip-form-field">
+                      <label className="ip-form-label">College / University *</label>
+                      <input
+                        type="text"
+                        className="ip-form-input"
+                        placeholder="Your university name"
+                        required
+                        value={formData.university}
+                        onChange={e => setFormData({ ...formData, university: e.target.value })}
+                      />
+                    </div>
+                    <div className="ip-form-field">
+                      <label className="ip-form-label">Degree & Year *</label>
+                      <input
+                        type="text"
+                        className="ip-form-input"
+                        placeholder="e.g. B.Tech 2026"
+                        required
+                        value={formData.degreeYear}
+                        onChange={e => setFormData({ ...formData, degreeYear: e.target.value })}
+                      />
+                    </div>
+                    <div className="ip-form-field full-width">
+                      <label className="ip-form-label">Track Dropdown *</label>
+                      <select
+                        className="ip-form-input ip-form-select"
+                        required
+                        value={formData.track}
+                        onChange={e => setFormData({ ...formData, track: e.target.value })}
+                      >
+                        <option value="">Select your preferred track</option>
+                        <option value="Data Analytics & BI">Data Analytics & BI</option>
+                        <option value="Data Engineering">Data Engineering</option>
+                        <option value="Generative AI & Agents">Generative AI & Agents</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <motion.button
+                    type="submit"
+                    className="ip-form-submit-btn"
+                    whileHover={{ y: -2, boxShadow: "0 8px 30px rgba(3, 119, 239, 0.4)" }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Submit Application
+                  </motion.button>
+
+                  <p className="ip-form-disclosure">
+                    By submitting, you agree to be contacted by the Analytics Avenue team regarding your application.
+                  </p>
+                </form>
+              </>
+            )}
           </div>
         </div>
-      </section>
+      </Section>
 
     </div>
   )

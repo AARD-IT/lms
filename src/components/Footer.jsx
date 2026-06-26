@@ -17,13 +17,19 @@ export default function Footer() {
                 <h4 className="socialnane">Social</h4>
                 <ul className="f-socials d-flex">
                   <li>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                      <img src="/assets/socialmedia/linkedin.svg" alt="LinkedIn" className="footer-social-svg" />
+                    </a>
                   </li>
                   <li>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-instagram"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                      <img src="/assets/socialmedia/instagram.svg" alt="Instagram" className="footer-social-svg" />
+                    </a>
                   </li>
                   <li>
-                    <a href="https://wa.me/917835901173" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://wa.me/917835901173" target="_blank" rel="noopener noreferrer">
+                      <img src="/assets/socialmedia/whatsapp.svg" alt="WhatsApp" className="footer-social-svg" />
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -86,29 +92,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-3">
-              <ul className="footer-policy">
-                <li><a href="https://analyticsavenue.in/about-us">Privacy notice</a></li>
-                <li><a href="https://analyticsavenue.in/privacy-policy">Cookie notice</a></li>
-              </ul>
-            </div>
-            <div className="col-lg-6">
-              <div className="copyright-text">
-                <p className="builder-editable" builder-identity="4">
-                  © <a href="https://analyticsavenue.in" target="_blank" rel="noreferrer">analyticsavenue</a> Copyright © 2025 Advanced Analytics. All rights reserved.
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <ul className="footer-policy thebactotos">
-                <li><a href="https://analyticsavenue.in/about-us">Back to top</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <div className="footer-bottom" style={{ borderTop: '1px solid rgba(0,0,0,0.08)', paddingTop: '24px', marginTop: '40px', textAlign: 'center' }}>
+        <p style={{ margin: 0, color: '#64748b', fontSize: '14px', fontFamily: "'Inter', sans-serif" }}>
+          © 2026 Analytics Avenue. All rights reserved.
+        </p>
       </div>
     </footer>
   )

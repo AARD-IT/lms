@@ -232,6 +232,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
   }
   const navToInternship = (e) => {
     e.preventDefault()
+    setCurrentPage('internship')
   }
 
   return (
@@ -308,8 +309,9 @@ function AppHeader({ currentPage, setCurrentPage }) {
                           <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass" onClick={closeMobileMenu}>Referral</a></li>
                           <li className="pe-2 ps-5">
                             <a
-                              href="#"
+                              href="#/internship"
                               onClick={(e) => { navToInternship(e); closeMobileMenu(); }}
+                              className={currentPage === 'internship' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}
                             >
                               Internship

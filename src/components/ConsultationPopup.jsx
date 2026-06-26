@@ -421,8 +421,8 @@ export default function ConsultationPopup() {
           color: #fff;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          gap: 12px;
+          justify-content: center;
+          gap: 16px;
           padding: 14px 28px;
           box-shadow: 0 -4px 24px rgba(30,58,138,0.28);
           transform: translateY(100%);
@@ -432,17 +432,17 @@ export default function ConsultationPopup() {
           transform: translateY(0);
         }
         .banner-text {
-          font-size: 15px;
+          font-size: 18px;
           font-weight: 700;
           font-family: Helvetica, Arial, sans-serif;
-          flex: 1;
+          flex: initial;
         }
         .banner-text span {
           font-weight: 400;
-          font-size: 12px;
+          font-size: 15px;
           opacity: 0.8;
-          display: block;
-          margin-top: 2px;
+          display: inline-block;
+          margin-left: 8px;
         }
         .banner-cta {
           background: #fff;
@@ -523,7 +523,7 @@ export default function ConsultationPopup() {
             flex-wrap: nowrap;
             align-items: center;
           }
-          .banner-text { font-size: 13px; }
+          .banner-text { font-size: 14px; }
           .banner-text span { display: none; }
           .banner-cta {
             padding: 8px 14px;
@@ -674,7 +674,7 @@ export default function ConsultationPopup() {
       >
         <div className="banner-text">
           📅 Book a free 1-1 session with our Data Experts
-          <span>Empowering 1000+ aspirants across 11+ industries</span>
+          <span> • Empowering 1000+ aspirants across 11+ industries</span>
         </div>
         <button className="banner-cta" onClick={handleBannerOpen}>Book Now →</button>
         <button className="banner-dismiss" onClick={handleBannerDismiss} aria-label="Dismiss">×</button>
