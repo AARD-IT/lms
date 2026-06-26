@@ -39,12 +39,43 @@ export default function TestimonialsSection() {
   return (
     <section className="hearfromss">
       <style>{`
+        .testimonials-flex-row {
+          display: flex;
+          flex-wrap: wrap;
+          margin-right: -15px;
+          margin-left: -15px;
+        }
+        .thehearfrommsleftts {
+          display: flex;
+          flex-direction: column;
+          flex: 0 0 66.666667%;
+          max-width: 66.666667%;
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+        .hearfromswiperss {
+          flex: 0 0 33.333333%;
+          max-width: 33.333333%;
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+        .hearfrommssh2 {
+          text-align: left !important;
+        }
         .testimonials-stats-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 14px;
         }
         @media (max-width: 767px) {
+          .thehearfrommsleftts {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+          .hearfromswiperss {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
           .testimonials-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
@@ -57,92 +88,88 @@ export default function TestimonialsSection() {
       `}</style>
       <div className="container">
         <div className="hearfrommsmains">
-          <div className="row">
-            <div className="col-md-8">
-              <div className="thehearfrommsleftts">
-                <div className="hearfromsheadss">
-                  <h2 className="hearfrommssh2">Hear It From <br /> <span>Our Aspirants</span></h2>
-                </div>
+          <div className="testimonials-flex-row">
+            <div className="thehearfrommsleftts">
+              <div className="hearfromsheadss text-left">
+                <h2 className="hearfrommssh2">Hear It From <br /> <span>Our Aspirants</span></h2>
+              </div>
 
-                <div className="theheadrfrommcollssnums">
-                  <div className="testimonials-stats-grid">
-                    {[
-                      { figure: '2000+', heading: 'Personal & Professional',    desc: 'Consultations by Our Data Scientists Panel' },
-                      { figure: '100+',  heading: 'High-Performance ML Models', desc: 'Production-ready, highly accurate models' },
-                      { figure: '15+',   heading: 'Smart AI Automation',        desc: 'Streamline and automate workflows' },
-                      { figure: '1000+', heading: 'Empowering Rural Talent',    desc: 'Empowered with Data Analytics Skills' },
-                      { figure: '500+',  heading: 'Nationwide Professionals',   desc: 'Industry-ready projects for careers' },
-                      { figure: '50+',   heading: 'Guest Lectures and MOUs',    desc: 'Bridging academia with industry excellence' },
-                    ].map((stat, i) => (
+              <div className="theheadrfrommcollssnums">
+                <div className="testimonials-stats-grid">
+                  {[
+                    { figure: '2000+', heading: 'Personal & Professional',    desc: 'Consultations by Our Data Scientists Panel' },
+                    { figure: '100+',  heading: 'High-Performance ML Models', desc: 'Production-ready, highly accurate models' },
+                    { figure: '15+',   heading: 'Smart AI Automation',        desc: 'Streamline and automate workflows' },
+                    { figure: '1000+', heading: 'Empowering Rural Talent',    desc: 'Empowered with Data Analytics Skills' },
+                    { figure: '500+',  heading: 'Nationwide Professionals',   desc: 'Industry-ready projects for careers' },
+                    { figure: '50+',   heading: 'Guest Lectures and MOUs',    desc: 'Bridging academia with industry excellence' },
+                  ].map((stat, i) => (
+                    <div
+                      key={i}
+                      className="gradient-border"
+                      style={{
+                        padding: 0,
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        margin: 0,
+                      }}
+                    >
                       <div
-                        key={i}
-                        className="gradient-border"
+                        className="themunnsheareinners"
                         style={{
-                          padding: 0,
-                          height: '100%',
+                          textAlign: 'center',
+                          padding: '14px 10px',
+                          flex: 1,
                           display: 'flex',
                           flexDirection: 'column',
-                          margin: 0,
+                          justifyContent: 'flex-start',
+                          height: '100%',
                         }}
                       >
-                        <div
-                          className="themunnsheareinners"
-                          style={{
-                            textAlign: 'center',
-                            padding: '14px 10px',
-                            flex: 1,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'flex-start',
-                            height: '100%',
-                          }}
-                        >
-                          <h4 className="thenumbbsnumberh4" style={{
-                            fontFamily: "'Libre', serif",
-                            fontSize: '32px',
-                            fontWeight: 800,
-                            marginBottom: '4px',
-                          }}>{stat.figure}</h4>
-                          <p style={{
-                            fontFamily: "'Helvetica', sans-serif",
-                            fontSize: '13px',
-                            fontWeight: 700,
-                            color: '#000',
-                            margin: '0 0 6px 0',
-                            lineHeight: 1.3,
-                          }}>{stat.heading}</p>
-                          <p style={{
-                            fontFamily: "'Helvetica', sans-serif",
-                            fontSize: '12px',
-                            color: '#475569',
-                            margin: 'auto 0 0 0',
-                            lineHeight: 1.4,
-                          }}>{stat.desc}</p>
-                        </div>
+                        <h4 className="thenumbbsnumberh4" style={{
+                          fontFamily: "'Libre', serif",
+                          fontSize: '32px',
+                          fontWeight: 800,
+                          marginBottom: '4px',
+                        }}>{stat.figure}</h4>
+                        <p style={{
+                          fontFamily: "'Helvetica', sans-serif",
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          color: '#000',
+                          margin: '0 0 6px 0',
+                          lineHeight: 1.3,
+                        }}>{stat.heading}</p>
+                        <p style={{
+                          fontFamily: "'Helvetica', sans-serif",
+                          fontSize: '12px',
+                          color: '#475569',
+                          margin: 'auto 0 0 0',
+                          lineHeight: 1.4,
+                        }}>{stat.desc}</p>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="hearfromswiperss">
-                <div className="swiper mySwiperhearfromms thehomeswiperreviews">
-                  <div className="swiper-wrapper thehomeswiperreviews">
-                    {testimonials.map((t) => (
-                      <div className="swiper-slide thehomeswiperreviews" key={t.id}>
-                        <div className="thereviewswiperinners thehomeswiperreviews">
-                          <div className="theswiperrevupers thehomeswiperreviews">
-                            <div className="swiperongrev">
-                              <img src={t.img} alt="" />
-                            </div>
+            <div className="hearfromswiperss">
+              <div className="swiper mySwiperhearfromms thehomeswiperreviews">
+                <div className="swiper-wrapper thehomeswiperreviews">
+                  {testimonials.map((t) => (
+                    <div className="swiper-slide thehomeswiperreviews" key={t.id}>
+                      <div className="thereviewswiperinners thehomeswiperreviews">
+                        <div className="theswiperrevupers thehomeswiperreviews">
+                          <div className="swiperongrev">
+                            <img src={t.img} alt="" />
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                  <div className="swiper-pagination"></div>
+                    </div>
+                  ))}
                 </div>
+                <div className="swiper-pagination"></div>
               </div>
             </div>
           </div>

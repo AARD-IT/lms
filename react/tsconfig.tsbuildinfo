@@ -1,1 +1,0 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/aidiagram.tsx","./src/components/hiringmodal.tsx","./src/components/masteringaisection.tsx","./src/components/index.ts","./src/data/assets.ts","./src/data/sectors.ts","./src/utils/diagramgeometry.ts","./src/utils/toul.ts"],"version":"5.9.3"}

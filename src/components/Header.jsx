@@ -1,4 +1,18 @@
+import { useState } from 'react'
+
 export default function Header() {
+  const [mobilePaymentOpen, setMobilePaymentOpen] = useState(false)
+
+  const closeMobileMenu = () => {
+    if (window.innerWidth < 768) {
+      const nav = document.getElementById('mySidenav')
+      if (nav) {
+        nav.style.width = '0'
+        document.body.style.backgroundColor = 'white'
+      }
+    }
+  }
+
   return (
     <>
       <style>{`
@@ -38,7 +52,7 @@ export default function Header() {
           <div className="row flex-md-nowrap theheaderinners">
             <div className="col-auto">
               <div className="logo-image">
-                <a href="https://analyticsavenue.in/lms">
+                <a href="https://analyticsavenue.in/lms" onClick={closeMobileMenu}>
                   <img src="/assets/frontend/default/images/img/mainwebsitelogohead.png" alt="system logo" className="object-fit-cover rounded header-dark-logo themainwebsitelogos" />
                 </a>
               </div>
@@ -52,30 +66,36 @@ export default function Header() {
             <div className="col-auto">
               <div className="header-menu d-flex justify-content-end me-lg-auto ms-lg-0 ms-auto mt-2 pt-1">
                 <div id="mySidenav" className="sidenav">
-                  <a href="javascript:void(0)" className="closebtn" onClick={() => {
-                    const nav = document.getElementById('mySidenav')
-                    if (nav) { nav.style.width = '0'; document.body.style.backgroundColor = 'white' }
-                  }}>&times;</a>
+                  <a href="javascript:void(0)" className="closebtn" onClick={closeMobileMenu}>&times;</a>
                   <div className="ms-lg-auto col-auto">
                     <div className="primary-end d-flex align-items-center">
                       <div className="d-flex align-items-center gap-2">
                         <ul className="primary-menu main-menu-ul d-flex align-items-center w-100 drop-area">
-                          <li><a href="https://analyticsavenue.in/lms" className="active">Home</a></li>
-                          <li className="pe-2 ps-5"><a href="#/podcast">Podcast</a></li>
-                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass">Referral</a></li>
-                          <li className="pe-2 ps-5"><a href="#">Internship</a></li>
-                          <li className="have-mega-menu pe-2 ps-5">
-                            <a className="menu-parent-a" href="#">Payment</a>
+                          <li><a href="https://analyticsavenue.in/lms" className="active" onClick={closeMobileMenu}>Home</a></li>
+                          <li className="pe-2 ps-5"><a href="#/podcast" onClick={closeMobileMenu}>Podcast</a></li>
+                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass" onClick={closeMobileMenu}>Referral</a></li>
+                          <li className="pe-2 ps-5"><a href="#" onClick={(e) => { e.preventDefault(); closeMobileMenu(); }}>Internship</a></li>
+                          <li className={`have-mega-menu pe-2 ps-5 ${mobilePaymentOpen ? 'active' : ''}`}>
+                            <a
+                              className="menu-parent-a"
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMobilePaymentOpen(!mobilePaymentOpen);
+                              }}
+                            >
+                              Payment
+                            </a>
                             <ul className="mega-dropdown-menu mega main-mega-menu">
                               <div className="mega-menu-items">
                                 <ul className="mega_list thefittpaymments">
                                   <li className="Click-here thecompleletelmms">
-                                    <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                                       <span className="me-3"><img src="/assets/frontend/default/images/img/industriesicon1.png" alt="" /></span>
-                                      <span className="me-auto">Book your 1-1 consultation</span>
+                                      <span className="me-auto">Connect to senior Data Scientist</span>
                                     </a>
                                   </li>
-                                  <li className="pe-2 ps-5 themenntorrss thecompleletelmms">
+                                  <li className="pe-2 ps-5 themenntorrss thecompleletelmms" style={{ display: 'none' }}>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#purchaseOptionsFullLMSModal">
                                       <span className="me-3"><img src="/assets/frontend/default/images/img/industriesicon2.png" alt="" /></span>
                                       <span className="me-auto"> Full LMS Access </span>
@@ -86,10 +106,10 @@ export default function Header() {
                               </div>
                             </ul>
                           </li>
-                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/">IT services</a></li>
-                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/contact-us">Contact Us</a></li>
+                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/" onClick={closeMobileMenu}>IT services</a></li>
+                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/contact-us" onClick={closeMobileMenu}>Contact Us</a></li>
                           <li className="pe-2 ps-5">
-                            <a href="/assets/broucher/nationwide program Brouchure.pdf" download="nationwide program Brouchure.pdf" className="eBtn gradient download-brochure-btn" style={{ padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: 'bold', color: '#fff', textDecoration: 'none', display: 'inline-block' }}>
+                            <a href="/assets/broucher/nationwide program Brouchure.pdf" download="nationwide program Brouchure.pdf" onClick={closeMobileMenu} className="eBtn gradient download-brochure-btn" style={{ padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: 'bold', color: '#fff', textDecoration: 'none', display: 'inline-block' }}>
                               Download Brochure
                             </a>
                           </li>

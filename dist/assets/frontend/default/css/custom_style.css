@@ -194,6 +194,7 @@
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
@@ -6640,10 +6641,12 @@ span[class*="fi-rr-"]:before {
         top: 5px;
         margin-top: -365px;
     }
+
     .hero-details,
     .details-page-content {
         margin-top: -100px;
     }
+
     .page-content-pb-100 {
         padding-bottom: 100px !important;
     }
@@ -6786,9 +6789,11 @@ span[class*="fi-rr-"]:before {
     .toggle-bar {
         width: 36px;
     }
+
     .us-btn:after {
         display: none;
     }
+
     .Userprofile {
         width: 48px;
     }
@@ -7524,11 +7529,13 @@ ul.thebannerssulss li span {
 }
 
 @keyframes blink {
+
     0%,
     50%,
     100% {
         opacity: 1;
     }
+
     25%,
     75% {
         opacity: 0;
@@ -7846,9 +7853,11 @@ a.theaboutviews {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -8315,13 +8324,16 @@ small.sucessfullss {
         left: -60%;
         opacity: 0;
     }
+
     15% {
         opacity: 0.8;
     }
+
     50% {
         left: 120%;
         opacity: 0.7;
     }
+
     100% {
         left: 120%;
         opacity: 0;
@@ -8811,6 +8823,7 @@ section.thepoersmall.workingcompaniess {
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(-50%);
     }
@@ -8820,6 +8833,7 @@ section.thepoersmall.workingcompaniess {
     from {
         transform: translateX(-50%);
     }
+
     to {
         transform: translateX(0);
     }
@@ -9367,6 +9381,7 @@ ul.mega_list li a span img {
         transform: scale(1);
         opacity: 0.6;
     }
+
     100% {
         transform: scale(2.6);
         opacity: 0;
@@ -9758,7 +9773,7 @@ p.iamhereesparap {
 
 section.hearfromss {
     background: #f5f5f5;
-    padding-top: 0;
+    padding-top: 80px;
     padding-bottom: 80px;
 }
 
@@ -10223,40 +10238,50 @@ li.themainlis:hover {
     .thebannercontents {
         width: 90%;
     }
+
     h2.thebannerh2 {
         font-size: 35px;
     }
+
     p.thebannerp {
         font-size: 15px;
         line-height: 25px;
     }
+
     .bannerhome {
         height: 580px;
     }
+
     ul.powereduls li img {
         width: 30px;
         margin: 0 10px 15px;
     }
+
     h2.thepoersheads {
         font-size: 15px;
     }
+
     section.thepoersmall {
         padding: 30px 0;
         text-align: center;
     }
+
     .thehomeabouts {
         background-color: #f5f5f5;
         padding: 50px 0;
     }
+
     h2.thehomeabh2 {
         font-size: 30px;
         line-height: 47px;
         width: 100%;
     }
+
     .theaboutrows {
         width: 100%;
         margin: 18px auto 0;
     }
+
     p.thefirsp {
         color: #000;
         font-family: 'Helvetica';
@@ -10265,6 +10290,7 @@ li.themainlis:hover {
         line-height: 27px;
         width: 100%;
     }
+
     p.theabotrowsthirdp {
         color: #000;
         font-family: 'Helvetica';
@@ -10272,13 +10298,16 @@ li.themainlis:hover {
         font-size: 13px;
         line-height: 24px;
     }
+
     .thenumberss {
         border-left: 2px solid #4555FD;
         padding-left: 20px;
     }
+
     h2.thenumberabs {
         font-size: 45px;
     }
+
     p.thenumberp {
         color: #000;
         font-family: 'Helvetica';
@@ -10287,13 +10316,16 @@ li.themainlis:hover {
         line-height: 25px;
         padding-top: 10px;
     }
+
     .therowsinnessabout {
         height: 320px;
         margin-bottom: 20px;
     }
+
     .thepinconted {
         width: 100%;
     }
+
     h2.thecenterheadss {
         text-align: center;
         padding-top: 20px;
@@ -10305,14 +10337,17 @@ li.themainlis:hover {
         width: 100%;
         margin: 0 auto;
     }
+
     .thecardsmsllrows .col-md-4 {
         width: 50%;
     }
+
     p.thepercernames.thesecondadryp {
         font-size: 14px;
         line-height: 16px;
         padding-top: 5px;
     }
+
     h4.thepercentafes {
         color: #0377EF;
         font-family: 'Helvetica';
@@ -10320,6 +10355,7 @@ li.themainlis:hover {
         font-weight: 700;
         line-height: 52px;
     }
+
     p.thepercernames {
         color: #000;
         font-family: 'Helvetica';
@@ -10328,34 +10364,42 @@ li.themainlis:hover {
         line-height: 20px;
         padding-top: 14px;
     }
+
     .thecardssmallsinfos {
         height: 260px;
         padding: 8px;
     }
+
     section.technologicals {
         padding: 40px 0;
     }
+
     .technoheads {
         flex-direction: column;
     }
+
     h2.techlogh2 {
         font-size: 30px;
         line-height: 41px;
         margin-bottom: 20px;
     }
+
     p.technlop {
         font-size: 18px;
         width: 100%;
         padding-top: 6px;
         line-height: 27px;
     }
+
     section.sucessfulls {
         background: #0377EF1A;
         padding: 40px 0;
     }
+
     small.sucessfullss {
         font-size: 10px;
     }
+
     h2.sucessfullsheads {
         font-family: 'Libre';
         padding-top: 25px;
@@ -10364,26 +10408,32 @@ li.themainlis:hover {
         color: #000;
         text-align: center;
     }
+
     .sucessfullsheadss {
         text-align: center;
     }
+
     .sucessfullslefts p.text-muted {
         color: #000 !important;
         font-family: 'Helvetica';
         font-size: 18px;
         opacity: 1;
     }
+
     .sucessfullslefts ul li {
         font-family: 'Helvetica';
         font-size: 18px;
         margin-bottom: 10px;
     }
+
     .thesucessfulaccorios {
         padding-top: 38px;
     }
+
     .accordion-button:not(.collapsed) {
         font-size: 16px;
     }
+
     .accordion-button {
         background-color: transparent;
         color: #000;
@@ -10395,28 +10445,35 @@ li.themainlis:hover {
         border-top: 1px solid #00000030;
         border-radius: 0 !important;
     }
+
     .theaccodionbasedcontents {
         height: 290px;
     }
+
     img.thelayerimagess {
         position: absolute;
         bottom: 0;
         width: 100%;
     }
+
     .themainimages {
         object-position: top;
     }
+
     section.benefitss {
         padding: 40px 0;
         background: #f5f5f5;
     }
+
     .thebenfitsh2 {
         font-size: 30px;
         line-height: 40px;
     }
+
     .benefitscards {
         margin-top: 28px;
     }
+
     .themainwebfooter .footer-widget ul li a {
         display: inline-block;
         color: #424242;
@@ -10426,36 +10483,46 @@ li.themainlis:hover {
         transition: 0.5s;
         font-family: 'Helvetica';
     }
+
     ul.thecardssbeneuls li {
         width: 46%;
         margin: 0 6px;
         margin-bottom: 10px;
     }
+
     .benfecardinfos p br {
         display: none;
     }
+
     .benefitcsrdsinnners {
         height: 165px;
     }
+
     .themainwebfooter img.themainwebfoootlogos {
         height: 50px;
     }
+
     p.description.builder-editable.themainwebfootdesc {
         font-size: 15px;
         line-height: 24px;
     }
+
     footer.footer-area.themainwebfooter .col-lg-3.col-md-6 {
         width: 50%;
     }
+
     .footer-bottom {
         text-align: center;
     }
+
     .thebactotos {
         justify-content: center;
     }
+
     small.thebannersmall {
         font-size: 11px;
     }
+
     .thebannercontents.edtechbannercontents {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -10465,6 +10532,7 @@ li.themainlis:hover {
         z-index: 9;
         width: 100%;
     }
+
     .thebannercontents.edtechbannercontents {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -10473,15 +10541,18 @@ li.themainlis:hover {
         text-align: left;
         z-index: 9;
     }
+
     .edtechbannercontents h2.thebannerh2 {
         font-family: 'Libre';
         font-size: 30px;
     }
+
     .edtechbannercontents p.thebannerp {
         font-size: 15px;
         line-height: 21px;
         width: 80%;
     }
+
     .thebannerctabtnsedtech a.thebannerbtn {
         display: flex;
         align-items: center;
@@ -10500,6 +10571,7 @@ li.themainlis:hover {
         margin-right: 20px !important;
         width: 140px;
     }
+
     .marquee .content {
         background: #ffffff38;
         backdrop-filter: blur(65px);
@@ -10510,36 +10582,44 @@ li.themainlis:hover {
         margin-right: 10px;
         flex-shrink: 0;
     }
+
     .workingmaquees1 {
         margin-bottom: 15px;
     }
+
     .workingcompaniess h2.thepoersheads {
         color: #fff;
         margin-bottom: 25px;
     }
+
     .thefiguressssmals {
         padding-top: 15px;
         width: 100%;
         margin: 0 auto;
     }
+
     .thefiguressssmals .col-md-3 {
         width: 50%;
     }
+
     .thecountinfferss h4 {
         font-family: 'Libre';
         font-size: 25px;
         font-weight: 500;
         color: #fff;
     }
+
     .thecountinfferss p {
         color: #FFFFFF75;
         font-family: 'Helvetica';
         font-size: 11px;
         line-height: 15px;
     }
+
     .thecountinfferss {
         margin-bottom: 15px;
     }
+
     h2.thehomeabh2.theinsideinovh2 {
         width: 100%;
         text-align: center;
@@ -10548,6 +10628,7 @@ li.themainlis:hover {
         font-weight: 700;
         line-height: 40px;
     }
+
     h4.theinsideinovh4 {
         text-align: center;
         font-family: 'Helvetica';
@@ -10557,6 +10638,7 @@ li.themainlis:hover {
         line-height: 45px;
         color: #000;
     }
+
     p.theinnovavenuep {
         font-family: 'Helvetica';
         font-size: 14px;
@@ -10568,9 +10650,11 @@ li.themainlis:hover {
         text-align: center;
         line-height: 23px;
     }
+
     .theinnerlinesss {
         display: none;
     }
+
     ul.circcless {
         display: flex;
         align-items: center;
@@ -10580,16 +10664,20 @@ li.themainlis:hover {
         left: 0;
         flex-direction: column;
     }
+
     ul.circcless {
         padding-top: 10px;
     }
+
     h4.thecirclesh4 {
         font-size: 15px;
     }
+
     h5.thecilcresh5 {
         font-size: 12px;
         padding-top: 5px;
     }
+
     ul.theclicleslist li {
         font-family: 'Helvetica';
         font-size: 11px;
@@ -10602,6 +10690,7 @@ li.themainlis:hover {
         border-radius: 22px;
         padding: 3px 10px;
     }
+
     p.thecirclesp {
         font-family: 'Helvetica';
         text-align: center;
@@ -10609,33 +10698,39 @@ li.themainlis:hover {
         color: #727272;
         padding-top: 5px;
     }
+
     .circcless .themainlis:nth-child(2) {
         background: linear-gradient(180deg, #77FFB6 0%, #ECECEC 100%);
         position: relative;
         left: 0;
         top: -26px;
     }
+
     .circcless .themainlis:nth-child(3) {
         background: linear-gradient(180deg, #7DCBFF 0%, #ECECEC 100%);
         position: relative;
         left: 0;
         top: -50px;
     }
+
     .circcless .themainlis:nth-child(4) {
         background: linear-gradient(180deg, #FF70C7 0%, #ECECEC 100%);
         position: relative;
         left: 0;
         top: -72px;
     }
+
     .theinovtioa a.thebannerbtn.theedtechbanbtn2 {
         top: 0;
     }
+
     .thecommonstylless .swiper-pagination-bullet {
         border-radius: 0;
         width: 27px;
         height: 4px;
         margin: 0 !important;
     }
+
     .thecommonstylless {
         justify-content: center;
         flex-direction: row;
@@ -10643,6 +10738,7 @@ li.themainlis:hover {
         position: relative;
         left: 0;
     }
+
     ul.thrprogramswilwul li {
         background: #000;
         padding: 5px;
@@ -10652,11 +10748,13 @@ li.themainlis:hover {
         color: #fff;
         margin-top: 5px;
     }
+
     h5.theprograeliegh5 {
         color: #000;
         font-weight: 700;
         font-size: 13px;
     }
+
     p.theswipeprogfirstp {
         font-family: 'Helvetica';
         color: #000;
@@ -10666,6 +10764,7 @@ li.themainlis:hover {
         line-height: 17px;
         letter-spacing: 0.3px;
     }
+
     p.theprowelegip {
         font-family: 'Helvetica';
         color: #000;
@@ -10675,6 +10774,7 @@ li.themainlis:hover {
         line-height: 13px;
         letter-spacing: 0.3px;
     }
+
     h2.sucessfullsheads.thectaassheadsd {
         color: #fff;
         font-size: 30px;
@@ -10682,10 +10782,12 @@ li.themainlis:hover {
         font-family: 'Helvetica';
         padding-top: 0;
     }
+
     .thesucesctaassimages {
         position: relative;
         height: 155px;
     }
+
     .play-wave {
         position: absolute;
         top: 50%;
@@ -10696,9 +10798,11 @@ li.themainlis:hover {
         border-radius: 50%;
         z-index: 5;
     }
+
     .thectassssinnerross .col-md-2 {
         width: 33%;
     }
+
     .thecolinnnertechs {
         background: #FFFFFF26;
         height: 55px;
@@ -10709,10 +10813,12 @@ li.themainlis:hover {
         border-radius: 9px;
         padding: 5px;
     }
+
     section.successmodules {
         background: #f5f5f5;
         padding: 40px 0;
     }
+
     h2.sucessmodeheadsh2 {
         font-family: 'Helvetica';
         font-weight: 700;
@@ -10721,6 +10827,7 @@ li.themainlis:hover {
         color: #000;
         text-align: center;
     }
+
     p.sucessmoudlleheadsp {
         font-family: 'Helvetica';
         text-align: center;
@@ -10731,6 +10838,7 @@ li.themainlis:hover {
         margin: 0 auto;
         /* margin-bottom: 20px; */
     }
+
     .theprojjecttssd h2.sucessmodeheadsh2 {
         font-family: 'Helvetica';
         font-weight: 700;
@@ -10739,16 +10847,19 @@ li.themainlis:hover {
         color: #fff;
         text-align: center;
     }
+
     .swiperarrroes.thecommonstylless .swiper-pagination {
         white-space: nowrap;
         margin-right: 9px;
     }
+
     .insightsssmains .thecommonstylless .swiper-pagination-bullet {
         border-radius: 0;
         width: 22px;
         height: 4px;
         margin: 0 !important;
     }
+
     h2.pocssheadssh2 {
         text-align: center;
         font-family: 'Helvetica';
@@ -10756,30 +10867,37 @@ li.themainlis:hover {
         font-weight: 700;
         color: #fff;
     }
+
     .mySwiperpocsss {
         padding: 0 0 !important;
     }
+
     .thelmsbannercontents h2.thebannerh2 br {
         display: none;
     }
+
     section.bannerhome.thelmsbanners::before {
         content: '';
         background: #0000004a;
         position: absolute;
         inset: 0;
     }
+
     .theleftssselement {
         display: none;
     }
+
     .thelmsbanners p.thebannerp {
         font-size: 15px;
         line-height: 25px;
         text-align: left;
     }
+
     .iaamhereress {
         padding: 40px 0;
         background: #fff;
     }
+
     .iamheresmains {
         display: flex;
         align-items: center;
@@ -10791,6 +10909,7 @@ li.themainlis:hover {
         margin: 0 auto;
         flex-direction: column;
     }
+
     ul.iamhersssssul li {
         background: #E0E0E0;
         padding: 6px 10px;
@@ -10803,6 +10922,7 @@ li.themainlis:hover {
         margin-bottom: 10px;
         width: 45%;
     }
+
     ul.iamhersssssul {
         display: flex;
         align-items: center;
@@ -10811,38 +10931,46 @@ li.themainlis:hover {
         width: 100%;
         margin-top: 10px;
     }
+
     h2.imaherheadh2 {
         font-family: 'Libre';
         font-weight: 500;
         color: #000;
         font-size: 23px;
     }
+
     p.iamhereesparap {
         color: #000;
         font-family: 'Helvetica';
         font-size: 15px;
     }
+
     .technologicals.theprograamss.therightproggrams {
         padding: 40px 0;
     }
+
     h2.hearfrommssh2 {
         font-family: 'Libre';
         font-size: 34px;
         font-weight: 500;
         color: #000;
     }
+
     .theheadrfrommcollssnums {
         padding-top: 32px;
         width: 100%;
     }
+
     .theheadrfrommcollssnums .col-md-6 {
         width: 50%;
     }
+
     .themunnsheareinners {
         background: #fff;
         border-radius: 8px;
         padding: 10px;
     }
+
     p.thenumbbsnumberp {
         color: #000;
         font-family: 'Helvetica';
@@ -10851,6 +10979,7 @@ li.themainlis:hover {
         text-align: center;
         line-height: 16px;
     }
+
     h4.thenumbbsnumberh4 {
         color: #0377EF;
         font-family: 'Helvetica';
@@ -10859,10 +10988,12 @@ li.themainlis:hover {
         text-align: center;
         margin-bottom: 10px;
     }
+
     .thtailerrmaisd {
         padding: 40px 0;
         background: linear-gradient(180deg, #0377EF 0%, #1C1E3A 100%);
     }
+
     h2.thetailorheadsh2 {
         color: #fff;
         font-family: 'Libre';
@@ -10870,6 +11001,7 @@ li.themainlis:hover {
         text-align: center;
         font-weight: 500;
     }
+
     ul.thetalsullsssss li {
         color: #fff;
         font-family: 'Helvetica';
@@ -10883,11 +11015,13 @@ li.themainlis:hover {
         width: 46%;
         text-align: center;
     }
+
     p.thereviewwwdetails {
         color: #FFFFFFCC;
         font-family: 'Helvetica';
         font-size: 12px;
     }
+
     ul.careerg li {
         position: relative;
         margin-right: 4px;
@@ -10897,6 +11031,7 @@ li.themainlis:hover {
         width: 100%;
         margin-bottom: 10px;
     }
+
     .theaccoordionfaqs .accordion-button {
         border-top: 0;
         font-family: 'Helvetica';
@@ -10904,19 +11039,23 @@ li.themainlis:hover {
         font-weight: 400;
         line-height: 19px;
     }
+
     .theaccoordionfaqs .accordion-button:not(.collapsed) {
         font-size: 11px;
     }
+
     .theaccoordionfaqs .accordion-body {
         font-size: 11px;
         line-height: 17px;
     }
+
     ul.careerg {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
     }
+
     .thebannercontents.thelmsbannercontents {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -10924,6 +11063,7 @@ li.themainlis:hover {
         left: 50%;
         text-align: left;
     }
+
     .theprogramslideinnerinfos h3 {
         color: #000;
         padding-top: 10px;
@@ -10931,18 +11071,21 @@ li.themainlis:hover {
         font-size: 15px;
         font-weight: 400;
     }
+
     .theprogramslideinnerinfos span {
         padding-top: 15px;
         color: #34A853;
         font-family: 'Helvetica';
         font-size: 12px;
     }
+
     .theprogramslideinnerinfos small {
         color: #0377EF;
         font-family: 'Helvetica';
         font-size: 13px;
         font-weight: 400;
     }
+
     .theprogramslideinnerinfos a {
         background: #0377EF;
         width: 100%;
@@ -10954,15 +11097,18 @@ li.themainlis:hover {
         border-radius: 49px;
         font-size: 12px;
     }
+
     section.hearfromss {
         background: #f5f5f5;
-        padding-top: 0;
+        padding-top: 40px;
         padding-bottom: 40px;
     }
+
     .pocsss.themediaspotlights {
         background: #f5f5f5;
         padding: 40px 0 0;
     }
+
     .thetechheadsd {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -10973,6 +11119,7 @@ li.themainlis:hover {
         border-radius: 10px;
         padding: 0;
     }
+
     .thepoersmall.workingcompaniess.thestudeenccommsdsdslms {
         padding: 30px 0;
     }
@@ -11309,6 +11456,7 @@ h2.endtoendh2 span {
     .arch-grid {
         grid-template-columns: 1fr;
     }
+
     .center-area {
         height: 480px;
     }
@@ -11848,12 +11996,15 @@ img.thebusinesimapcimages {
     .thehomeabh2 {
         font-size: 38px;
     }
+
     .the-feature-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .the-stats-strip {
         grid-template-columns: repeat(3, 1fr);
     }
+
     .thebigaboutimage {
         height: 420px;
     }
@@ -12629,11 +12780,13 @@ a.thebannerbtn.theedtechbanbtn2.theedtecchsssdiagrambtns {
         grid-template-columns: 1fr;
         justify-items: start;
     }
+
     .phases {
         flex-direction: row;
         gap: 30px;
         margin-top: 15px;
     }
+
     .roles-block {
         width: 100%;
     }
@@ -13510,9 +13663,11 @@ h2.thecenterheadss.top__000211454545.aos-init.aos-animate {
     .ims__icon__098s.mobile__0099888 {
         display: none;
     }
+
     .hembargar__00099e {
         display: none;
     }
+
     a.closebtn {
         display: none;
     }
@@ -13961,6 +14116,7 @@ img.mfp-img {
 
 @media screen and (max-width: 800px) and (orientation: landscape),
 screen and (max-height: 300px) {
+
     /**
        * Remove all paddings around the image on small screen
        */
@@ -13968,17 +14124,21 @@ screen and (max-height: 300px) {
         padding-left: 0;
         padding-right: 0;
     }
+
     .mfp-img-mobile img.mfp-img {
         padding: 0;
     }
+
     .mfp-img-mobile .mfp-figure:after {
         top: 0;
         bottom: 0;
     }
+
     .mfp-img-mobile .mfp-figure small {
         display: inline;
         margin-left: 5px;
     }
+
     .mfp-img-mobile .mfp-bottom-bar {
         background: rgba(0, 0, 0, 0.6);
         bottom: 0;
@@ -13988,13 +14148,16 @@ screen and (max-height: 300px) {
         position: fixed;
         box-sizing: border-box;
     }
+
     .mfp-img-mobile .mfp-bottom-bar:empty {
         padding: 0;
     }
+
     .mfp-img-mobile .mfp-counter {
         right: 5px;
         top: 3px;
     }
+
     .mfp-img-mobile .mfp-close {
         top: 0;
         right: 0;
@@ -14013,14 +14176,17 @@ screen and (max-height: 300px) {
         -webkit-transform: scale(0.75);
         transform: scale(0.75);
     }
+
     .mfp-arrow-left {
         -webkit-transform-origin: 0;
         transform-origin: 0;
     }
+
     .mfp-arrow-right {
         -webkit-transform-origin: 100%;
         transform-origin: 100%;
     }
+
     .mfp-container {
         padding-left: 6px;
         padding-right: 6px;
@@ -15123,6 +15289,7 @@ p.thepplacemmentsheaddssp {
 /* Mobile fallback */
 
 @media (max-width: 1024px) {
+
     .expert-row.row-3,
     .expert-row.row-4 {
         grid-template-columns: repeat(2, 1fr);
@@ -15130,6 +15297,7 @@ p.thepplacemmentsheaddssp {
 }
 
 @media (max-width: 640px) {
+
     .expert-row.row-2,
     .expert-row.row-3,
     .expert-row.row-4 {
@@ -15141,56 +15309,70 @@ p.thepplacemmentsheaddssp {
     .theemobbbillessss {
         display: block;
     }
+
     .theemobbbillesss a.thebuttonsheads1 {
         padding-left: 10px;
     }
+
     .thelmssheadsrsss div#mySidenav {
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
         flex-direction: column;
     }
+
     .thesuceesb {
         flex-direction: column;
     }
+
     .thedestopenterprisse {
         display: none;
     }
+
     .themobileenterprisse {
         display: block;
         padding: 0;
     }
+
     .thebannersssleftss {
         margin-top: 93px;
     }
+
     .bannerhome {
         height: 875px;
     }
+
     ul.powereduls li img {
         width: 83px;
         margin: 0 11px 11px;
     }
+
     h2.thehomeabh2 {
         font-size: 24px;
         line-height: 32px;
         width: 100%;
     }
+
     h2.thehomeabh2::after {
         bottom: -22px;
     }
+
     .thendtoendhheads h2.endtoendh2 {
         font-size: 30px;
         line-height: 36px;
     }
+
     h2.endtoendh2::after {
         bottom: -24px;
     }
+
     .viewport {
         height: 100vh;
         width: 3000px !important;
         overflow: hidden;
         position: relative;
     }
+
     .source-grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -15199,14 +15381,17 @@ p.thepplacemmentsheaddssp {
         margin-right: 75vw;
         margin-top: 100px;
     }
+
     .scroll-content {
         display: flex;
         width: 3000px !important;
         height: 100vh;
     }
+
     .section {
         width: 100% !important;
     }
+
     .elt-wrapper {
         max-width: 3000px !important;
         margin: 80px auto;
@@ -15214,22 +15399,28 @@ p.thepplacemmentsheaddssp {
         align-items: center;
         gap: 40px;
     }
+
     .elt-wrapper {
         flex-direction: row !important;
     }
+
     .process-arrow {
         transform: rotate(0deg) !important;
     }
+
     .elt-process {
         flex-direction: row !important;
     }
+
     .section {
         padding: 0 1% !important;
     }
+
     .analytics-container {
         position: relative;
         left: -18px !important;
     }
+
     .step-title {
         font-size: 21px;
         font-weight: 800;
@@ -15237,6 +15428,7 @@ p.thepplacemmentsheaddssp {
         color: #000;
         padding-top: 10px;
     }
+
     .header-group {
         position: absolute;
         top: 8%;
@@ -15245,6 +15437,7 @@ p.thepplacemmentsheaddssp {
         width: 38% !important;
         text-align: center !important;
     }
+
     .source-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -15253,9 +15446,11 @@ p.thepplacemmentsheaddssp {
         margin-right: 88vw;
         margin-top: 100px;
     }
+
     .content-grid {
         display: inline !important;
     }
+
     .a__molineee {
         top: -1px !important;
         height: 53% !important;
@@ -15266,6 +15461,7 @@ p.thepplacemmentsheaddssp {
         transform: rotate(90deg);
         bottom: 0px !important;
     }
+
     .thehomeabouts .sdkj3565 {
         position: absolute;
         top: inherit !important;
@@ -15277,77 +15473,97 @@ p.thepplacemmentsheaddssp {
         transform: rotate(90deg);
         bottom: 0px !important;
     }
+
     .thehomeabouts #connection-path {
         z-index: 0 !important;
         pointer-events: none;
     }
+
     .product-block.s_00022244 {
         margin-top: 0px;
     }
+
     .product-block.s_000227 {
         position: relative;
         top: 0px;
         left: 0px;
     }
+
     .product-block.s_000225 {
         position: relative;
         top: 0px;
     }
+
     .product-block.s_00022244 {
         margin-top: 0px !important;
     }
+
     .product-block p {
         background: #f5f5f5;
     }
+
     h2.thecenterheadss.top__000211454545 {
         margin-top: 137px;
     }
+
     .product-block.s_000227 {
         position: relative;
         top: 120px;
         left: -25px;
     }
+
     .product-block.s_00022244 {
         margin-left: 60px;
     }
+
     .product-block p {
         background: #f5f5f5bf;
     }
+
     .product-block.s_000227 {
         position: relative;
         top: 120px;
         left: -40px !important;
     }
+
     .ims__icon__098s.desktoppkkk {
         display: none;
     }
+
     .ims__icon__098s.mobile__0099888 {
         margin-bottom: 42px;
         padding: 39px;
         padding-bottom: 0px;
         padding-top: 0px;
     }
+
     .thendtoendddsss.s46555555555555 {
         margin-top: -193px;
     }
+
     .theloteiofimapccs dotlottie-wc {
         width: 100% !important;
     }
+
     ul.thecardssbeneuls li {
         width: 49%;
         margin: 0 0px;
         margin-bottom: 1px;
     }
+
     h2.sucessfullsheads {
         font-weight: 600;
         line-height: 33px;
     }
+
     h2.thebannerh2 {
         font-size: 26px;
     }
+
     .thebannersssrightss {
         margin-top: 58px;
     }
+
     .sidenav {
         height: auto !important;
         width: 0;
@@ -15360,6 +15576,7 @@ p.thepplacemmentsheaddssp {
         transition: 0.5s;
         padding-top: 60px;
     }
+
     header.header-area.themainwebsiteheader {
         position: fixed;
         z-index: 999999999999999999999999999999 !important;
@@ -15369,6 +15586,7 @@ p.thepplacemmentsheaddssp {
         padding: 0;
         height: auto;
     }
+
     .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -15377,9 +15595,11 @@ p.thepplacemmentsheaddssp {
         display: block;
         transition: 0.3s;
     }
+
     .sidenav a:hover {
         color: #f1f1f1;
     }
+
     .sidenav .closebtn {
         position: absolute;
         top: 0;
@@ -15387,14 +15607,17 @@ p.thepplacemmentsheaddssp {
         font-size: 36px;
         margin-left: 50px;
     }
+
     @media screen and (max-height: 450px) {
         .sidenav {
             padding-top: 15px;
         }
+
         .sidenav a {
             font-size: 18px;
         }
     }
+
     #mySidenav .nav-menu {
         position: relative !important;
         left: 0px !important;
@@ -15402,6 +15625,7 @@ p.thepplacemmentsheaddssp {
         height: auto !important;
         z-index: 99999999 !important;
     }
+
     .sidenav {
         height: auto !important;
         width: 0;
@@ -15414,6 +15638,7 @@ p.thepplacemmentsheaddssp {
         transition: 0.5s;
         padding-top: 60px;
     }
+
     .nav-menu .primary-menu {
         flex-direction: column;
         height: 100vh;
@@ -15424,6 +15649,7 @@ p.thepplacemmentsheaddssp {
         align-items: flex-start !important;
         padding-left: 0px;
     }
+
     .sidenav a {
         padding: 8px 8px 8px 0px;
         text-decoration: none;
@@ -15432,26 +15658,32 @@ p.thepplacemmentsheaddssp {
         display: block;
         transition: 0.3s;
     }
+
     li.have-mega-menu {
         width: 95%;
         padding-bottom: 0px !important;
         margin-bottom: 0px;
     }
+
     #mySidenav li.pe-2.ps-5 {
         padding-left: 19px !important;
     }
+
     .hembargar__00099e {
         float: right;
         position: absolute;
         right: 0px;
         top: 21px;
     }
+
     .theloteiofimapccs {
         display: none;
     }
+
     .product-block {
         display: flex;
     }
+
     .thehomeabouts .icon-circle {
         width: 54px;
         height: 54px;
@@ -15465,12 +15697,14 @@ p.thepplacemmentsheaddssp {
         background: white;
         padding: 8px;
     }
+
     .product-block p {
         background: transparent;
         text-align: left;
         position: relative;
         left: 29px;
     }
+
     .thehomeabouts .icon-circle {
         width: 54px !important;
         height: 54px !important;
@@ -15486,43 +15720,54 @@ p.thepplacemmentsheaddssp {
         position: relative;
         left: 0px;
     }
+
     .product-block.s_00022222 {
         margin-top: 44px;
         margin-bottom: 35px;
         padding-left: 0px;
     }
+
     .product-block.s_00022222 .icon-circle {
         position: relative;
         left: 22px;
     }
+
     .product-block.s_00022222 p {
         padding-left: 4px;
     }
+
     .product-block.s_00022 p {
         position: relative;
         left: 12px;
     }
+
     .product-block.s_00022244 p {
         left: 4px;
         width: auto;
     }
+
     .product-block.s_00022244 h3 {
         position: relative;
         left: -16px;
     }
+
     .product-block.s_000223 .icon-circle {
         margin-left: 20px;
         margin-right: -12px;
     }
+
     .product-block.s_000225 p {
         left: 9px;
     }
+
     li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu {
         display: block;
     }
+
     li.have-mega-menu ul.mega-dropdown-menu.mega.main-mega-menu {
         display: none;
     }
+
     .main-mega-menu {
         border-radius: 15px;
         background: #fff;
@@ -15542,38 +15787,46 @@ p.thepplacemmentsheaddssp {
         z-index: 9999;
         transition: 0.5s;
     }
+
     .mega-menu-items ul.mega_list {
         display: inline-block !important;
         width: 100%;
     }
+
     .mega-menu-items ul.mega_list li {
         width: 100%;
         padding-bottom: 0px !important;
         padding: 0px !important;
         margin-bottom: 0px;
     }
+
     .main-menu-ul>li:hover .main-mega-menu {
         visibility: visible;
         opacity: 1;
         top: 0px;
     }
+
     .sidenav {
         background-color: #fff;
         overflow-x: hidden;
         transition: 0.5s;
         padding-top: 60px;
     }
+
     ul.mega-dropdown-menu.mega.main-mega-menu {
         padding: 0px;
     }
+
     ul.mega-dropdown-menu.mega.main-mega-menu span.me-auto {
         font-size: 13px;
     }
+
     ul.mega_list li a span img {
         width: 20px;
         height: auto;
         /* filter: grayscale(1); */
     }
+
     .ims__icon__098s img {
         width: 138%;
         max-width: 438px;
@@ -15586,12 +15839,15 @@ p.thepplacemmentsheaddssp {
         z-index: 9;
         position: relative;
     }
+
     h2.thecenterheadss.top__000211454545.aos-init.aos-animate {
         margin-top: 150px;
     }
+
     .technoheads {
         align-items: center;
     }
+
     p.theemoouwemainnheadsds {
         color: #000;
         font-family: 'Helvetica';
@@ -15601,6 +15857,7 @@ p.thepplacemmentsheaddssp {
         width: 100%;
         margin: 0 auto;
     }
+
     .the-highlight-item p {
         margin: 0;
         font-family: 'Helvetica';
@@ -15609,10 +15866,12 @@ p.thepplacemmentsheaddssp {
         color: #000;
         line-height: 27px;
     }
+
     h2.whowearrresssh2 span {
         width: 35px;
         margin-right: 10px;
     }
+
     h2.whowearrresssh2 {
         display: flex;
         align-items: center;
@@ -15626,16 +15885,19 @@ p.thepplacemmentsheaddssp {
         /* width: fit-content; */
         border-bottom: 2px solid #000;
     }
+
     li.listinggsscardssli {
         width: 100%;
         margin-right: 0;
         margin-bottom: 20px;
     }
+
     .thelmsbanners .thebluebacckkss img {
         width: 100%;
         height: 524px;
         object-fit: cover;
     }
+
     .thebannercontents.thelmsbannercontents {
         position: relative;
         transform: translate(-50%, -50%);
@@ -15643,9 +15905,11 @@ p.thepplacemmentsheaddssp {
         left: 50%;
         text-align: left;
     }
+
     ul.thebannerssulss li {
         font-size: 14px;
     }
+
     .iamheresmains {
         display: flex;
         align-items: center;
@@ -15657,6 +15921,7 @@ p.thepplacemmentsheaddssp {
         margin: 0 auto;
         flex-direction: column;
     }
+
     .thewhyanayticleftheads h2 {
         color: #000;
         font-family: 'Libre';
@@ -15666,6 +15931,7 @@ p.thepplacemmentsheaddssp {
         text-align: center;
         line-height: 36px;
     }
+
     .thewhyanayicssinfosleft .themainhighlights {
         font-size: 16px;
         width: 100%;
@@ -15680,6 +15946,7 @@ p.thepplacemmentsheaddssp {
         font-weight: 600;
         line-height: 26px;
     }
+
     .thewhyanayicssinfosleft p {
         color: #000;
         font-family: 'Helvetica';
@@ -15690,13 +15957,16 @@ p.thepplacemmentsheaddssp {
         align-items: flex-start;
         margin-bottom: 20px;
     }
+
     .thewhyanayticsrights {
         height: 200px;
     }
+
     .header-box h1 {
         font-size: 24px;
         line-height: 1.2;
     }
+
     #edutechSection .carousel-container {
         position: relative;
         width: 100%;
@@ -15704,9 +15974,11 @@ p.thepplacemmentsheaddssp {
         margin-top: 0;
         overflow: hidden;
     }
+
     .masteringaaiisss .masterignaiissheads h2 {
         font-size: 26px !important;
     }
+
     .masterignaiissheads p {
         color: #000;
         font-family: 'Helvetica';
@@ -15718,6 +15990,7 @@ p.thepplacemmentsheaddssp {
         margin-right: auto;
         line-height: 25px;
     }
+
     .expertpannelheadssh2 {
         font-family: 'Libre';
         font-weight: 600;
@@ -15729,6 +16002,7 @@ p.thepplacemmentsheaddssp {
         font-family: 'Libre';
         font-weight: 700;
     }
+
     p.theexpertpanneparap {
         color: #000;
         font-family: 'Helvetica';
@@ -15738,6 +16012,7 @@ p.thepplacemmentsheaddssp {
         font-size: 15px;
         padding-top: 6px;
     }
+
     p.expertpanerlheadsquote {
         color: #000;
         padding-top: 18px;
@@ -15745,11 +16020,13 @@ p.thepplacemmentsheaddssp {
         font-family: 'Helvetica';
         font-size: 15px;
     }
+
     .expertpanelswipers p.thereviewwwdetails.thehomeswiperreviews {
         color: #000;
         font-family: 'Helvetica';
         font-size: 12px;
     }
+
     .expertpanelswipers .thereviewswiperinners.thehomeswiperreviews {
         padding-top: 0;
         position: relative;
@@ -15757,6 +16034,7 @@ p.thepplacemmentsheaddssp {
         margin-bottom: 10px;
         padding-bottom: 7px;
     }
+
     .expertpanelswipers .thehomeswiperreviews .swiper-slide.thehomeswiperreviews {
         width: 100%;
         margin-right: 0;
@@ -15766,17 +16044,21 @@ p.thepplacemmentsheaddssp {
         /* display: block; */
         height: fit-content;
     }
+
     section.experttspannel {
         padding: 80px 0 0;
     }
+
     .ai-flow {
         padding: 0 0;
     }
+
     .wrap {
         display: flex;
         /* flex-direction: column; */
         overflow: scroll;
     }
+
     ul.thebootcammpsheaadsuls {
         padding-top: 20px;
         display: flex;
@@ -15787,6 +16069,7 @@ p.thepplacemmentsheaddssp {
         margin-left: auto;
         margin-right: auto;
     }
+
     ul.thebootcammpsheaadsuls li {
         /* border: 1px solid #000; */
         color: #000;
@@ -15802,10 +16085,12 @@ p.thepplacemmentsheaddssp {
         backdrop-filter: blur(54px);
         white-space: nowrap;
     }
+
     .thehearfrommsleftts {
         position: relative;
         left: 0;
     }
+
     .hearfromswiperss {
         display: flex;
         height: 100%;
@@ -15813,6 +16098,7 @@ p.thepplacemmentsheaddssp {
         position: relative;
         left: 0;
     }
+
     .theplaccemmntsh2 {
         font-family: 'Libre';
         font-weight: 700;
@@ -15822,6 +16108,7 @@ p.thepplacemmentsheaddssp {
         text-align: center;
         position: relative;
     }
+
     p.thepplacemmentsheaddssp {
         text-align: center;
         padding-top: 15px;
@@ -15833,6 +16120,7 @@ p.thepplacemmentsheaddssp {
         margin-right: auto;
         font-weight: 600;
     }
+
     h2.pocssheadssh2 {
         text-align: center;
         font-family: 'Helvetica';
@@ -15840,13 +16128,16 @@ p.thepplacemmentsheaddssp {
         font-weight: 700;
         color: #000;
     }
+
     .swiper.mySwiperhearfromms.thehomeswiperreviews {
         padding-top: 0;
     }
+
     .pocsss.themediaspotlights {
         background: #f5f5f5;
         padding: 0px 0 80px;
     }
+
     h2.apprecationheadh2 {
         text-align: center;
         padding: 35px 0;
@@ -15855,6 +16146,7 @@ p.thepplacemmentsheaddssp {
         font-weight: 600;
         font-size: 30px;
     }
+
     .referalrevvieshead2 {
         text-align: center;
         /* padding: 35px 0; */
@@ -15863,6 +16155,7 @@ p.thepplacemmentsheaddssp {
         font-weight: 600;
         font-size: 30px;
     }
+
     .refferalsheadssh2 {
         text-align: center;
         font-family: 'Libre';
@@ -15870,6 +16163,7 @@ p.thepplacemmentsheaddssp {
         font-weight: 600;
         font-size: 30px;
     }
+
     .theppointeress {
         text-align: center;
         margin-top: 27px;
@@ -15883,6 +16177,7 @@ p.thepplacemmentsheaddssp {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
+
     h4.referheadddssh4 {
         color: #000;
         font-family: 'Helvetica';
@@ -15891,6 +16186,7 @@ p.thepplacemmentsheaddssp {
         line-height: 22px;
         margin-bottom: 13px;
     }
+
     p.therefferalheadssp {
         padding-top: 7px;
         color: #000;
@@ -15900,6 +16196,7 @@ p.thepplacemmentsheaddssp {
         align-items: flex-start;
         justify-content: center;
     }
+
     .therefferstiickyheadsds h2 {
         font-family: 'Helvetica';
         color: #000;
@@ -15908,6 +16205,7 @@ p.thepplacemmentsheaddssp {
         width: 100%;
         text-align: center;
     }
+
     .therefferstiickyheadsds {
         height: 100%;
         display: flex;
@@ -15916,6 +16214,7 @@ p.thepplacemmentsheaddssp {
         flex-direction: column;
         justify-content: center;
     }
+
     .thesttckyheaddvideoss {
         height: 150px;
         margin-top: 36px;
@@ -16242,12 +16541,14 @@ small.thelmmssactive {
         justify-content: center;
         font-size: 15px;
     }
+
     div#enroll-strip button {
         width: fit-content;
         margin-left: auto;
         margin-right: auto;
         margin-top: 8px;
     }
+
     .workingcompaniess.thestudeenccommsdsdslms h2.thepoersheads {
         color: #0377EF;
         font-family: 'Libre';
@@ -16256,10 +16557,12 @@ small.thelmmssactive {
         /* color: #000; */
         line-height: 33px;
     }
+
     section.thelistingggheadinggss {
         height: auto;
         padding-top: 80px;
     }
+
     .listiingngsssinnghhers h2 {
         color: #000;
         font-family: 'Libre';
@@ -16269,9 +16572,11 @@ small.thelmmssactive {
         padding-top: 21px;
         text-align: center;
     }
+
     a.thebuttonsheads1 {
         padding: 10px 17px !important;
     }
+
     .check {
         width: 60px;
         height: auto;
@@ -16286,4 +16591,50 @@ small.thelmmssactive {
 
 .thecommonns {
     padding-top: 80px;
+}
+
+/* ── Unified Heading Styles ── */
+.expertpannelheadssh2,
+h2.sucessmodeheadsh2,
+.theprojjecttssd h2.sucessmodeheadsh2,
+.hearfrommssh2,
+.pocssheadssh2,
+.techlogh2,
+.theplaccemmntsh2,
+.outcomes-heading {
+    font-family: 'Libre', serif !important;
+    font-weight: 600 !important;
+    font-size: 48px !important;
+    line-height: 56px !important;
+    color: #000 !important;
+    text-align: center !important;
+    position: relative !important;
+}
+
+.expertpannelheadssh2 span,
+h2.sucessmodeheadsh2 span,
+.hearfrommssh2 span,
+.pocssheadssh2 span,
+.techlogh2 span,
+.theplaccemmntsh2 span,
+.outcomes-heading span {
+    color: #0377ef !important;
+    font-family: 'Libre', serif !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+}
+
+@media (max-width: 767px) {
+
+    .expertpannelheadssh2,
+    h2.sucessmodeheadsh2,
+    .theprojjecttssd h2.sucessmodeheadsh2,
+    .hearfrommssh2,
+    .pocssheadssh2,
+    .techlogh2,
+    .theplaccemmntsh2,
+    .outcomes-heading {
+        font-size: 28px !important;
+        line-height: 34px !important;
+    }
 }

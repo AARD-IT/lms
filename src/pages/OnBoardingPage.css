@@ -322,7 +322,7 @@
 
 .timeline-card-number {
   font-family: 'Libre', serif;
-  font-size: 3.6rem;
+  font-size: 5rem;
   font-weight: 800;
   color: #f1f5f9;
   line-height: 1;
@@ -359,7 +359,7 @@
 .timeline-card-title {
   font-family: 'Libre', serif;
   font-weight: 800;
-  font-size: 1.45rem;
+  font-size: 3rem;
   color: #0b1437;
   margin: 0 0 8px;
   position: relative;
@@ -368,7 +368,7 @@
 
 .timeline-card-desc {
   font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: #5a6a85;
   line-height: 1.6;
   margin: 0;
@@ -392,7 +392,7 @@
   align-items: flex-start;
   gap: 10px;
   font-family: 'Helvetica', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: #475569;
   line-height: 1.45;
@@ -666,7 +666,7 @@
   }
 
   .timeline-card-number {
-    font-size: 2.8rem;
+    font-size: 6rem;
   }
 
   .timeline-card-body-row {
@@ -682,20 +682,21 @@
   }
 
   .timeline-card-title {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
 
   .timeline-card-desc {
-    font-size: 13.5px;
+    font-size: 18px;
+    line-height: 1.7;
   }
 
   .timeline-sub-list {
-    margin-top: 12px;
+    margin-top: 16px;
     padding-top: 10px;
   }
 
   .timeline-sub-item {
-    font-size: 12.5px;
+    font-size: 16px;
     margin-bottom: 6px;
   }
 

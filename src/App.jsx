@@ -15,6 +15,7 @@ import POCsSection from './components/sections/POCsSection'
 import PlacementOpportunities from './ui_components/PlacementOpportunities/PlacementOpportunities'
 import OnboardingsSection from './components/sections/OnboardingsSection'
 import HonoursSection from './components/sections/HonoursSection'
+import HonoursAndRecognitions from './components/sections/HonoursAndRecognitions'
 import OutcomesSection from './components/sections/OutcomesSection'
 import MediaSpotlightSection from './components/sections/MediaSpotlightSection'
 import FAQSection from './components/sections/FAQSection'
@@ -24,12 +25,14 @@ import ConsultationPopup from './components/ConsultationPopup'
 import PodcastPage from './pages/PodcastPage'
 import FloatingSocials from './components/FloatingSocials'
 import OnBoardingPage from './pages/OnBoardingPage'
+import InternshipPage from './pages/InternshipPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
     const hash = window.location.hash
     if (hash === '#/podcast') return 'podcast'
     if (hash === '#/on-boarding') return 'onboarding'
+    if (hash === '#/internship') return 'internship'
     return 'home'
   })
 
@@ -41,6 +44,9 @@ function App() {
     } else if (currentPage === 'onboarding') {
       window.history.pushState(null, '', '#/on-boarding')
       document.title = 'On-Boarding | Analytics Avenue'
+    } else if (currentPage === 'internship') {
+      window.history.pushState(null, '', '#/internship')
+      document.title = 'Internship | Analytics Avenue'
     } else {
       window.history.pushState(null, '', '#/')
       document.title = 'Analytics Avenue | LMS'
@@ -54,6 +60,7 @@ function App() {
       const hash = window.location.hash
       if (hash === '#/podcast') setCurrentPage('podcast')
       else if (hash === '#/on-boarding') setCurrentPage('onboarding')
+      else if (hash === '#/internship') setCurrentPage('internship')
       else setCurrentPage('home')
     }
     window.addEventListener('hashchange', onHashChange)
@@ -159,6 +166,8 @@ function App() {
         <PodcastPage onNavigateHome={() => { setCurrentPage('home'); window.scrollTo({ top: 0 }) }} />
       ) : currentPage === 'onboarding' ? (
         <OnBoardingPage onNavigateHome={() => { setCurrentPage('home'); window.scrollTo({ top: 0 }) }} />
+      ) : currentPage === 'internship' ? (
+        <InternshipPage onNavigateHome={() => { setCurrentPage('home'); window.scrollTo({ top: 0 }) }} />
       ) : (
         <section>
           <div id="enroll-strip">
@@ -179,7 +188,8 @@ function App() {
           <POCsSection />
           <PlacementOpportunities />
           {/* <OnboardingsSection /> */}
-          <HonoursSection />
+          {/* <HonoursSection /> */}
+          <HonoursAndRecognitions />
           <OutcomesSection />
           {/* <MediaSpotlightSection /> */}
           <FAQSection />
@@ -196,6 +206,18 @@ function App() {
 
 /* ── Wrapper around Header that injects the Podcast nav link ── */
 function AppHeader({ currentPage, setCurrentPage }) {
+  const [mobilePaymentOpen, setMobilePaymentOpen] = useState(false)
+
+  const closeMobileMenu = () => {
+    if (window.innerWidth < 768) {
+      const nav = document.getElementById('mySidenav')
+      if (nav) {
+        nav.style.width = '0'
+        document.body.style.backgroundColor = 'white'
+      }
+    }
+  }
+
   const navToPodcast = (e) => {
     e.preventDefault()
     setCurrentPage('podcast')
@@ -207,6 +229,9 @@ function AppHeader({ currentPage, setCurrentPage }) {
   const navToOnboarding = (e) => {
     e.preventDefault()
     setCurrentPage('onboarding')
+  }
+  const navToInternship = (e) => {
+    e.preventDefault()
   }
 
   return (
@@ -250,7 +275,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
           <div className="row flex-md-nowrap theheaderinners">
             <div className="col-auto">
               <div className="logo-image">
-                <a href="#/" onClick={navToHome}>
+                <a href="#/" onClick={(e) => { navToHome(e); closeMobileMenu(); }}>
                   <img src="/assets/frontend/default/images/img/mainwebsitelogohead.png" alt="system logo" className="object-fit-cover rounded header-dark-logo themainwebsitelogos" />
                 </a>
               </div>
@@ -264,39 +289,53 @@ function AppHeader({ currentPage, setCurrentPage }) {
             <div className="col-auto">
               <div className="header-menu d-flex justify-content-end me-lg-auto ms-lg-0 ms-auto mt-2 pt-1">
                 <div id="mySidenav" className="sidenav">
-                  <a href="javascript:void(0)" className="closebtn" onClick={() => {
-                    const nav = document.getElementById('mySidenav')
-                    if (nav) { nav.style.width = '0'; document.body.style.backgroundColor = 'white' }
-                  }}>&times;</a>
+                  <a href="javascript:void(0)" className="closebtn" onClick={closeMobileMenu}>&times;</a>
                   <div className="ms-lg-auto col-auto">
                     <div className="primary-end d-flex align-items-center">
                       <div className="d-flex align-items-center gap-2">
                         <ul className="primary-menu main-menu-ul d-flex align-items-center w-100 drop-area">
-                          <li><a href="#/" onClick={navToHome} className={currentPage === 'home' ? 'active' : ''}>Home</a></li>
+                          <li><a href="#/" onClick={(e) => { navToHome(e); closeMobileMenu(); }} className={currentPage === 'home' ? 'active' : ''}>Home</a></li>
                           <li className="pe-2 ps-5">
                             <a
                               href="#/podcast"
-                              onClick={navToPodcast}
+                              onClick={(e) => { navToPodcast(e); closeMobileMenu(); }}
                               className={currentPage === 'podcast' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}
                             >
                               Podcast
                             </a>
                           </li>
-                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass">Referral</a></li>
-                          <li className="pe-2 ps-5"><a href="#">Internship</a></li>
-                          <li className="have-mega-menu pe-2 ps-5">
-                            <a className="menu-parent-a" href="#">Payment</a>
+                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass" onClick={closeMobileMenu}>Referral</a></li>
+                          <li className="pe-2 ps-5">
+                            <a
+                              href="#"
+                              onClick={(e) => { navToInternship(e); closeMobileMenu(); }}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              Internship
+                            </a>
+                          </li>
+                          <li className={`have-mega-menu pe-2 ps-5 ${mobilePaymentOpen ? 'active' : ''}`}>
+                            <a
+                              className="menu-parent-a"
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMobilePaymentOpen(!mobilePaymentOpen);
+                              }}
+                            >
+                              Payment
+                            </a>
                             <ul className="mega-dropdown-menu mega main-mega-menu">
                               <div className="mega-menu-items">
                                 <ul className="mega_list thefittpaymments">
                                   <li className="Click-here thecompleletelmms">
-                                    <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://pages.razorpay.com/discussion" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                                       <span className="me-3"><img src="/assets/frontend/default/images/img/industriesicon1.png" alt="" /></span>
-                                      <span className="me-auto">Book your 1-1 consultation</span>
+                                      <span className="me-auto">Connect to Senior Data Scientist</span>
                                     </a>
                                   </li>
-                                  <li className="pe-2 ps-5 themenntorrss thecompleletelmms">
+                                  <li className="pe-2 ps-5 themenntorrss thecompleletelmms" style={{ display: 'none' }}>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#purchaseOptionsFullLMSModal">
                                       <span className="me-3"><img src="/assets/frontend/default/images/img/industriesicon2.png" alt="" /></span>
                                       <span className="me-auto"> Full LMS Access </span>
@@ -307,11 +346,11 @@ function AppHeader({ currentPage, setCurrentPage }) {
                               </div>
                             </ul>
                           </li>
-                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/">IT services</a></li>
+                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/" onClick={closeMobileMenu}>IT services</a></li>
                           <li className="pe-2 ps-5">
                             <a
                               href="#/on-boarding"
-                              onClick={navToOnboarding}
+                              onClick={(e) => { navToOnboarding(e); closeMobileMenu(); }}
                               className={currentPage === 'onboarding' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}
                             >
@@ -319,7 +358,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
                             </a>
                           </li>
                           <li className="pe-2 ps-5">
-                            <a href="/assets/broucher/nationwide program Brouchure.pdf" download="nationwide program Brouchure.pdf" className="eBtn gradient download-brochure-btn" style={{ padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: 'bold', color: '#fff', textDecoration: 'none', display: 'inline-block' }}>
+                            <a href="/assets/broucher/nationwide program Brouchure.pdf" download="nationwide program Brouchure.pdf" onClick={closeMobileMenu} className="eBtn gradient download-brochure-btn" style={{ padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: 'bold', color: '#fff', textDecoration: 'none', display: 'inline-block' }}>
                               Download Brochure
                             </a>
                           </li>

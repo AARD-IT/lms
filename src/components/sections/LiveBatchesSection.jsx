@@ -179,8 +179,11 @@ export default function LiveBatchesSection() {
       <div className="container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 style={{ fontFamily: "'Libre', serif", fontWeight: 700, fontSize: '60px', lineHeight: '65px', color: '#000', marginBottom: '12px' }}>
-            Our <br /><span style={{ color: '#0377EF', fontStyle: 'italic' }}>Program Modules</span>
+          <h2 className="text-[32px] md:text-[48px] leading-[24px] md:leading-[56px] font-semibold text-black mb-8 md:mb-8 font-['Libre']">
+            Our <br />
+            <span className="text-[#0377ef] font-['Libre']">
+              Program Modules
+            </span>
           </h2>
           <p style={{ color: '#000', fontSize: '19px', fontFamily: "'Helvetica', sans-serif", fontWeight: 400 }}>
             Nationwide Data Analytics &amp; GenAI Industrial Program

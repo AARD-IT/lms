@@ -5,6 +5,54 @@ const AUTO_OPEN_DELAY = 1000
 export default function ConsultationPopup() {
   const [open, setOpen] = useState(false)
   const [bannerVisible, setBannerVisible] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState(null)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsSubmitting(true)
+    setSubmitMessage(null)
+
+    const form = e.target
+    const formData = new FormData(form)
+
+    const countryCode = formData.get('country_code') || ''
+    const rawPhone = formData.get('phone') || ''
+    const phone = `${countryCode} ${rawPhone}`.trim()
+
+    const payload = {
+      name: formData.get('name') || '',
+      email: formData.get('email') || '',
+      phone: phone,
+      status: formData.get('status') || '',
+      designation: formData.get('designation') || '',
+      location: formData.get('location') || '',
+      alternativeNumber: formData.get('alternative_number') || '',
+      briefProfileSummary: formData.get('profile_summary') || ''
+    }
+
+    const scriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyMp9Ar8Py1Vjp8j1rO-hqiyiV6ZUiqJTbaK8ysjc5qvuN_N1TNqnRcuu2ZJUX_gGM5FA/exec'
+
+    try {
+      await fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+
+      setSubmitMessage({ type: 'success', text: 'Thank you! Your consultation has been booked successfully.' })
+      form.reset()
+    } catch (error) {
+      console.error('Error submitting form to Apps Script:', error)
+      setSubmitMessage({ type: 'error', text: 'Something went wrong. Please try again.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     const t = setTimeout(() => setOpen(true), AUTO_OPEN_DELAY)
@@ -56,26 +104,26 @@ export default function ConsultationPopup() {
   }, [bannerVisible])
 
   const countryCodes = [
-    '+91','+1','+7','+20','+27','+30','+31','+32','+33','+34','+36','+39',
-    '+40','+41','+43','+44','+45','+46','+47','+48','+49','+51','+52','+53',
-    '+54','+55','+56','+57','+58','+60','+61','+62','+63','+64','+65','+66',
-    '+81','+82','+84','+86','+90','+92','+93','+94','+95','+98',
-    '+211','+212','+213','+216','+218','+220','+221','+222','+223','+224',
-    '+225','+226','+227','+228','+229','+230','+231','+232','+233','+234',
-    '+235','+236','+237','+238','+239','+240','+241','+242','+243','+244',
-    '+245','+248','+249','+250','+251','+252','+253','+254','+255','+256',
-    '+257','+258','+260','+261','+262','+263','+264','+265','+266','+267',
-    '+268','+269','+290','+291','+297','+298','+299','+350','+351','+352',
-    '+353','+354','+355','+356','+357','+358','+359','+370','+371','+372',
-    '+373','+374','+375','+376','+377','+378','+380','+381','+382','+383',
-    '+385','+386','+387','+389','+420','+421','+423','+500','+501','+502',
-    '+503','+504','+505','+506','+507','+508','+509','+590','+591','+592',
-    '+593','+594','+595','+596','+597','+598','+599','+670','+672','+673',
-    '+674','+675','+676','+677','+678','+679','+680','+681','+682','+683',
-    '+685','+686','+687','+688','+689','+690','+691','+692','+850','+852',
-    '+853','+855','+856','+880','+886','+960','+961','+962','+963','+964',
-    '+965','+966','+967','+968','+970','+971','+972','+973','+974','+975',
-    '+976','+977','+992','+993','+994','+995','+996','+998',
+    '+91', '+1', '+7', '+20', '+27', '+30', '+31', '+32', '+33', '+34', '+36', '+39',
+    '+40', '+41', '+43', '+44', '+45', '+46', '+47', '+48', '+49', '+51', '+52', '+53',
+    '+54', '+55', '+56', '+57', '+58', '+60', '+61', '+62', '+63', '+64', '+65', '+66',
+    '+81', '+82', '+84', '+86', '+90', '+92', '+93', '+94', '+95', '+98',
+    '+211', '+212', '+213', '+216', '+218', '+220', '+221', '+222', '+223', '+224',
+    '+225', '+226', '+227', '+228', '+229', '+230', '+231', '+232', '+233', '+234',
+    '+235', '+236', '+237', '+238', '+239', '+240', '+241', '+242', '+243', '+244',
+    '+245', '+248', '+249', '+250', '+251', '+252', '+253', '+254', '+255', '+256',
+    '+257', '+258', '+260', '+261', '+262', '+263', '+264', '+265', '+266', '+267',
+    '+268', '+269', '+290', '+291', '+297', '+298', '+299', '+350', '+351', '+352',
+    '+353', '+354', '+355', '+356', '+357', '+358', '+359', '+370', '+371', '+372',
+    '+373', '+374', '+375', '+376', '+377', '+378', '+380', '+381', '+382', '+383',
+    '+385', '+386', '+387', '+389', '+420', '+421', '+423', '+500', '+501', '+502',
+    '+503', '+504', '+505', '+506', '+507', '+508', '+509', '+590', '+591', '+592',
+    '+593', '+594', '+595', '+596', '+597', '+598', '+599', '+670', '+672', '+673',
+    '+674', '+675', '+676', '+677', '+678', '+679', '+680', '+681', '+682', '+683',
+    '+685', '+686', '+687', '+688', '+689', '+690', '+691', '+692', '+850', '+852',
+    '+853', '+855', '+856', '+880', '+886', '+960', '+961', '+962', '+963', '+964',
+    '+965', '+966', '+967', '+968', '+970', '+971', '+972', '+973', '+974', '+975',
+    '+976', '+977', '+992', '+993', '+994', '+995', '+996', '+998',
   ]
 
   const highlights = [
@@ -498,7 +546,7 @@ export default function ConsultationPopup() {
           <button className="cp-close close-x" type="button" aria-label="Close" onClick={handleClose}>
             ✕
           </button>
-          
+
           <button className="cp-mobile-close" type="button" onClick={handleClose}>
             ✕ Close
           </button>
@@ -532,7 +580,7 @@ export default function ConsultationPopup() {
               <form
                 id="consultation-form"
                 className="consultation-form"
-                data-action="https://analyticsavenue.in/consultation/store"
+                onSubmit={handleSubmit}
               >
                 <div className="cp-form-grid">
                   {/* Name */}
@@ -599,13 +647,19 @@ export default function ConsultationPopup() {
 
                   {/* Submit */}
                   <div className="cp-field full">
-                    <button className="cp-submit" type="submit">
-                      📅 Book 1-1 Consultation — It's Free
+                    <button className="cp-submit" type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? 'Submitting...' : '📅 Book 1-1 Consultation — It\'s Free'}
                     </button>
                   </div>
                 </div>
               </form>
-              <div id="form-message" />
+              <div id="form-message">
+                {submitMessage && (
+                  <p style={{ color: submitMessage.type === 'success' ? 'green' : 'red', margin: '10px 0 0', fontWeight: 'bold', textAlign: 'center' }}>
+                    {submitMessage.text}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -47,14 +47,19 @@ export default function POCsSection() {
           margin-bottom: 40px;
         }
         .poc-main-heading {
-          font-family: 'Helvetica', sans-serif;
-          font-weight: 800;
-          font-size: 36px;
-          line-height: 1.35;
-          color: #0f172a;
+           font-family: 'Libre', serif;
+           font-weight: 600;
+           font-size: 48px;
+           
+           color: #000;
+           text-align: center;
+           position: relative;
+           margin: 0;
         }
         .poc-main-heading span {
-          color: #0377EF;
+           font-family: 'Libre';
+           font-weight: 700;
+           color: #0377EF;
         }
         /* Slideshow Container */
         .poc-slideshow-wrapper {

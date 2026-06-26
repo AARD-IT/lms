@@ -654,7 +654,7 @@ export default function PodcastPage({ onNavigateHome }) {
                   <line x1="8" y1="2" x2="8" y2="6"/>
                   <line x1="3" y1="10" x2="21" y2="10"/>
                 </svg>
-                Book 1:1 Consultation
+                Connect to Senior Data Scientist
               </a>
               <p style={{
                 fontFamily: "'Helvetica', sans-serif",
@@ -662,7 +662,7 @@ export default function PodcastPage({ onNavigateHome }) {
                 color: '#94a3b8',
                 marginTop: '8px',
                 marginBottom: 0,
-              }}>Free · Direct session with our Chief Data Scientist</p>
+              }}>Direct session with our Chief Data Scientist</p>
             </div>
           </div>
         </main>
