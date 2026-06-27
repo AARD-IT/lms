@@ -153,6 +153,11 @@ export default function InternshipPage({ onNavigateHome }) {
     formRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const scrollToJourney = (e) => {
+    e.preventDefault()
+    document.getElementById('journey-section')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   const handleChooseTrack = (trackTitle, e) => {
     e.preventDefault()
     setFormData(prev => ({ ...prev, track: trackTitle }))
@@ -170,10 +175,57 @@ export default function InternshipPage({ onNavigateHome }) {
     track: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setIsSubmitting(true)
+    setSubmitError(null)
+
+    const scriptUrl = import.meta.env.VITE_INTERNSHIP_APPS_SCRIPT_URL
+
+    if (!scriptUrl) {
+      setSubmitError('Configuration error: Submission URL is missing.')
+      setIsSubmitting(false)
+      return
+    }
+
+    try {
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (!response.ok) {
+        throw new Error(`Server returned status ${response.status}`)
+      }
+
+      const result = await response.json()
+      if (result.success) {
+        setSubmitted(true)
+        // Reset form data on success
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          university: '',
+          degreeYear: '',
+          track: ''
+        })
+      } else {
+        setSubmitError(result.error || 'Failed to submit application. Please try again.')
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err)
+      setSubmitError('Unable to connect to server. Please check your internet connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   /* FAQ Accordion State */
@@ -415,7 +467,7 @@ export default function InternshipPage({ onNavigateHome }) {
                     Claim your seat
                     <ArrowRight width="16" height="16" />
                   </a>
-                  <a href="#program" className="ip-btn-secondary">
+                  <a href="#journey-section" onClick={scrollToJourney} className="ip-btn-secondary">
                     See what you'll build
                     <ChevronDown width="16" height="16" />
                   </a>
@@ -744,7 +796,7 @@ export default function InternshipPage({ onNavigateHome }) {
       </Section>
 
       {/* ── SECTION 8: 8 WEEK JOURNEY ── */}
-      <Section className="ip-journey-section">
+      <Section id="journey-section" className="ip-journey-section">
         <div className="ip-journey-container">
           <div className="ip-journey-header">
             <span className="ip-journey-eyebrow">8-WEEK JOURNEY</span>
@@ -1034,13 +1086,28 @@ export default function InternshipPage({ onNavigateHome }) {
                     </div>
                   </div>
 
+                  {submitError && (
+                    <div className="ip-form-error">
+                      {submitError}
+                    </div>
+                  )}
+
                   <motion.button
                     type="submit"
                     className="ip-form-submit-btn"
-                    whileHover={{ y: -2, boxShadow: "0 8px 30px rgba(3, 119, 239, 0.4)" }}
-                    whileTap={{ scale: 0.98 }}
+                    disabled={isSubmitting}
+                    whileHover={!isSubmitting ? { y: -2, boxShadow: "0 8px 30px rgba(3, 119, 239, 0.4)" } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                    style={isSubmitting ? { opacity: 0.8, cursor: 'not-allowed', display: 'flex', alignItems: 'center', justifyContent: 'center' } : {}}
                   >
-                    Submit Application
+                    {isSubmitting ? (
+                      <>
+                        <span className="ip-submit-spinner" />
+                        Submitting...
+                      </>
+                    ) : (
+                      'Submit Application'
+                    )}
                   </motion.button>
 
                   <p className="ip-form-disclosure">

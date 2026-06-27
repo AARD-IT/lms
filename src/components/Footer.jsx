@@ -17,17 +17,17 @@ export default function Footer() {
                 <h4 className="socialnane">Social</h4>
                 <ul className="f-socials d-flex">
                   <li>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/company/analytics-avenue-and-advanced-analytics/" target="_blank" rel="noopener noreferrer">
                       <img src="/assets/socialmedia/linkedin.svg" alt="LinkedIn" className="footer-social-svg" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/subu_datascientist/" target="_blank" rel="noopener noreferrer">
                       <img src="/assets/socialmedia/instagram.svg" alt="Instagram" className="footer-social-svg" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://wa.me/917835901173" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/917550279838" target="_blank" rel="noopener noreferrer">
                       <img src="/assets/socialmedia/whatsapp.svg" alt="WhatsApp" className="footer-social-svg" />
                     </a>
                   </li>

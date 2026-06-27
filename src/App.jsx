@@ -26,6 +26,7 @@ import PodcastPage from './pages/PodcastPage'
 import FloatingSocials from './components/FloatingSocials'
 import OnBoardingPage from './pages/OnBoardingPage'
 import InternshipPage from './pages/InternshipPage'
+import ReferralPage from './pages/ReferralPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -33,6 +34,7 @@ function App() {
     if (hash === '#/podcast') return 'podcast'
     if (hash === '#/on-boarding') return 'onboarding'
     if (hash === '#/internship') return 'internship'
+    if (hash === '#/referral') return 'referral'
     return 'home'
   })
 
@@ -47,6 +49,9 @@ function App() {
     } else if (currentPage === 'internship') {
       window.history.pushState(null, '', '#/internship')
       document.title = 'Internship | Analytics Avenue'
+    } else if (currentPage === 'referral') {
+      window.history.pushState(null, '', '#/referral')
+      document.title = 'Referral Program | Analytics Avenue'
     } else {
       window.history.pushState(null, '', '#/')
       document.title = 'Analytics Avenue | LMS'
@@ -61,6 +66,7 @@ function App() {
       if (hash === '#/podcast') setCurrentPage('podcast')
       else if (hash === '#/on-boarding') setCurrentPage('onboarding')
       else if (hash === '#/internship') setCurrentPage('internship')
+      else if (hash === '#/referral') setCurrentPage('referral')
       else setCurrentPage('home')
     }
     window.addEventListener('hashchange', onHashChange)
@@ -168,6 +174,8 @@ function App() {
         <OnBoardingPage onNavigateHome={() => { setCurrentPage('home'); window.scrollTo({ top: 0 }) }} />
       ) : currentPage === 'internship' ? (
         <InternshipPage onNavigateHome={() => { setCurrentPage('home'); window.scrollTo({ top: 0 }) }} />
+      ) : currentPage === 'referral' ? (
+        <ReferralPage onNavigateHome={() => { setCurrentPage('home'); window.scrollTo({ top: 0 }) }} />
       ) : (
         <section>
           <div id="enroll-strip">
@@ -234,6 +242,10 @@ function AppHeader({ currentPage, setCurrentPage }) {
     e.preventDefault()
     setCurrentPage('internship')
   }
+  const navToReferral = (e) => {
+    e.preventDefault()
+    setCurrentPage('referral')
+  }
 
   return (
     <>
@@ -266,6 +278,36 @@ function AppHeader({ currentPage, setCurrentPage }) {
           .thelivecllassinnrebtns{margin-bottom:10px;}
           section.pocsss.themediaspotlights.honorssprograaamss{padding-top:30px;}
           .thelmsloginns{display:flex!important;}
+          
+          /* Mobile styles for active Payment dropdown */
+          li.have-mega-menu ul.mega-dropdown-menu.mega.main-mega-menu {
+            display: none !important;
+          }
+          li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            top: 0px !important;
+            position: relative !important;
+            box-shadow: none !important;
+            padding: 10px 0px !important;
+            width: 100% !important;
+            background: #f8fafc !important;
+            border-radius: 8px !important;
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
+          }
+          li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu .thecompleletelmms a {
+            white-space: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            padding: 8px 12px !important;
+            width: 100% !important;
+            font-size: 14px !important;
+          }
+          li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu .thefittpaymments li {
+            width: 100% !important;
+          }
         }
         /* Podcast nav active state */
         .podcast-nav-active { color: #0377EF !important; font-weight: 700 !important; }
@@ -306,7 +348,16 @@ function AppHeader({ currentPage, setCurrentPage }) {
                               Podcast
                             </a>
                           </li>
-                          <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass" onClick={closeMobileMenu}>Referral</a></li>
+                          <li className="pe-2 ps-5">
+                            <a
+                              href="#/referral"
+                              onClick={(e) => { navToReferral(e); closeMobileMenu(); }}
+                              className={currentPage === 'referral' ? 'podcast-nav-active' : ''}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              Referral
+                            </a>
+                          </li>
                           <li className="pe-2 ps-5">
                             <a
                               href="#/internship"

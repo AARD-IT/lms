@@ -27,7 +27,7 @@ export default function FloatingSocials() {
     <>
       {/* LinkedIn */}
       <a
-        href="https://linkedin.com"
+        href="https://www.linkedin.com/company/analytics-avenue-and-advanced-analytics/"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed right-[16px] md:right-[20px] z-[9999] flex items-center justify-center gap-[10px] bg-[#0077B5] hover:bg-[#006399] text-white font-medium px-[20px] py-[12px] rounded-[50px] shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-xl transition-all duration-300 focus:outline-none group w-[56px] h-[56px] md:w-auto md:h-auto"
@@ -42,7 +42,7 @@ export default function FloatingSocials() {
 
       {/* Instagram */}
       <a
-        href="https://instagram.com"
+        href="https://www.instagram.com/subu_datascientist/"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed right-[16px] md:right-[20px] z-[9999] flex items-center justify-center gap-[10px] text-white font-medium px-[20px] py-[12px] rounded-[50px] shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-xl transition-all duration-300 focus:outline-none group w-[56px] h-[56px] md:w-auto md:h-auto"
@@ -66,7 +66,7 @@ export default function FloatingSocials() {
 
       {/* WhatsApp */}
       <a
-        href="https://wa.me/917835901173"
+        href="https://wa.me/917550279838"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed right-[16px] md:right-[20px] z-[9999] flex items-center justify-center gap-[10px] bg-[#25D366] hover:bg-[#20BA5A] text-white font-medium px-[20px] py-[12px] rounded-[50px] shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-xl transition-all duration-300 focus:outline-none group w-[56px] h-[56px] md:w-auto md:h-auto"

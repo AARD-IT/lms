@@ -44,6 +44,36 @@ export default function Header() {
           .thelivecllassinnrebtns{margin-bottom:10px;}
           section.pocsss.themediaspotlights.honorssprograaamss{padding-top:30px;}
           .thelmsloginns{display:flex!important;}
+          
+          /* Mobile styles for active Payment dropdown */
+          li.have-mega-menu ul.mega-dropdown-menu.mega.main-mega-menu {
+            display: none !important;
+          }
+          li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            top: 0px !important;
+            position: relative !important;
+            box-shadow: none !important;
+            padding: 10px 0px !important;
+            width: 100% !important;
+            background: #f8fafc !important;
+            border-radius: 8px !important;
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
+          }
+          li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu .thecompleletelmms a {
+            white-space: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            padding: 8px 12px !important;
+            width: 100% !important;
+            font-size: 14px !important;
+          }
+          li.have-mega-menu.active ul.mega-dropdown-menu.mega.main-mega-menu .thefittpaymments li {
+            width: 100% !important;
+          }
         }
       `}</style>
 

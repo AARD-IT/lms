@@ -1869,6 +1869,36 @@
   line-height: 1.4;
 }
 
+/* Spinner and error message styles for submission */
+@keyframes ip-spinner {
+  to { transform: rotate(360deg); }
+}
+
+.ip-submit-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--ip-white);
+  animation: ip-spinner 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.ip-form-error {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-radius: var(--ip-radius-sm);
+  padding: 12px 16px;
+  font-size: 14.5px;
+  font-family: var(--ip-font);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
 .ip-form-success {
   text-align: center;
   padding: 40px 0;
