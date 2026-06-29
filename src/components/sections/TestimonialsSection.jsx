@@ -97,12 +97,12 @@ export default function TestimonialsSection() {
               <div className="theheadrfrommcollssnums">
                 <div className="testimonials-stats-grid">
                   {[
-                    { figure: '2000+', heading: 'Personal & Professional',    desc: 'Consultations by Our Data Scientists Panel' },
-                    { figure: '100+',  heading: 'High-Performance ML Models', desc: 'Production-ready, highly accurate models' },
-                    { figure: '15+',   heading: 'Smart AI Automation',        desc: 'Streamline and automate workflows' },
-                    { figure: '1000+', heading: 'Empowering Rural Talent',    desc: 'Empowered with Data Analytics Skills' },
-                    { figure: '500+',  heading: 'Nationwide Professionals',   desc: 'Industry-ready projects for careers' },
-                    { figure: '50+',   heading: 'Guest Lectures and MOUs',    desc: 'Bridging academia with industry excellence' },
+                    { figure: '2000+', heading: 'Personal & Professional', desc: 'Consultations by Our Data Scientists Panel' },
+                    { figure: '100+', heading: 'High-Performance ML Models', desc: 'Production-ready, highly accurate models' },
+                    { figure: '15+', heading: 'Smart AI Automation', desc: 'Streamline and automate workflows' },
+                    { figure: '1000+', heading: 'Empowering Rural Talent', desc: 'Empowered with Data Analytics Skills' },
+                    { figure: '500+', heading: 'Nationwide Professionals', desc: 'Industry-ready projects for careers' },
+                    { figure: '50+', heading: 'Guest Lectures and MOUs', desc: 'Bridging academia with industry excellence' },
                   ].map((stat, i) => (
                     <div
                       key={i}

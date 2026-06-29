@@ -24,7 +24,7 @@ const STEP_INTERVAL = 3000; // ms between advances
 const DESKTOP_POSITIONS = [
   { x: -420, y: 20 },   // P1 – bottom-left
   { x: -310, y: -190 }, // P2 – top-left
-  { x: 0,   y: -290 }, // P3 – top-center
+  { x: 0, y: -290 }, // P3 – top-center
   { x: 310, y: -190 }, // P4 – top-right
   { x: 420, y: 20 },   // P5 – bottom-right
 ];
@@ -32,7 +32,7 @@ const DESKTOP_POSITIONS = [
 const TABLET_POSITIONS = [
   { x: -300, y: 20 },
   { x: -220, y: -150 },
-  { x: 0,   y: -220 },
+  { x: 0, y: -220 },
   { x: 220, y: -150 },
   { x: 300, y: 20 },
 ];

@@ -226,7 +226,7 @@ export default function LiveBatchesSection() {
                   <button
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`live-batches-tab-btn ${isActive ? 'active' : ''}`}
+                    className={`live-batches-tab-btn ${isActive ? 'active' : ''} ${tab.id === 'sql' ? 'mysql-tab-btn' : ''}`}
                   >
                     <img src={tab.icon} alt={tab.label} />
                     {tab.id === 'genai' && <span>{tab.label}</span>}

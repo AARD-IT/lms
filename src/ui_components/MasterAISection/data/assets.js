@@ -5,6 +5,17 @@ export const ASSETS = {
   ecommerce: '/assets/masteringai/ecommerce_illustration.png',
   manufacturing_illustration: '/assets/masteringai/manufacturing_illustration.png',
 
+  // New specific sector main images
+  manufacturing_main: '/assets/masteringai/Manufacturing.png',
+  telecommunication_main: '/assets/masteringai/Telecommunication.jpg',
+  ev_battery_main: '/assets/masteringai/EV & Battery.png',
+  ecommerce_main: '/assets/masteringai/E-commerce.png',
+  supply_chain_main: '/assets/masteringai/Supply Chain.jpg',
+  telemetry_main: '/assets/masteringai/Telemetry.jpg',
+  healthcare_main: '/assets/masteringai/Healthcare.png',
+  automobile_main: '/assets/masteringai/Automobile.png',
+  it_services_main: '/assets/masteringai/IT Services.jpg',
+
   // Manufacturing
   manufacturing1: '/assets/masteringai/manufacturing/Reliance Industries.svg',
   manufacturing2: '/assets/masteringai/manufacturing/tata.svg',

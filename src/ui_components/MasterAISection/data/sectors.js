@@ -10,7 +10,7 @@ export const sectors = [{
 E-commerce is a highly data-driven sector focused on digital buying, selling, and fulfillment at massive scale projected to cross <b>$200B</b> by 2027, companies are aggressively adopting Agentic AI for <b>personalization, demand forecasting, pricing optimization, and autonomous customer engagement.</b> 
 The demand for data analytics and AI experts is accelerating as businesses compete on <b>customer experience, real-time insights, and operational efficiency.</b> 
 This is a high-urgency domain where data intelligence directly translates into revenue growth and competitive advantage.`,
-                sideImage: ASSETS.ecommmercemains,
+                sideImage: ASSETS.ecommerce_main,
                 roles: [{
                         name: "Flipkart",
                         img: ASSETS.ecommerceee1
@@ -62,7 +62,7 @@ This is a high-urgency domain where data intelligence directly translates into r
 The global supply chain analytics market is expected to exceed <b>$30B by 2030,</b> driven by the need for resilience and visibility.
 Agentic AI enables autonomous routing, inventory optimization, and disruption prediction. 
 There is a strong and growing need for analytics professionals who can reduce costs, improve service levels, and build intelligent, self-optimizing logistics ecosystems.`,
-                sideImage: ASSETS.healthcare,
+                sideImage: ASSETS.supply_chain_main,
                 roles: [{
                         name: "Blue Dart Express",
                         img: ASSETS.suppluchainss1
@@ -114,7 +114,7 @@ There is a strong and growing need for analytics professionals who can reduce co
             With over <b>25B</b> connected devices expected by <b>2030,</b> telemetry analytics is becoming a backbone of modern systems.
             Agentic AI is essential for <b>anomaly detection, predictive alerts, and autonomous response systems.</b>
             The scope for data analytics experts is vast, as real-time intelligence and automation are now business-critical rather than optional  `,
-                sideImage: ASSETS.telecom,
+                sideImage: ASSETS.telemetry_main,
                 roles: [{
                         name: "Reliance Jio",
                         img: ASSETS.telecomunicationss1
@@ -161,7 +161,7 @@ The healthcare analytics market is projected to surpass </b>$50B by 2028</b> due
 Agentic AI supports diagnostics, patient monitoring, workflow automation, and personalized treatment paths.
 There is an urgent need for skilled analytics professionals who can apply AI responsibly to <b>save lives, reduce costs, and enhance care delivery.</b>
 `,
-                sideImage: ASSETS.healthcare,
+                sideImage: ASSETS.healthcare_main,
                 roles: [{
                         name: "Apollo Hospitals",
                         img: ASSETS.healthcareess1
@@ -215,7 +215,7 @@ The automobile sector spans <b>manufacturing, connected vehicles, and emerging m
  Automotive analytics is expected to reach <b>$40B+ by 2030,</b> driven by electric, connected, and autonomous vehicles.
  Agentic AI enables <b>predictive maintenance, quality analytics, and intelligent production planning.</b>
  Data analytics expertise is in high demand to support smart mobility, safety, and next-generation vehicle intelligence.`,
-                sideImage: ASSETS.telecom,
+                sideImage: ASSETS.automobile_main,
                 roles: [{
                         name: "Tata Motors",
                         img: ASSETS.automobilesss1
@@ -266,7 +266,7 @@ The automobile sector spans <b>manufacturing, connected vehicles, and emerging m
                 desc: `IT services organizations drive digital transformation across industries using technology and data. AI and analytics services are growing at over 20% CAGR, becoming core revenue drivers for IT firms. 
             Agentic AI automates DevOps, service delivery, security operations, and intelligent client solutions. 
             There is massive scope and demand for analytics professionals who can design, deploy, and scale AI-driven services.`,
-                sideImage: ASSETS.telecom,
+                sideImage: ASSETS.it_services_main,
                 roles: [{
                         name: "Tata Consultancy Services (TCS)",
                         img: ASSETS.itservicesss1
@@ -322,7 +322,7 @@ The automobile sector spans <b>manufacturing, connected vehicles, and emerging m
   The urgency to adopt analytics is high, as manufacturers seek automation, cost reduction, and data-driven decision-making.
 
 `,
-                sideImage: ASSETS.manufacturing_illustration,
+                sideImage: ASSETS.manufacturing_main,
                 roles: [{
                         name: "Reliance Industries",
                         img: ASSETS.manufacturing1
@@ -375,7 +375,7 @@ The automobile sector spans <b>manufacturing, connected vehicles, and emerging m
             The telecom analytics market is expected to exceed <b>$20B by 2028, fueled by 5G</b> and real-time services.
             Agentic AI enables network <b>optimization, churn prediction, fault detection, and self-healing systems.</b>
              Analytics expertise is urgently required to build intelligent, autonomous, and customer-centric networks.`,
-                sideImage: ASSETS.telecom,
+                sideImage: ASSETS.telecommunication_main,
                 roles: [{
                         name: "Reliance Jio",
                         img: ASSETS.telecomunicationss1
@@ -419,7 +419,7 @@ The automobile sector spans <b>manufacturing, connected vehicles, and emerging m
             The EV analytics and AI market is projected to exceed </b>$50B by 2030.</b>
             Agentic AI is used for battery <b>health prediction, charging optimization, lifecycle management, and fleet intelligence.</b>
             There is a fast-growing demand for data analytics experts who can power innovation, safety, and scalability in clean energy systems. `,
-                sideImage: ASSETS.telecom,
+                sideImage: ASSETS.ev_battery_main,
                 roles: [{
                         name: "Tata Power (EV Solutions)",
                         img: ASSETS.evandbatterieess1

@@ -14,7 +14,6 @@ export default function Footer() {
                 clients and professionals to deliver measurable, data-driven outcomes..
               </p>
               <div className="thesocialss">
-                <h4 className="socialnane">Social</h4>
                 <ul className="f-socials d-flex">
                   <li>
                     <a href="https://www.linkedin.com/company/analytics-avenue-and-advanced-analytics/" target="_blank" rel="noopener noreferrer">

@@ -87,7 +87,7 @@
   font-family: 'Helvetica', sans-serif;
   font-weight: 600;
   transition: all 0.2s ease;
-  height: 48px; /* Consistent height for tabs */
+  min-height: 48px; /* Consistent height for tabs */
 }
 
 /* Active tab style */
@@ -109,6 +109,15 @@
   width: auto;
   max-width: 100px;
   object-fit: contain;
+}
+
+.live-batches-tab-btn.mysql-tab-btn img {
+  height: 40px;
+  max-width: 140px;
+}
+
+.live-batches-tab-btn.mysql-tab-btn {
+  padding: 4px 14px;
 }
 
 /* Specific filter for SVG colors when active/inactive if needed */
@@ -149,6 +158,6 @@
   }
 
   .live-batches-tab-btn {
-    height: 52px;
+    min-height: 52px;
   }
 }
