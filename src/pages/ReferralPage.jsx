@@ -29,6 +29,7 @@ import {
   MessageCircle,
   Link,
   Shield,
+  Lock,
   GraduationCap,
   Trophy,
   Zap,
@@ -527,16 +528,34 @@ export default function ReferralPage({ onNavigateHome }) {
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
                 <div className="rp-reward-card-glow" />
-                <div className="rp-reward-header">
-                  <div className="rp-reward-icon-box">
-                    <Share2 size={24} />
+                <div className="rp-reward-card-top">
+                  <div className="rp-reward-logo-container">
+                    <div className="rp-reward-logo-circle">
+                      <img src="/assets/logo/logo.svg" alt="Logo" className="rp-reward-logo-img" />
+                    </div>
+                    <div className="rp-reward-discount-tag">15% OFF</div>
                   </div>
-                  <div className="rp-reward-badge">15%</div>
                 </div>
-                <h3 className="rp-reward-milestone">1 Successful Referral</h3>
-                <p className="rp-reward-desc">
-                  Earn your first referral reward after one successful enrollment.
-                </p>
+                <div className="rp-reward-card-bottom">
+                  <h3 className="rp-reward-title">Analytics Avenue Coupon</h3>
+                  <p className="rp-reward-subtitle">15% OFF Analytics Avenue Coupon</p>
+                  <div className="rp-reward-footer">
+                    <div className="rp-reward-referrals">
+                      <span className="rp-reward-ref-count">1</span>
+                      <span className="rp-reward-ref-label">Verified Referral</span>
+                    </div>
+                    <button
+                      className="rp-reward-redeem-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('referral-form')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <Lock size={15} />
+                      <span>Redeem</span>
+                    </button>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Card 2: Silver */}
@@ -548,16 +567,34 @@ export default function ReferralPage({ onNavigateHome }) {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <div className="rp-reward-card-glow" />
-                <div className="rp-reward-header">
-                  <div className="rp-reward-icon-box">
-                    <Users size={24} />
+                <div className="rp-reward-card-top">
+                  <div className="rp-reward-logo-container">
+                    <div className="rp-reward-logo-circle">
+                      <img src="/assets/logo/logo.svg" alt="Logo" className="rp-reward-logo-img" />
+                    </div>
+                    <div className="rp-reward-discount-tag">25% OFF</div>
                   </div>
-                  <div className="rp-reward-badge">25%</div>
                 </div>
-                <h3 className="rp-reward-milestone">2 Successful Referrals</h3>
-                <p className="rp-reward-desc">
-                  Unlock higher rewards as you bring more learners.
-                </p>
+                <div className="rp-reward-card-bottom">
+                  <h3 className="rp-reward-title">Analytics Avenue Coupon</h3>
+                  <p className="rp-reward-subtitle">25% OFF Analytics Avenue Coupon</p>
+                  <div className="rp-reward-footer">
+                    <div className="rp-reward-referrals">
+                      <span className="rp-reward-ref-count">2</span>
+                      <span className="rp-reward-ref-label">Verified Referrals</span>
+                    </div>
+                    <button
+                      className="rp-reward-redeem-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('referral-form')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <Lock size={15} />
+                      <span>Redeem</span>
+                    </button>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Card 3: Gold */}
@@ -569,16 +606,34 @@ export default function ReferralPage({ onNavigateHome }) {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <div className="rp-reward-card-glow" />
-                <div className="rp-reward-header">
-                  <div className="rp-reward-icon-box">
-                    <Coins size={24} />
+                <div className="rp-reward-card-top">
+                  <div className="rp-reward-logo-container">
+                    <div className="rp-reward-logo-circle">
+                      <img src="/assets/logo/logo.svg" alt="Logo" className="rp-reward-logo-img" />
+                    </div>
+                    <div className="rp-reward-discount-tag">50% OFF</div>
                   </div>
-                  <div className="rp-reward-badge">50%</div>
                 </div>
-                <h3 className="rp-reward-milestone">3 Successful Referrals</h3>
-                <p className="rp-reward-desc">
-                  Help more learners and receive even greater referral benefits.
-                </p>
+                <div className="rp-reward-card-bottom">
+                  <h3 className="rp-reward-title">Analytics Avenue Coupon</h3>
+                  <p className="rp-reward-subtitle">50% OFF Analytics Avenue Coupon</p>
+                  <div className="rp-reward-footer">
+                    <div className="rp-reward-referrals">
+                      <span className="rp-reward-ref-count">3</span>
+                      <span className="rp-reward-ref-label">Verified Referrals</span>
+                    </div>
+                    <button
+                      className="rp-reward-redeem-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('referral-form')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <Lock size={15} />
+                      <span>Redeem</span>
+                    </button>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Card 4: Platinum */}
@@ -590,22 +645,40 @@ export default function ReferralPage({ onNavigateHome }) {
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <div className="rp-reward-card-glow" />
-                <div className="rp-reward-header">
-                  <div className="rp-reward-icon-box">
-                    <Award size={24} />
+                <div className="rp-reward-card-top">
+                  <div className="rp-reward-logo-container">
+                    <div className="rp-reward-logo-circle">
+                      <img src="/assets/logo/logo.svg" alt="Logo" className="rp-reward-logo-img" />
+                    </div>
+                    <div className="rp-reward-discount-tag">75% OFF</div>
                   </div>
-                  <div className="rp-reward-badge">75%</div>
                 </div>
-                <h3 className="rp-reward-milestone">5 Successful Referrals</h3>
-                <p className="rp-reward-desc">
-                  Reach the highest milestone and maximize your referral rewards.
-                </p>
+                <div className="rp-reward-card-bottom">
+                  <h3 className="rp-reward-title">Analytics Avenue Coupon</h3>
+                  <p className="rp-reward-subtitle">75% OFF Analytics Avenue Coupon</p>
+                  <div className="rp-reward-footer">
+                    <div className="rp-reward-referrals">
+                      <span className="rp-reward-ref-count">5</span>
+                      <span className="rp-reward-ref-label">Verified Referrals</span>
+                    </div>
+                    <button
+                      className="rp-reward-redeem-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('referral-form')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <Lock size={15} />
+                      <span>Redeem</span>
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
 
           <div className="rp-rewards-disclaimer">
-            Rewards are processed only after the referred learner successfully enrolls in the program and the enrollment is verified by the <strong>Analytics Avenue</strong>.
+            Rewards are processed only after the referred learner successfully enrolls in the program and the enrollment is verified by the <a href="https://analyticsavenue.in/" target="_blank" rel="noopener noreferrer" className="rp-disclaimer-link"><strong>Analytics Avenue</strong></a>.
           </div>
         </div>
       </section>

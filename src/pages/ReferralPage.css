@@ -512,18 +512,12 @@
 
 /* Horizontal Connector Line for Milestones */
 .rp-rewards-progress-line {
-  position: absolute;
-  top: 60px;
-  left: 10%;
-  right: 10%;
-  height: 4px;
-  background: var(--rp-border);
-  z-index: 1;
+  display: none;
 }
 
 .rp-rewards-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ca8a04 0%, #475569 33%, #ca8a04 66%, #0d9488 100%);
+  background: linear-gradient(90deg, #ca8a04 0%, #64748b 33%, #ca8a04 66%, #0d9488 100%);
   width: 100%;
 }
 
@@ -535,18 +529,19 @@
   gap: 24px;
 }
 
+/* Card Container */
 .rp-reward-card {
   position: relative;
   background: var(--rp-white);
   border: 1px solid var(--rp-border);
-  border-radius: var(--rp-radius-md);
-  padding: 40px 28px;
-  box-shadow: var(--rp-shadow-sm);
+  border-radius: 20px; /* Sleek rounded corners matching reference design */
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
   transition: var(--rp-transition);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 0;
 }
 
 .rp-reward-card-glow {
@@ -558,156 +553,215 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.6s ease;
+  z-index: 1;
 }
 
 /* Theme variations for milestone classes */
 .rp-reward-card.bronze {
   border-top: 4px solid #ca8a04;
+  --milestone-theme-color: #ca8a04;
+  --milestone-theme-dark: #78350f;
 }
-
 .rp-reward-card.bronze:hover {
   border-color: rgba(202, 138, 4, 0.4);
 }
-
 .rp-reward-card.bronze .rp-reward-card-glow {
   background: radial-gradient(circle, rgba(202, 138, 4, 0.06) 0%, transparent 60%);
 }
 
 .rp-reward-card.silver {
   border-top: 4px solid #64748b;
+  --milestone-theme-color: #64748b;
+  --milestone-theme-dark: #334155;
 }
-
 .rp-reward-card.silver:hover {
   border-color: rgba(100, 116, 139, 0.4);
 }
-
 .rp-reward-card.silver .rp-reward-card-glow {
   background: radial-gradient(circle, rgba(100, 116, 139, 0.06) 0%, transparent 60%);
 }
 
 .rp-reward-card.gold {
   border-top: 4px solid #eab308;
+  --milestone-theme-color: #ca8a04;
+  --milestone-theme-dark: #854d0e;
 }
-
 .rp-reward-card.gold:hover {
   border-color: rgba(234, 179, 8, 0.4);
 }
-
 .rp-reward-card.gold .rp-reward-card-glow {
   background: radial-gradient(circle, rgba(234, 179, 8, 0.07) 0%, transparent 60%);
 }
 
 .rp-reward-card.platinum {
   border-top: 4px solid #0d9488;
+  --milestone-theme-color: #0d9488;
+  --milestone-theme-dark: #115e59;
 }
-
 .rp-reward-card.platinum:hover {
   border-color: rgba(13, 148, 136, 0.4);
 }
-
 .rp-reward-card.platinum .rp-reward-card-glow {
   background: radial-gradient(circle, rgba(13, 148, 136, 0.08) 0%, transparent 60%);
 }
 
 .rp-reward-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--rp-shadow-lg);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
 }
 
 .rp-reward-card:hover .rp-reward-card-glow {
   opacity: 1;
 }
 
-.rp-reward-header {
+/* Card Top Region */
+.rp-reward-card-top {
+  background: #f8fafc;
+  padding: 40px 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 28px;
   position: relative;
   z-index: 2;
+  border-bottom: 1px dashed rgba(226, 232, 240, 0.8);
 }
 
-.rp-reward-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--rp-radius-sm);
+/* Center Logo Badge Container */
+.rp-reward-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo Circle Container */
+.rp-reward-logo-circle {
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  box-shadow: var(--rp-shadow-sm);
+  transition: var(--rp-transition);
 }
 
-.rp-reward-card.bronze .rp-reward-icon-box {
-  background: rgba(202, 138, 4, 0.08);
-  color: #ca8a04;
+.rp-reward-logo-img,
+.rp-reward-logo-svg {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  opacity: 0.95;
 }
 
-.rp-reward-card.silver .rp-reward-icon-box {
-  background: rgba(100, 116, 139, 0.08);
-  color: #64748b;
-}
-
-.rp-reward-card.gold .rp-reward-icon-box {
-  background: rgba(234, 179, 8, 0.08);
-  color: #ca8a04;
-}
-
-.rp-reward-card.platinum .rp-reward-icon-box {
-  background: rgba(13, 148, 136, 0.08);
-  color: #0d9488;
-}
-
-.rp-reward-badge {
-  font-family: var(--rp-serif);
-  font-size: 38px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.rp-reward-card.bronze .rp-reward-badge {
-  background: var(--rp-bronze-grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.rp-reward-card.silver .rp-reward-badge {
-  background: var(--rp-silver-grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.rp-reward-card.gold .rp-reward-badge {
-  background: var(--rp-gold-grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.rp-reward-card.platinum .rp-reward-badge {
-  background: var(--rp-platinum-grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.rp-reward-milestone {
-
-  font-size: 15px;
+/* Overlapping Discount Tag */
+.rp-reward-discount-tag {
+  margin-top: 10px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--rp-dark);
+  color: #ffffff;
+  background: var(--milestone-theme-dark);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 3;
+  text-align: center;
+  min-width: 84px;
+}
+
+/* Card Bottom Region */
+.rp-reward-card-bottom {
+  background: #ffffff;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   position: relative;
   z-index: 2;
 }
 
-.rp-reward-desc {
+/* Title */
+.rp-reward-title {
+  font-size: 21px;
+  font-weight: 750;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+/* Subtitle */
+.rp-reward-subtitle {
   font-size: 14px;
-  line-height: 1.6;
-  color: var(--rp-gray-text);
-  margin: 0;
-  position: relative;
-  z-index: 2;
+  color: #64748b;
+  margin: 0 0 28px 0;
+  text-align: left;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Footer Row */
+.rp-reward-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+/* Referrals Counter Group */
+.rp-reward-referrals {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.rp-reward-ref-count {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--milestone-theme-color);
+}
+
+.rp-reward-ref-label {
+  font-size: 12px;
+  color: #475569;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Redeem Button */
+.rp-reward-redeem-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--rp-primary); /* Blue color matching the brand */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(3, 119, 239, 0.25);
+}
+
+.rp-reward-redeem-btn:hover {
+  background: var(--rp-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(3, 119, 239, 0.45);
+}
+
+.rp-disclaimer-link {
+  color: var(--rp-primary);
+  text-decoration: underline;
+  transition: var(--rp-transition);
+}
+
+.rp-disclaimer-link:hover {
+  color: var(--rp-primary-hover);
 }
 
 /* Disclaimer / Info panel */
