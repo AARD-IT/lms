@@ -531,6 +531,15 @@
   line-height: 1.25;
 }
 
+.ip-new-section-title span,
+.ip-journey-title-main span,
+.ip-form-card-title span {
+  font-family: var(--ip-serif) !important;
+  background: linear-gradient(135deg, var(--ip-blue) 0%, var(--ip-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .ip-new-section-subtitle {
   font-family: var(--ip-font);
   font-size: 18px;
@@ -1928,6 +1937,215 @@
 }
 
 /* ============================================================
+   INTERNSHIP EXPERIENCE VIDEO SECTION
+   ============================================================ */
+.ip-experience-section {
+  background: var(--ip-white);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Two-Column Top Content */
+.ip-experience-content {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.ip-experience-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 20px;
+  width: 100%;
+}
+
+.ip-experience-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(3, 119, 239, 0.08);
+  border: 1px solid rgba(3, 119, 239, 0.2);
+  color: var(--ip-blue);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.ip-experience-badge-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--ip-blue);
+  border-radius: 50%;
+  animation: ip-pulse 1.5s infinite;
+}
+
+.ip-experience-title {
+  font-family: var(--ip-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  color: var(--ip-dark);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ip-experience-title span {
+  font-family: var(--ip-serif) !important;
+  background: linear-gradient(135deg, var(--ip-blue) 0%, var(--ip-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ip-experience-desc {
+  font-family: var(--ip-font);
+  font-size: 16px;
+  color: var(--ip-gray);
+  line-height: 1.7;
+  margin: 0;
+  width: 100%;
+}
+
+.ip-experience-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.ip-experience-actions .ip-btn-primary {
+  border: none;
+  font-family: var(--ip-font);
+}
+
+.ip-experience-actions .ip-btn-secondary {
+  font-family: var(--ip-font);
+}
+
+.ip-experience-right {
+  padding-left: 20px;
+  border-left: 2px solid var(--ip-border);
+}
+
+.ip-experience-right-text {
+  font-family: var(--ip-font);
+  font-size: 15px;
+  color: var(--ip-gray);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Video Showcase Card */
+.ip-experience-video-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Optional blue gradient accent behind the lower portion of the video for depth */
+.ip-experience-video-glow {
+  position: absolute;
+  bottom: -40px;
+  left: 5%;
+  right: 5%;
+  height: 120px;
+  background: radial-gradient(circle, rgba(3, 119, 239, 0.25) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.ip-experience-video-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--ip-white);
+  border: 1px solid var(--ip-border);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 5px 15px rgba(3, 119, 239, 0.03);
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ip-experience-video-showcase:hover .ip-experience-video-card {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15), 0 10px 25px rgba(3, 119, 239, 0.06);
+}
+
+.ip-experience-video-thumbnail-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.ip-experience-video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ip-experience-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 60%, rgba(15, 23, 42, 0.4) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.ip-experience-video-showcase:hover .ip-experience-video-overlay {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.4) 100%);
+}
+
+.ip-experience-play-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--ip-white);
+  color: var(--ip-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(3, 119, 239, 0.3), 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 3;
+}
+
+.ip-experience-play-button .ip-play-icon {
+  transform: translateX(2px);
+  transition: transform 0.3s ease;
+}
+
+.ip-experience-video-showcase:hover .ip-experience-play-button {
+  transform: scale(1.1);
+  background: var(--ip-blue);
+  color: var(--ip-white);
+  box-shadow: 0 15px 40px rgba(3, 119, 239, 0.5);
+}
+
+.ip-experience-video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ============================================================
    RESPONSIVE – TABLET (max 1024px)
    ============================================================ */
 @media (max-width: 1024px) {
@@ -2002,6 +2220,21 @@
   .ip-journey-step-card {
     padding: 24px;
     gap: 16px;
+  }
+  /* Video Section Tablet overrides */
+  .ip-experience-section {
+    padding: 100px 0;
+  }
+
+  .ip-experience-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .ip-experience-right {
+    padding-left: 0;
+    border-left: none;
   }
 }
 
@@ -2162,6 +2395,50 @@
 
   .ip-form-field.full-width {
     grid-column: span 1;
+  }
+
+  /* Video Section Mobile overrides */
+  .ip-experience-section {
+    padding: 80px 0;
+  }
+
+  .ip-experience-content {
+    text-align: center;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .ip-experience-left {
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ip-experience-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .ip-experience-actions button,
+  .ip-experience-actions a {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  .ip-experience-video-card {
+    border-radius: 20px;
+  }
+
+  .ip-experience-play-button {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ip-experience-play-button svg {
+    width: 20px;
+    height: 20px;
   }
 
   .ip-marquee-item {

@@ -44,7 +44,9 @@ import {
   MessageCircle,
   BadgeCheck,
   Code,
-  Monitor
+  Monitor,
+  Play,
+  X
 } from 'lucide-react'
 import './InternshipPage.css'
 
@@ -140,6 +142,7 @@ function Section({ children, className = '', id }) {
 }
 
 export default function InternshipPage({ onNavigateHome }) {
+  const [isVideoActive, setIsVideoActive] = useState(false)
   const formRef = useRef(null)
   const timelineRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -545,11 +548,75 @@ export default function InternshipPage({ onNavigateHome }) {
         </div>
       </div>
 
-      {/* ── SECTION 1: IMPACT NUMBERS ── */}
-      <Section className="ip-impact-section">
+      {/* ── SECTION: INTERNSHIP EXPERIENCE VIDEO ── */}
+      <Section className="ip-experience-section" id="experience-section">
         <div className="ip-container">
+          {/* Two-Column Top Content Area */}
+          <div className="ip-experience-content">
+            {/* Left Column */}
+            <div className="ip-experience-left">
+              <div className="ip-experience-badge">
+                <span className="ip-experience-badge-dot" />
+                🎥 Watch the Experience
+              </div>
+              <h2 className="ip-experience-title">
+                See What Your <span>Internship Journey</span> Looks Like
+              </h2>
+              <p className="ip-experience-desc">
+                Don't just read about the program—experience it. Watch how our interns learn from mentors, build real-world projects, collaborate with teams, and prepare for successful careers in <strong>Data Analytics, AI, and Business Intelligence</strong>.
+              </p>
+              <div className="ip-experience-actions">
+                <button
+                  onClick={() => {
+                    setIsVideoActive(true);
+                    document.querySelector('.ip-experience-video-showcase')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }}
+                  className="ip-btn-primary"
+                >
+                  <Play width="16" height="16" fill="currentColor" style={{ marginRight: '6px' }} />
+                  Watch Now
+                </button>
+                <a href="#apply-form" onClick={scrollToForm} className="ip-btn-secondary">
+                  Apply Now
+                  <ArrowRight width="16" height="16" style={{ marginLeft: '6px' }} />
+                </a>
+              </div>
+            </div>
+
+            {/* Video Showcase Card */}
+            <div className="ip-experience-video-showcase">
+              <div className="ip-experience-video-glow" />
+              <div className="ip-experience-video-card">
+                {isVideoActive ? (
+                  <iframe
+                    src="https://www.youtube.com/embed/tiUUb40eXWo?autoplay=1&rel=0"
+                    title="Internship Experience Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="ip-experience-video-iframe"
+                  />
+                ) : (
+                  <div className="ip-experience-video-thumbnail-wrapper" onClick={() => setIsVideoActive(true)}>
+                    <img
+                      src="https://img.youtube.com/vi/tiUUb40eXWo/maxresdefault.jpg"
+                      alt="Internship Experience Thumbnail"
+                      className="ip-experience-video-thumbnail"
+                    />
+                    <div className="ip-experience-video-overlay">
+                      <div className="ip-experience-play-button" onClick={() => setIsVideoActive(true)}>
+                        <Play width="28" height="28" fill="currentColor" className="ip-play-icon" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Card Grid */}
           <motion.div
             className="ip-stats-grid"
+            style={{ marginTop: '80px', width: '100%' }}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -573,8 +640,8 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-who-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">Who is this for?</h2>
-            <p className="ip-new-section-subtitle">Recognize yourself here? Good. Keep reading.</p>
+            <h2 className="ip-new-section-title">Who Should <span>Join This Program?</span></h2>
+            <p className="ip-new-section-subtitle">Rework the content language to make it more professional and structured. Also, replace the existing heading with a more relevant and engaging title.</p>
           </div>
           <motion.div
             className="ip-who-grid"
@@ -602,7 +669,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section id="program" className="ip-program-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">One program. The complete Data & AI stack.</h2>
+            <h2 className="ip-new-section-title">One program. The complete <span>Data & AI stack.</span></h2>
             <p className="ip-new-section-subtitle">
               Whether you're a student, fresher, or career-switcher — no prior coding needed. You'll go from data fundamentals to Generative AI with real projects at every stage.
             </p>
@@ -649,7 +716,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-industries-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">Industries You'll Work Across</h2>
+            <h2 className="ip-new-section-title"><span>Industries</span> You'll Work Across</h2>
           </div>
           <motion.div
             className="ip-industries-grid"
@@ -672,7 +739,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-skills-professional-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">Skills You'll Master</h2>
+            <h2 className="ip-new-section-title">Skills You'll <span>Master</span></h2>
             <p className="ip-new-section-subtitle">
               Become industry-ready with targeted expertise curated across three professional disciplines.
             </p>
@@ -709,7 +776,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-tracks-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">Three tracks. One goal: industry-ready.</h2>
+            <h2 className="ip-new-section-title">Three tracks. One goal: <span>industry-ready.</span></h2>
             <p className="ip-new-section-subtitle">
               All tracks share the same mentorship structure and certification. Choose what aligns with where you want to go.
             </p>
@@ -772,7 +839,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-walkaway-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">Real gains. Not just a certificate.</h2>
+            <h2 className="ip-new-section-title"><span>Real gains.</span> Not just a certificate.</h2>
             <p className="ip-new-section-subtitle">
               Every element of this program is designed around one question: what does this intern need to actually land a job?
             </p>
@@ -800,7 +867,7 @@ export default function InternshipPage({ onNavigateHome }) {
         <div className="ip-journey-container">
           <div className="ip-journey-header">
             <span className="ip-journey-eyebrow">8-WEEK JOURNEY</span>
-            <h2 className="ip-journey-title-main">Week by week. Milestone by milestone.</h2>
+            <h2 className="ip-journey-title-main">Week by week. <span>Milestone by milestone.</span></h2>
             <p className="ip-journey-desc-main">
               A structured program with clear checkpoints — so you always know where you are and where you're headed.
             </p>
@@ -867,7 +934,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-daylife-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">A Day in the Life</h2>
+            <h2 className="ip-new-section-title">A <span>Day in the Life</span></h2>
           </div>
           <div className="ip-horizontal-timeline-scroll">
             <motion.div
@@ -936,7 +1003,7 @@ export default function InternshipPage({ onNavigateHome }) {
       <Section className="ip-faq-section">
         <div className="ip-container">
           <div className="ip-section-heading-block">
-            <h2 className="ip-new-section-title">Frequently Asked Questions</h2>
+            <h2 className="ip-new-section-title">Frequently Asked <span>Questions</span></h2>
           </div>
           <div className="ip-faq-accordion-list">
             {faqs.map((faq, i) => (
@@ -1001,7 +1068,7 @@ export default function InternshipPage({ onNavigateHome }) {
               </motion.div>
             ) : (
               <>
-                <h2 className="ip-form-card-title">Apply for the Cohort</h2>
+                <h2 className="ip-form-card-title">Apply for the <span>Cohort</span></h2>
                 <form className="ip-app-form" onSubmit={handleFormSubmit}>
                   <div className="ip-form-grid-fields">
                     <div className="ip-form-field">

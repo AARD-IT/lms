@@ -8632,11 +8632,12 @@ p.description.builder-editable.themainwebfootdesc {
 }
 
 .themainwebfooter h4.socialnane {
+    font-family: 'Poppins', sans-serif;
     color: #000;
     font-size: 16px;
     text-transform: uppercase;
     margin-bottom: 30px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .themainwebfooter img.themainwebfoootlogos {

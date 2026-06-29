@@ -8,12 +8,14 @@ export default function Footer() {
           <div className="col-lg-4 col-md-4">
             <div className="footer-content drop-area">
               <img src="/assets/frontend/default/images/img/mainwebsitelogofoter.png" className="themainwebfoootlogos" alt="system logo" />
-              <p className="description builder-editable themainwebfootdesc" builder-identity="1">
-                Analytics Avenue is an IT and EdTech organization specializing in advanced analytics, data engineering, and AI-driven solutions. We enable enterprise BI, GenAI, predictive analytics, and scalable data platforms to drive real business
-                impact. Our model combines analytics solution delivery with industry-aligned upskilling. We support career growth through hands-on training, real project exposure, and curated freelancing opportunities, working with global
-                clients and professionals to deliver measurable, data-driven outcomes..
+              <p className="description builder-editable themainwebfootdesc" builder-identity="1" style={{ marginBottom: '16px' }}>
+                Analytics Avenue is an IT and EdTech organization focused on delivering advanced analytics, data engineering, and AI-powered solutions. We help businesses unlock value through Enterprise BI, Generative AI, predictive analytics, and scalable data platforms that drive measurable business outcomes.
               </p>
-              <div className="thesocialss">
+              <p className="description builder-editable themainwebfootdesc" builder-identity="2" style={{ marginBottom: '24px' }}>
+                Our approach combines industry-focused solution delivery with practical upskilling programs to bridge the gap between learning and real-world application. Through hands-on training, live project exposure, mentorship from professionals, and curated freelancing opportunities, we support individuals in building career-ready skills while collaborating with global clients to create data-driven impact.
+              </p>
+              <div className="thesocialss" style={{ marginTop: '24px' }}>
+                <h4 style={{ fontSize: '14px', fontWeight: '600', fontFamily: 'Helvetica', textTransform: 'uppercase', marginBottom: '30px', color: '#000' }}>Connect With Us</h4>
                 <ul className="f-socials d-flex">
                   <li>
                     <a href="https://www.linkedin.com/company/analytics-avenue-and-advanced-analytics/" target="_blank" rel="noopener noreferrer">
