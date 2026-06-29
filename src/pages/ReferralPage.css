@@ -885,7 +885,7 @@
   background: var(--rp-white);
   border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--rp-radius-md);
-  padding: 48px;
+  padding: 20px;
   box-shadow: var(--rp-shadow-lg);
   min-height: 460px;
   display: flex;
@@ -1581,6 +1581,10 @@
    RESPONSIVE LAYOUTS
    ============================================================ */
 @media (max-width: 1024px) {
+  .rp-hero-float-pill {
+    display: none !important;
+  }
+
   .rp-rewards-progress-line {
     display: none;
   }
