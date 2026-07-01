@@ -102,7 +102,7 @@ export default function Header() {
                       <div className="d-flex align-items-center gap-2">
                         <ul className="primary-menu main-menu-ul d-flex align-items-center w-100 drop-area">
                           <li><a href="https://analyticsavenue.in/lms" className="active" onClick={closeMobileMenu}>Home</a></li>
-                          <li className="pe-2 ps-5"><a href="#/podcast" onClick={closeMobileMenu}>Podcast</a></li>
+                          <li className="pe-2 ps-5"><a href="/podcast" onClick={closeMobileMenu}>Podcast</a></li>
                           <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/lms/referals#refferlass" onClick={closeMobileMenu}>Referral</a></li>
                           <li className="pe-2 ps-5"><a href="#" onClick={(e) => { e.preventDefault(); closeMobileMenu(); }}>Internship</a></li>
                           <li className={`have-mega-menu pe-2 ps-5 ${mobilePaymentOpen ? 'active' : ''}`}>
@@ -114,7 +114,7 @@ export default function Header() {
                                 setMobilePaymentOpen(!mobilePaymentOpen);
                               }}
                             >
-                              Payment
+                              Book Consultation
                             </a>
                             <ul className="mega-dropdown-menu mega main-mega-menu">
                               <div className="mega-menu-items">

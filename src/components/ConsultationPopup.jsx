@@ -616,6 +616,7 @@ export default function ConsultationPopup() {
                       <option value="Employed">Employed</option>
                       <option value="Unemployed">Unemployed</option>
                       <option value="Student">Student</option>
+                      <option value="Fresher">Fresher</option>
                     </select>
                   </div>
 

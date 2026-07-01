@@ -30,30 +30,30 @@ import ReferralPage from './pages/ReferralPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
-    const hash = window.location.hash
-    if (hash === '#/podcast') return 'podcast'
-    if (hash === '#/on-boarding') return 'onboarding'
-    if (hash === '#/internship') return 'internship'
-    if (hash === '#/referral') return 'referral'
+    const path = window.location.pathname
+    if (path === '/podcast') return 'podcast'
+    if (path === '/on-boarding') return 'onboarding'
+    if (path === '/internship') return 'internship'
+    if (path === '/referral') return 'referral'
     return 'home'
   })
 
   useEffect(() => {
-    // Sync hash on page change and scroll to top
+    // Sync pathname on page change and scroll to top
     if (currentPage === 'podcast') {
-      window.history.pushState(null, '', '#/podcast')
+      window.history.pushState(null, '', '/podcast')
       document.title = 'Podcast | Analytics Avenue'
     } else if (currentPage === 'onboarding') {
-      window.history.pushState(null, '', '#/on-boarding')
+      window.history.pushState(null, '', '/on-boarding')
       document.title = 'On-Boarding | Analytics Avenue'
     } else if (currentPage === 'internship') {
-      window.history.pushState(null, '', '#/internship')
+      window.history.pushState(null, '', '/internship')
       document.title = 'Internship | Analytics Avenue'
     } else if (currentPage === 'referral') {
-      window.history.pushState(null, '', '#/referral')
+      window.history.pushState(null, '', '/referral')
       document.title = 'Referral Program | Analytics Avenue'
     } else {
-      window.history.pushState(null, '', '#/')
+      window.history.pushState(null, '', '/')
       document.title = 'Analytics Avenue | LMS'
     }
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -61,22 +61,22 @@ function App() {
 
   useEffect(() => {
     // Listen for back/forward browser navigation
-    const onHashChange = () => {
-      const hash = window.location.hash
-      if (hash === '#/podcast') setCurrentPage('podcast')
-      else if (hash === '#/on-boarding') setCurrentPage('onboarding')
-      else if (hash === '#/internship') setCurrentPage('internship')
-      else if (hash === '#/referral') setCurrentPage('referral')
+    const onPopState = () => {
+      const path = window.location.pathname
+      if (path === '/podcast') setCurrentPage('podcast')
+      else if (path === '/on-boarding') setCurrentPage('onboarding')
+      else if (path === '/internship') setCurrentPage('internship')
+      else if (path === '/referral') setCurrentPage('referral')
       else setCurrentPage('home')
     }
-    window.addEventListener('hashchange', onHashChange)
+    window.addEventListener('popstate', onPopState)
 
     // Listen for navigate-home custom event (from PodcastPage breadcrumb)
     const onNavHome = () => setCurrentPage('home')
     window.addEventListener('navigate-home', onNavHome)
 
     return () => {
-      window.removeEventListener('hashchange', onHashChange)
+      window.removeEventListener('popstate', onPopState)
       window.removeEventListener('navigate-home', onNavHome)
     }
   }, [])
@@ -318,7 +318,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
           <div className="row flex-md-nowrap theheaderinners">
             <div className="col-auto">
               <div className="logo-image">
-                <a href="#/" onClick={(e) => { navToHome(e); closeMobileMenu(); }}>
+                <a href="/" onClick={(e) => { navToHome(e); closeMobileMenu(); }}>
                   <img src="/assets/frontend/default/images/img/mainwebsitelogohead.png" alt="system logo" className="object-fit-cover rounded header-dark-logo themainwebsitelogos" />
                 </a>
               </div>
@@ -337,10 +337,10 @@ function AppHeader({ currentPage, setCurrentPage }) {
                     <div className="primary-end d-flex align-items-center">
                       <div className="d-flex align-items-center gap-2">
                         <ul className="primary-menu main-menu-ul d-flex align-items-center w-100 drop-area">
-                          <li><a href="#/" onClick={(e) => { navToHome(e); closeMobileMenu(); }} className={currentPage === 'home' ? 'active' : ''}>Home</a></li>
+                          <li><a href="/" onClick={(e) => { navToHome(e); closeMobileMenu(); }} className={currentPage === 'home' ? 'active' : ''}>Home</a></li>
                           <li className="pe-2 ps-5">
                             <a
-                              href="#/podcast"
+                              href="/podcast"
                               onClick={(e) => { navToPodcast(e); closeMobileMenu(); }}
                               className={currentPage === 'podcast' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}
@@ -350,7 +350,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
                           </li>
                           <li className="pe-2 ps-5">
                             <a
-                              href="#/referral"
+                              href="/referral"
                               onClick={(e) => { navToReferral(e); closeMobileMenu(); }}
                               className={currentPage === 'referral' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}
@@ -360,7 +360,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
                           </li>
                           <li className="pe-2 ps-5">
                             <a
-                              href="#/internship"
+                              href="/internship"
                               onClick={(e) => { navToInternship(e); closeMobileMenu(); }}
                               className={currentPage === 'internship' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}
@@ -377,7 +377,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
                                 setMobilePaymentOpen(!mobilePaymentOpen);
                               }}
                             >
-                              Payment
+                              Book Consultation
                             </a>
                             <ul className="mega-dropdown-menu mega main-mega-menu">
                               <div className="mega-menu-items">
@@ -402,7 +402,7 @@ function AppHeader({ currentPage, setCurrentPage }) {
                           <li className="pe-2 ps-5"><a href="https://analyticsavenue.in/" onClick={closeMobileMenu}>IT services</a></li>
                           <li className="pe-2 ps-5">
                             <a
-                              href="#/on-boarding"
+                              href="/on-boarding"
                               onClick={(e) => { navToOnboarding(e); closeMobileMenu(); }}
                               className={currentPage === 'onboarding' ? 'podcast-nav-active' : ''}
                               style={{ cursor: 'pointer' }}

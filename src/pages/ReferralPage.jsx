@@ -438,7 +438,7 @@ export default function ReferralPage({ onNavigateHome }) {
               Why <span>Refer?</span>
             </h2>
             <p className="rp-section-subtitle">
-              Three reasons your referral matters.
+              Give someone the opportunity to build a successful career in Data & AI.
             </p>
           </div>
 
@@ -454,9 +454,9 @@ export default function ReferralPage({ onNavigateHome }) {
               <div className="rp-why-icon">
                 <BookOpen size={28} />
               </div>
-              <h3 className="rp-why-title">Future-Ready Skills</h3>
+              <h3 className="rp-why-title">Career Transformation</h3>
               <p className="rp-why-desc">
-                Enable them to learn state-of-the-art tools, algorithms, and prompt structures in Data Analytics, GenAI, and Machine Learning.
+                Help learners transition into high-growth technology careers through industry-relevant skills, hands-on training, and structured learning paths.
               </p>
             </motion.div>
 
@@ -471,9 +471,9 @@ export default function ReferralPage({ onNavigateHome }) {
               <div className="rp-why-icon">
                 <Users size={28} />
               </div>
-              <h3 className="rp-why-title">Expert Mentor Access</h3>
+              <h3 className="rp-why-title">Personalized Mentorship</h3>
               <p className="rp-why-desc">
-                Give them direct weekly code audits and strategy sessions led by working professionals in leading global companies.
+                Provide one-on-one guidance, live mentoring sessions, code reviews, career coaching, and interview preparation from experienced industry professionals.
               </p>
             </motion.div>
 
@@ -488,9 +488,9 @@ export default function ReferralPage({ onNavigateHome }) {
               <div className="rp-why-icon">
                 <Award size={28} />
               </div>
-              <h3 className="rp-why-title">Real Industry Projects</h3>
+              <h3 className="rp-why-title">Job-Ready Experience</h3>
               <p className="rp-why-desc">
-                Let them build live, production-grade applications using real enterprise pipelines and databases, bypassing static homework.
+                Equip learners with practical experience through real-world projects, internships, portfolio development, placement assistance, and referral support to become employer-ready.
               </p>
             </motion.div>
           </div>

@@ -307,7 +307,7 @@
 }
 
 .ip-dash-stat-num {
-  font-family: var(--ip-serif);
+  font-family: var(--ip-font);
   font-size: 22px;
   font-weight: 800;
   color: var(--ip-blue);
@@ -606,7 +606,7 @@
 }
 
 .ip-stat-value-container {
-  font-family: var(--ip-serif);
+  font-family: var(--ip-font);
   font-size: clamp(2rem, 3.2vw, 2.7rem);
   font-weight: 700;
   color: var(--ip-dark);
@@ -663,7 +663,7 @@
 }
 
 .ip-who-num {
-  font-family: var(--ip-serif);
+  font-family: var(--ip-font);
   font-size: 15px;
   font-weight: 700;
   color: var(--ip-blue);
@@ -1519,7 +1519,7 @@
 }
 
 .ip-mentor-stat-num {
-  font-family: var(--ip-serif);
+  font-family: var(--ip-font);
   font-size: 24px;
   font-weight: 700;
   color: var(--ip-dark);

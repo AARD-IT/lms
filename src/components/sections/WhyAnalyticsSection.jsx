@@ -11,7 +11,7 @@ export default function WhyAnalyticsSection() {
                 </div>
                 <div className="thewhyanayicssinfosleft">
                   <h4 className="themainhighlights">We don't educate analytics <br /> We build data experts who automate entire businesses end-to-end through scalable data pipelines, intelligent ML &amp; Agentic AI solutions, and automation systems that eliminate manual effort while delivering accurate insights and outcomes.</h4>
-                  <p><span className="thepiticon"><img src="/assets/frontend/default/images/img/pwefectpoints.png" alt="" /></span>A perfect platform for career transition seekers, freshers and passionate data experts</p>
+                  <p><span className="thepiticon"><img src="/assets/frontend/default/images/img/pwefectpoints.png" alt="" /></span>A perfect platform for career transition seekers, freshers, unemployed professionals looking to restart their careers, and passionate data experts to learn, build real-world projects, and unlock new career opportunities.</p>
                 </div>
               </div>
             </div>

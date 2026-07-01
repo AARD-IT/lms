@@ -99,7 +99,7 @@ export default function ExpertPanelSection() {
               {[
                 { name:'Mahesh', role:'Senior AI Engineer', img:'mentooors7.jpeg', desc:'Builds scalable AI solutions for Supply chain and automobile industry with 3+ years of Industrial Experience', skills:['Machine learning','SQL','GenAI','AgenticAI'] },
                 { name:'Deepak Raj', role:'Agentic AI Engineer', img:'mentooors8.jpeg', desc:'Builds Agentic AI automations for Supply chain and automobile industry to reduce manual efforts and improve the process efficiency', skills:['Machine learning','SQL','GenAI','AgenticAI'] },
-                { name:'Rizwan Ahmed', role:'Bio Research Analytics Engineer', img:'mentooors9.jpeg', desc:'Pre-Doctoral Fellow at IIT Kharagpur who Engineers biomaterial scaffolds for regenerative medicine by integrating tissue engineering with systems pharmacology and AI-driven analytics.', skills:[] }
+                { name:'Rizwan Ahmed', role:'Bio Research Analytics Engineer', img:'mentooors9.jpeg', desc:'Pre-Doctoral Fellow at IIT Kharagpur who Engineers biomaterial scaffolds for regenerative medicine by integrating tissue engineering with systems pharmacology and AI-driven analytics.', skills:['Statistical Modeling','Machine Learning','Python'] }
               ].map((expert,i) => (
                 <div key={i} className="thehomeswiperreviews">
                   <div className="swiper-slide thehomeswiperreviews">

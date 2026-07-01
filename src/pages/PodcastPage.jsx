@@ -23,7 +23,7 @@ function PodcastHero({ onNavigateHome }) {
         <nav style={{ marginBottom: '10px' }}>
           <span style={{ fontFamily: "'Helvetica', sans-serif", fontSize: '13px', color: '#64748b' }}>
             <a
-              href="#/"
+              href="/"
               onClick={e => { e.preventDefault(); onNavigateHome() }}
               style={{ color: '#0377EF', textDecoration: 'none', fontWeight: 500 }}
             >Home</a>
