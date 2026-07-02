@@ -574,7 +574,7 @@ export default function ConsultationPopup() {
 
             {/* ── Right: form panel ────────────────────────── */}
             <div className="cp-right">
-              <h3>Book Your Free Session</h3>
+              <h3>Book Your Session</h3>
               <p className="cp-right-sub">Fill in your details — our team will reach out within 24 hours</p>
 
               <form
@@ -649,7 +649,7 @@ export default function ConsultationPopup() {
                   {/* Submit */}
                   <div className="cp-field full">
                     <button className="cp-submit" type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? 'Submitting...' : '📅 Book 1-1 Consultation — It\'s Free'}
+                      {isSubmitting ? 'Submitting...' : '📅 Book 1-1 Consultation'}
                     </button>
                   </div>
                 </div>
@@ -674,7 +674,7 @@ export default function ConsultationPopup() {
         aria-label="Book a consultation"
       >
         <div className="banner-text">
-          📅 Book a free 1-1 session with our Data Experts
+          📅 Book a 1-1 session with our Data Experts
           <span> • Empowering 1000+ aspirants across 11+ industries</span>
         </div>
         <button className="banner-cta" onClick={handleBannerOpen}>Book Now →</button>

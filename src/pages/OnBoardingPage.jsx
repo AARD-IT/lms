@@ -43,7 +43,7 @@ const steps = [
   {
     number: '03',
     title: 'Demo & Onboard',
-    description: 'Attend 2 free demo sessions, complete payment, and get access to learning materials.',
+    description: 'Attend 2 demo sessions, complete payment, and get access to learning materials.',
     subItems: [
       'Watch live interaction demo sessions',
       'Gain full LMS access and download learning materials'
